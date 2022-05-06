@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../lib/libQSBD_KS.a  CMakeFiles/QSBD_KS.dir/kolmogorov_smirnov/kolmogorov_smirnov.cpp.o
+/usr/bin/ranlib ../../lib/libQSBD_KS.a

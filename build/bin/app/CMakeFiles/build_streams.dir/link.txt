@@ -1,0 +1,1 @@
+/usr/bin/c++   -g  -O0 -Wall   -g -O0 -Wall CMakeFiles/build_streams.dir/stream_creator/build_streams.cpp.o  -o ../build_streams  ../../lib/libnlohmann_json.a ../../lib/libQSBD_UTILS.a ../../lib/libQSBD_DEBUG.a 

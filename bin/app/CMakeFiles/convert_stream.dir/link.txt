@@ -1,0 +1,1 @@
+/usr/bin/c++   -g  -O0 -Wall   -g -O0 -Wall CMakeFiles/convert_stream.dir/convert_stream/convert_stream.cpp.o  -o ../convert_stream  ../../lib/libnlohmann_json.a ../../lib/libQSBD_STREAM_MAKER.a ../../lib/libQSBD_UTILS.a ../../lib/libQSBD_LOG.a ../../lib/libQSBD_DEBUG.a ../../lib/libQSBD_COMMUM_HEADER.a ../../lib/libQSBD_GLOBAL_GEN.a 

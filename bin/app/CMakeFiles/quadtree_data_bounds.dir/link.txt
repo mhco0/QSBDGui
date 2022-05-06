@@ -1,0 +1,1 @@
+/usr/bin/c++   -g  -O0 -Wall   -g -O0 -Wall CMakeFiles/quadtree_data_bounds.dir/quantile_quadtree_experiment/quadtree_data_bounds.cpp.o  -o ../quadtree_data_bounds  ../../lib/libQSBD_AABB.a ../../lib/libQSBD_UTILS.a ../../lib/libQSBD_DEBUG.a ../../lib/libQSBD_POINT.a ../../lib/libQSBD_COMMUM_HEADER.a 

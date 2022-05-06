@@ -1,0 +1,96 @@
+{
+	"archive" : {},
+	"artifacts" : 
+	[
+		{
+			"path" : "lib/libQSBD_Q_DIGEST_FACTORY.a"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"target_link_libraries"
+		],
+		"files" : 
+		[
+			"/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/Big-Data-IC/src/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 126,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 243,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 242,
+				"parent" : 0
+			}
+		]
+	},
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "QSBD_Q_DIGEST::@7979f27a2384e6a7ef4f"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "QSBD_UTILS::@7979f27a2384e6a7ef4f"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "QSBD_DEBUG::@7979f27a2384e6a7ef4f"
+		},
+		{
+			"backtrace" : 3,
+			"id" : "QSBD_SKETCH_FACTORY::@7979f27a2384e6a7ef4f"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "QSBD_QUANTILE_SKETCH::@7979f27a2384e6a7ef4f"
+		}
+	],
+	"id" : "QSBD_Q_DIGEST_FACTORY::@7979f27a2384e6a7ef4f",
+	"name" : "QSBD_Q_DIGEST_FACTORY",
+	"nameOnDisk" : "libQSBD_Q_DIGEST_FACTORY.a",
+	"paths" : 
+	{
+		"build" : "bin/src",
+		"source" : "/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/Big-Data-IC/src"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"path" : "/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/Big-Data-IC/src/q_digest_factory/q_digest_factory.h",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "STATIC_LIBRARY"
+}

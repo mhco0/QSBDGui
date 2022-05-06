@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../lib/libQSBD_TWO_WISE_FAMILY.a  CMakeFiles/QSBD_TWO_WISE_FAMILY.dir/two_wise_family/two_wise_family.cpp.o
+/usr/bin/ranlib ../../lib/libQSBD_TWO_WISE_FAMILY.a

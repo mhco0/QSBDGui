@@ -1,0 +1,530 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "bin/QSBDGuiTest"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"target_link_libraries",
+			"target_include_directories"
+		],
+		"files" : 
+		[
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 53,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 74,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 71,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 72,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 73,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : " "
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-fPIC"
+				},
+				{
+					"fragment" : "-std=gnu++11"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 2,
+					"define" : "QT_CORE_LIB"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "QT_GUI_LIB"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "QT_NO_DEBUG"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "QT_PRINTSUPPORT_LIB"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "QT_SVG_LIB"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "QT_WIDGETS_LIB"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"path" : "/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/build"
+				},
+				{
+					"path" : "/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest"
+				},
+				{
+					"backtrace" : 0,
+					"path" : "/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/build/QSBDGuiTest_autogen/include"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src"
+				},
+				{
+					"backtrace" : 4,
+					"path" : "/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/../Big-Data-IC/src"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/../Big-Data-IC/thirdparty"
+				},
+				{
+					"backtrace" : 2,
+					"isSystem" : true,
+					"path" : "/usr/include/x86_64-linux-gnu/qt5"
+				},
+				{
+					"backtrace" : 2,
+					"isSystem" : true,
+					"path" : "/usr/include/x86_64-linux-gnu/qt5/QtWidgets"
+				},
+				{
+					"backtrace" : 2,
+					"isSystem" : true,
+					"path" : "/usr/include/x86_64-linux-gnu/qt5/QtGui"
+				},
+				{
+					"backtrace" : 2,
+					"isSystem" : true,
+					"path" : "/usr/include/x86_64-linux-gnu/qt5/QtCore"
+				},
+				{
+					"backtrace" : 2,
+					"isSystem" : true,
+					"path" : "/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++"
+				},
+				{
+					"backtrace" : 2,
+					"isSystem" : true,
+					"path" : "/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport"
+				},
+				{
+					"backtrace" : 2,
+					"isSystem" : true,
+					"path" : "/usr/include/x86_64-linux-gnu/qt5/QtSvg"
+				}
+			],
+			"language" : "CXX",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				5,
+				7,
+				9,
+				11,
+				13
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "nlohmann_json::@571fc159f825cda98f79"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "csv_parser::@571fc159f825cda98f79"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "QSBD_DCS::@7979f27a2384e6a7ef4f"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "QSBD_KLL::@7979f27a2384e6a7ef4f"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "QSBD_AABB::@7979f27a2384e6a7ef4f"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "QSBD_COUNT_SKETCH::@7979f27a2384e6a7ef4f"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "QSBD_Q_DIGEST::@7979f27a2384e6a7ef4f"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "QSBD_GK::@7979f27a2384e6a7ef4f"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "QSBD_UTILS::@7979f27a2384e6a7ef4f"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "QSBD_DEBUG::@7979f27a2384e6a7ef4f"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "QSBD_TWO_WISE_FAMILY::@7979f27a2384e6a7ef4f"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "QSBD_QUANTILE_QUADTREE::@7979f27a2384e6a7ef4f"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "QSBD_COMMUM_HEADER::@7979f27a2384e6a7ef4f"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "QSBD_POINT::@7979f27a2384e6a7ef4f"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "QSBD_GK_FACTORY::@7979f27a2384e6a7ef4f"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "QSBD_STREAM_MAKER::@7979f27a2384e6a7ef4f"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "QSBD_GLOBAL_GEN::@7979f27a2384e6a7ef4f"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "QSBD_SKETCH_FACTORY::@7979f27a2384e6a7ef4f"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "QSBD_QUANTILE_SKETCH::@7979f27a2384e6a7ef4f"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "QSBD_KLL_FACTORY::@7979f27a2384e6a7ef4f"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "QSBD_Q_DIGEST_FACTORY::@7979f27a2384e6a7ef4f"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "QSBD_DCS_FACTORY::@7979f27a2384e6a7ef4f"
+		},
+		{
+			"backtrace" : 0,
+			"id" : "QSBDGuiTest_autogen::@6890427a1f51a3e7e1df"
+		}
+	],
+	"id" : "QSBDGuiTest::@6890427a1f51a3e7e1df",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libQt5PrintSupport.so.5.12.8",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libQt5Svg.so.5.12.8",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "lib/libnlohmann_json.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "lib/libcsv_parser.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lpthread",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "lib/libQSBD_STREAM_MAKER.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "lib/libQSBD_QUANTILE_QUADTREE.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "lib/libQSBD_GK_FACTORY.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "lib/libQSBD_KLL_FACTORY.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "lib/libQSBD_DCS_FACTORY.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "lib/libQSBD_Q_DIGEST_FACTORY.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "lib/libQSBD_UTILS.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.12.8",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.12.8",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libQt5Core.so.5.12.8",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "lib/libQSBD_AABB.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "lib/libQSBD_POINT.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "lib/libQSBD_GK.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "lib/libQSBD_KLL.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "lib/libQSBD_DCS.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "lib/libQSBD_COUNT_SKETCH.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "lib/libQSBD_COMMUM_HEADER.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "lib/libQSBD_TWO_WISE_FAMILY.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "lib/libQSBD_GLOBAL_GEN.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "lib/libQSBD_SKETCH_FACTORY.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "lib/libQSBD_Q_DIGEST.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "lib/libQSBD_UTILS.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "lib/libQSBD_DEBUG.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "lib/libQSBD_QUANTILE_SKETCH.a",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "QSBDGuiTest",
+	"nameOnDisk" : "QSBDGuiTest",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				5,
+				7,
+				9,
+				11,
+				13
+			]
+		},
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				3,
+				4,
+				6,
+				8,
+				10,
+				12
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 0,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "build/QSBDGuiTest_autogen/mocs_compilation.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "main.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/mainwindow/mainwindow.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/mainwindow/mainwindow.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/view/view.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/view/view.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/model/model.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/model/model.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/controller/controller.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/controller/controller.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/qcustomplot/qcustomplot.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/qcustomplot/qcustomplot.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/csvdialog/csvdialog.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/csvdialog/csvdialog.cpp",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "EXECUTABLE"
+}

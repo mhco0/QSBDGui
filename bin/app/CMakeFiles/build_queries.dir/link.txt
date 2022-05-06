@@ -1,0 +1,1 @@
+/usr/bin/c++   -g  -O0 -Wall   -g -O0 -Wall CMakeFiles/build_queries.dir/query_creator/build_queries.cpp.o  -o ../build_queries  ../../lib/libnlohmann_json.a ../../lib/libQSBD_UTILS.a ../../lib/libQSBD_DEBUG.a 

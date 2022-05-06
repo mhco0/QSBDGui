@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../lib/libcsv_parser.a  
+/usr/bin/ranlib ../../lib/libcsv_parser.a

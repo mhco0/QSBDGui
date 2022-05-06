@@ -1,0 +1,763 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				},
+				{
+					"build" : "bin",
+					"childIndexes" : 
+					[
+						2,
+						3,
+						4,
+						5
+					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/Big-Data-IC"
+				},
+				{
+					"build" : "bin/thirdparty",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/Big-Data-IC/thirdparty",
+					"targetIndexes" : 
+					[
+						37,
+						42
+					]
+				},
+				{
+					"build" : "bin/src",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/Big-Data-IC/src",
+					"targetIndexes" : 
+					[
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17,
+						18,
+						19,
+						20,
+						21,
+						22,
+						23,
+						24,
+						25,
+						26,
+						27,
+						28,
+						29
+					]
+				},
+				{
+					"build" : "bin/test",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/Big-Data-IC/test",
+					"targetIndexes" : 
+					[
+						54,
+						55,
+						56,
+						57,
+						58,
+						59,
+						60,
+						61,
+						62,
+						63,
+						64,
+						65,
+						66,
+						67,
+						68
+					]
+				},
+				{
+					"build" : "bin/app",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/Big-Data-IC/app",
+					"targetIndexes" : 
+					[
+						30,
+						31,
+						32,
+						33,
+						34,
+						35,
+						36,
+						38,
+						39,
+						40,
+						41,
+						43,
+						44,
+						45,
+						46,
+						47,
+						48,
+						49,
+						50,
+						51,
+						52,
+						53
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "QSBDGuiTest",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4,
+						5
+					],
+					"name" : "QSBD",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17,
+						18,
+						19,
+						20,
+						21,
+						22,
+						23,
+						24,
+						25,
+						26,
+						27,
+						28,
+						29,
+						30,
+						31,
+						32,
+						33,
+						34,
+						35,
+						36,
+						37,
+						38,
+						39,
+						40,
+						41,
+						42,
+						43,
+						44,
+						45,
+						46,
+						47,
+						48,
+						49,
+						50,
+						51,
+						52,
+						53,
+						54,
+						55,
+						56,
+						57,
+						58,
+						59,
+						60,
+						61,
+						62,
+						63,
+						64,
+						65,
+						66,
+						67,
+						68
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "QSBDGuiTest::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-QSBDGuiTest-d5f3a5f1500f1239679d.json",
+					"name" : "QSBDGuiTest",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "QSBDGuiTest_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-QSBDGuiTest_autogen-923cc2b936208730a8ba.json",
+					"name" : "QSBDGuiTest_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "QSBD_AABB::@7979f27a2384e6a7ef4f",
+					"jsonFile" : "target-QSBD_AABB-829ed7ddf971b07982d5.json",
+					"name" : "QSBD_AABB",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "QSBD_COMMUM_HEADER::@7979f27a2384e6a7ef4f",
+					"jsonFile" : "target-QSBD_COMMUM_HEADER-fd8ad68adad53f8d4d8b.json",
+					"name" : "QSBD_COMMUM_HEADER",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "QSBD_CONFIG::@7979f27a2384e6a7ef4f",
+					"jsonFile" : "target-QSBD_CONFIG-058d40b37b5930ab601c.json",
+					"name" : "QSBD_CONFIG",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "QSBD_COUNT_SKETCH::@7979f27a2384e6a7ef4f",
+					"jsonFile" : "target-QSBD_COUNT_SKETCH-363aa854d8169ec80ce0.json",
+					"name" : "QSBD_COUNT_SKETCH",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "QSBD_DCS::@7979f27a2384e6a7ef4f",
+					"jsonFile" : "target-QSBD_DCS-ba057722922aa1e2307f.json",
+					"name" : "QSBD_DCS",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "QSBD_DCS_FACTORY::@7979f27a2384e6a7ef4f",
+					"jsonFile" : "target-QSBD_DCS_FACTORY-aef611952864301931fa.json",
+					"name" : "QSBD_DCS_FACTORY",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "QSBD_DEBUG::@7979f27a2384e6a7ef4f",
+					"jsonFile" : "target-QSBD_DEBUG-d5e207306d6052457f14.json",
+					"name" : "QSBD_DEBUG",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "QSBD_GK::@7979f27a2384e6a7ef4f",
+					"jsonFile" : "target-QSBD_GK-60618b59a046cc90149e.json",
+					"name" : "QSBD_GK",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "QSBD_GK_FACTORY::@7979f27a2384e6a7ef4f",
+					"jsonFile" : "target-QSBD_GK_FACTORY-26c336c09ab03602bb3f.json",
+					"name" : "QSBD_GK_FACTORY",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "QSBD_GLOBAL_GEN::@7979f27a2384e6a7ef4f",
+					"jsonFile" : "target-QSBD_GLOBAL_GEN-04c6fb6f14db14d947e9.json",
+					"name" : "QSBD_GLOBAL_GEN",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "QSBD_HEAP_TRACKER::@7979f27a2384e6a7ef4f",
+					"jsonFile" : "target-QSBD_HEAP_TRACKER-bb649366fceb9deef7c6.json",
+					"name" : "QSBD_HEAP_TRACKER",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "QSBD_KLL::@7979f27a2384e6a7ef4f",
+					"jsonFile" : "target-QSBD_KLL-e324bd2219b79335b814.json",
+					"name" : "QSBD_KLL",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "QSBD_KLL_FACTORY::@7979f27a2384e6a7ef4f",
+					"jsonFile" : "target-QSBD_KLL_FACTORY-4f0725a7b76372a7bc3e.json",
+					"name" : "QSBD_KLL_FACTORY",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "QSBD_KS::@7979f27a2384e6a7ef4f",
+					"jsonFile" : "target-QSBD_KS-b65d6bf691cd90dd9fc0.json",
+					"name" : "QSBD_KS",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "QSBD_K_WISE_FAMILY::@7979f27a2384e6a7ef4f",
+					"jsonFile" : "target-QSBD_K_WISE_FAMILY-9385641fac6116bacc47.json",
+					"name" : "QSBD_K_WISE_FAMILY",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "QSBD_LOG::@7979f27a2384e6a7ef4f",
+					"jsonFile" : "target-QSBD_LOG-9e077d486d05d0b867eb.json",
+					"name" : "QSBD_LOG",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "QSBD_MEMORY_TRACKER::@7979f27a2384e6a7ef4f",
+					"jsonFile" : "target-QSBD_MEMORY_TRACKER-d526968bd6fee635ffcb.json",
+					"name" : "QSBD_MEMORY_TRACKER",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "QSBD_POINT::@7979f27a2384e6a7ef4f",
+					"jsonFile" : "target-QSBD_POINT-2b8b11167404c4661f4f.json",
+					"name" : "QSBD_POINT",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "QSBD_QUADTREE::@7979f27a2384e6a7ef4f",
+					"jsonFile" : "target-QSBD_QUADTREE-d030473621975f368263.json",
+					"name" : "QSBD_QUADTREE",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "QSBD_QUANTILE_QUADTREE::@7979f27a2384e6a7ef4f",
+					"jsonFile" : "target-QSBD_QUANTILE_QUADTREE-d7e193e09ed8fd28efa6.json",
+					"name" : "QSBD_QUANTILE_QUADTREE",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "QSBD_QUANTILE_SKETCH::@7979f27a2384e6a7ef4f",
+					"jsonFile" : "target-QSBD_QUANTILE_SKETCH-959658e50c5d2ec93f38.json",
+					"name" : "QSBD_QUANTILE_SKETCH",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "QSBD_Q_DIGEST::@7979f27a2384e6a7ef4f",
+					"jsonFile" : "target-QSBD_Q_DIGEST-82f527d37eb2638eefaf.json",
+					"name" : "QSBD_Q_DIGEST",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "QSBD_Q_DIGEST_FACTORY::@7979f27a2384e6a7ef4f",
+					"jsonFile" : "target-QSBD_Q_DIGEST_FACTORY-ef338834aa214daf4c84.json",
+					"name" : "QSBD_Q_DIGEST_FACTORY",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "QSBD_SKETCH_FACTORY::@7979f27a2384e6a7ef4f",
+					"jsonFile" : "target-QSBD_SKETCH_FACTORY-bf1b065eb6b91d21b74c.json",
+					"name" : "QSBD_SKETCH_FACTORY",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "QSBD_STREAM_MAKER::@7979f27a2384e6a7ef4f",
+					"jsonFile" : "target-QSBD_STREAM_MAKER-67079540a12423a3e6b9.json",
+					"name" : "QSBD_STREAM_MAKER",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "QSBD_TIMER::@7979f27a2384e6a7ef4f",
+					"jsonFile" : "target-QSBD_TIMER-68c9055875fd9b7c72f4.json",
+					"name" : "QSBD_TIMER",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "QSBD_TWO_WISE_FAMILY::@7979f27a2384e6a7ef4f",
+					"jsonFile" : "target-QSBD_TWO_WISE_FAMILY-4b5e38e0806896e3ac20.json",
+					"name" : "QSBD_TWO_WISE_FAMILY",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "QSBD_UTILS::@7979f27a2384e6a7ef4f",
+					"jsonFile" : "target-QSBD_UTILS-0f497bf246babe07e174.json",
+					"name" : "QSBD_UTILS",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "brute_force::@c50f2acef6cb92fb636c",
+					"jsonFile" : "target-brute_force-ad5bc7a7e6e78124bae0.json",
+					"name" : "brute_force",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "build_brute_force::@c50f2acef6cb92fb636c",
+					"jsonFile" : "target-build_brute_force-c81595ea8aece89f8816.json",
+					"name" : "build_brute_force",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "build_queries::@c50f2acef6cb92fb636c",
+					"jsonFile" : "target-build_queries-5de3dd830e7710b1dcf8.json",
+					"name" : "build_queries",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "build_streams::@c50f2acef6cb92fb636c",
+					"jsonFile" : "target-build_streams-e2853072c8fe138f2016.json",
+					"name" : "build_streams",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "coletor::@c50f2acef6cb92fb636c",
+					"jsonFile" : "target-coletor-43dc3e9d1cbe4302b991.json",
+					"name" : "coletor",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "comparator::@c50f2acef6cb92fb636c",
+					"jsonFile" : "target-comparator-823cb017d8cb09e074a5.json",
+					"name" : "comparator",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "convert_stream::@c50f2acef6cb92fb636c",
+					"jsonFile" : "target-convert_stream-25f92d9f23f0b5fd0558.json",
+					"name" : "convert_stream",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "csv_parser::@571fc159f825cda98f79",
+					"jsonFile" : "target-csv_parser-43378ed133f4a9e06eb8.json",
+					"name" : "csv_parser",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "data_points::@c50f2acef6cb92fb636c",
+					"jsonFile" : "target-data_points-57bd73d49d8b1d25d3f1.json",
+					"name" : "data_points",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "experiment_all::@c50f2acef6cb92fb636c",
+					"jsonFile" : "target-experiment_all-f30fb979bf87327f4bc8.json",
+					"name" : "experiment_all",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "ks::@c50f2acef6cb92fb636c",
+					"jsonFile" : "target-ks-18a60b26d2443eb6e00e.json",
+					"name" : "ks",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "new_quantile_quadtree_experiment::@c50f2acef6cb92fb636c",
+					"jsonFile" : "target-new_quantile_quadtree_experiment-de6a3bb1773fab6a5c54.json",
+					"name" : "new_quantile_quadtree_experiment",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "nlohmann_json::@571fc159f825cda98f79",
+					"jsonFile" : "target-nlohmann_json-e5d55bc51f8f9cb5f4e6.json",
+					"name" : "nlohmann_json",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "profile_count_sketch::@c50f2acef6cb92fb636c",
+					"jsonFile" : "target-profile_count_sketch-dcab5bce3560561ea969.json",
+					"name" : "profile_count_sketch",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "profile_dcs::@c50f2acef6cb92fb636c",
+					"jsonFile" : "target-profile_dcs-846b0a622c4b6ca2ddf6.json",
+					"name" : "profile_dcs",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "profile_gk::@c50f2acef6cb92fb636c",
+					"jsonFile" : "target-profile_gk-25dc3b4fdaeff0c35ca7.json",
+					"name" : "profile_gk",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "profile_kll::@c50f2acef6cb92fb636c",
+					"jsonFile" : "target-profile_kll-e6bf060951a38d7c76d2.json",
+					"name" : "profile_kll",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "profile_q_digest::@c50f2acef6cb92fb636c",
+					"jsonFile" : "target-profile_q_digest-b10e026806911f139dc6.json",
+					"name" : "profile_q_digest",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "profiler::@c50f2acef6cb92fb636c",
+					"jsonFile" : "target-profiler-741eeeef510e4dda511c.json",
+					"name" : "profiler",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "quadtree_data_bounds::@c50f2acef6cb92fb636c",
+					"jsonFile" : "target-quadtree_data_bounds-c96251a81af47f5f8129.json",
+					"name" : "quadtree_data_bounds",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "quantile_quadtree_experiment::@c50f2acef6cb92fb636c",
+					"jsonFile" : "target-quantile_quadtree_experiment-b18bd9ed88c6eb762878.json",
+					"name" : "quantile_quadtree_experiment",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "quantile_quadtree_ks::@c50f2acef6cb92fb636c",
+					"jsonFile" : "target-quantile_quadtree_ks-e5a112ba8a8ed0dcaee2.json",
+					"name" : "quantile_quadtree_ks",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "query_creator::@c50f2acef6cb92fb636c",
+					"jsonFile" : "target-query_creator-fed00bfd80f521e54256.json",
+					"name" : "query_creator",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "stream_creator::@c50f2acef6cb92fb636c",
+					"jsonFile" : "target-stream_creator-9db93dbceadaa1c5ec39.json",
+					"name" : "stream_creator",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "test_config::@3287f6a6646a573e65a3",
+					"jsonFile" : "target-test_config-dd1b6ca41729ca887230.json",
+					"name" : "test_config",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "test_count_sketch::@3287f6a6646a573e65a3",
+					"jsonFile" : "target-test_count_sketch-18a207136e11db002770.json",
+					"name" : "test_count_sketch",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "test_dcs::@3287f6a6646a573e65a3",
+					"jsonFile" : "target-test_dcs-c9b0b205576102780f1b.json",
+					"name" : "test_dcs",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "test_gk::@3287f6a6646a573e65a3",
+					"jsonFile" : "target-test_gk-fa372564c443f9daa2d4.json",
+					"name" : "test_gk",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "test_json::@3287f6a6646a573e65a3",
+					"jsonFile" : "target-test_json-c1bdfc450a2a771cbf4f.json",
+					"name" : "test_json",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "test_k_wise_family::@3287f6a6646a573e65a3",
+					"jsonFile" : "target-test_k_wise_family-5f2a490877e74e57dc57.json",
+					"name" : "test_k_wise_family",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "test_kll::@3287f6a6646a573e65a3",
+					"jsonFile" : "target-test_kll-3d638fc0586e08fa5700.json",
+					"name" : "test_kll",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "test_kolmogorov::@3287f6a6646a573e65a3",
+					"jsonFile" : "target-test_kolmogorov-db6ccbc29355f0b2f76f.json",
+					"name" : "test_kolmogorov",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "test_log::@3287f6a6646a573e65a3",
+					"jsonFile" : "target-test_log-bf65ff5b2798ddcc1832.json",
+					"name" : "test_log",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "test_memory_tracker::@3287f6a6646a573e65a3",
+					"jsonFile" : "target-test_memory_tracker-8075e10b68c70491afb8.json",
+					"name" : "test_memory_tracker",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "test_q_digest::@3287f6a6646a573e65a3",
+					"jsonFile" : "target-test_q_digest-dff9cffd8fdab9009396.json",
+					"name" : "test_q_digest",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "test_quadtree::@3287f6a6646a573e65a3",
+					"jsonFile" : "target-test_quadtree-039fadf5babe2e13d7c3.json",
+					"name" : "test_quadtree",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "test_quantile_quadtree::@3287f6a6646a573e65a3",
+					"jsonFile" : "target-test_quantile_quadtree-284ad80f59c8bc6fc032.json",
+					"name" : "test_quantile_quadtree",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "test_stream_maker::@3287f6a6646a573e65a3",
+					"jsonFile" : "target-test_stream_maker-a838bd016bd766ab50bb.json",
+					"name" : "test_stream_maker",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "tester::@3287f6a6646a573e65a3",
+					"jsonFile" : "target-tester-22970c3507c93e806824.json",
+					"name" : "tester",
+					"projectIndex" : 1
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/build",
+		"source" : "/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 0
+	}
+}

@@ -1,0 +1,1 @@
+/usr/bin/c++   -g  -O0 -Wall   -g -O0 -Wall CMakeFiles/build_brute_force.dir/brute_force/build_brute_force.cpp.o  -o ../build_brute_force  ../../lib/libQSBD_UTILS.a ../../lib/libQSBD_DEBUG.a 

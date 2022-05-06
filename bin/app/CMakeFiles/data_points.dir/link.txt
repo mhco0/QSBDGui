@@ -1,0 +1,1 @@
+/usr/bin/c++   -g  -O0 -Wall   -g -O0 -Wall CMakeFiles/data_points.dir/coletor/data_points.cpp.o  -o ../data_points  ../../lib/libnlohmann_json.a ../../lib/libQSBD_UTILS.a ../../lib/libQSBD_DEBUG.a 

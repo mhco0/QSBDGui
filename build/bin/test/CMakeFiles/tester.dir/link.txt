@@ -1,0 +1,1 @@
+/usr/bin/c++   -g -Wall   -g -Wall CMakeFiles/tester.dir/tester.cpp.o  -o ../tester  ../../lib/libQSBD_CONFIG.a ../../lib/libQSBD_UTILS.a ../../lib/libQSBD_DEBUG.a 

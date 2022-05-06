@@ -1,0 +1,96 @@
+{
+	"archive" : {},
+	"artifacts" : 
+	[
+		{
+			"path" : "lib/libQSBD_KLL_FACTORY.a"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"target_link_libraries"
+		],
+		"files" : 
+		[
+			"/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/Big-Data-IC/src/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 121,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 240,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 239,
+				"parent" : 0
+			}
+		]
+	},
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "QSBD_KLL::@7979f27a2384e6a7ef4f"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "QSBD_DEBUG::@7979f27a2384e6a7ef4f"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "QSBD_COMMUM_HEADER::@7979f27a2384e6a7ef4f"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "QSBD_GLOBAL_GEN::@7979f27a2384e6a7ef4f"
+		},
+		{
+			"backtrace" : 3,
+			"id" : "QSBD_SKETCH_FACTORY::@7979f27a2384e6a7ef4f"
+		}
+	],
+	"id" : "QSBD_KLL_FACTORY::@7979f27a2384e6a7ef4f",
+	"name" : "QSBD_KLL_FACTORY",
+	"nameOnDisk" : "libQSBD_KLL_FACTORY.a",
+	"paths" : 
+	{
+		"build" : "bin/src",
+		"source" : "/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/Big-Data-IC/src"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"path" : "/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/Big-Data-IC/src/kll_factory/kll_factory.hpp",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "STATIC_LIBRARY"
+}
