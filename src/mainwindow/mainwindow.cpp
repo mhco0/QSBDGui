@@ -1,9 +1,19 @@
 #include "mainwindow.h"
 
 void MainWindow::setupUi(){
-    setFixedSize(1000, 500);
+    //setFixedSize(1000, 500);
 
     view.setEnabled(false);
+
+    newMenu = new QMenu("Simulation");
+    newMenu->addAction(tr("New"), this, &MainWindow::onNewSimulation);
+    newMenu->addSeparator();
+    newMenu->addAction(tr("Quit"), this, &MainWindow::onQuit);
+
+    menuBar = new QMenuBar();
+    menuBar->addMenu(newMenu);
+
+    this->setMenuBar(menuBar);
 
     sketchsMenu = new QComboBox();
     sketchsMenu->addItem(tr("undefined"));
@@ -248,6 +258,7 @@ void MainWindow::setupUi(){
     depthDraw->setValue(0);
     depthDraw->setVisible(false);
     depthDraw->setOrientation(Qt::Horizontal);
+    depthDraw->setMaximumWidth(250);  
 
     drawModesContainer->addWidget(drawModesLabel);
     drawModesContainer->addWidget(drawModes);
@@ -302,10 +313,10 @@ void MainWindow::setupUi(){
     sketchInfoContainer->addWidget(sketchInfo);
 
     rightContainer = new QVBoxLayout();
-    rightContainer->addLayout(resolutionContainer);
-    rightContainer->addLayout(depthContainer);
-    rightContainer->addLayout(sketchFullContainer);
-    rightContainer->addWidget(constructButton);
+    //rightContainer->addLayout(resolutionContainer);
+    //rightContainer->addLayout(depthContainer);
+    //rightContainer->addLayout(sketchFullContainer);
+    //rightContainer->addWidget(constructButton);
     rightContainer->addLayout(simulationContainer);
     rightContainer->addWidget(freezeButton);
     rightContainer->addLayout(rankQueryContainer);
@@ -325,8 +336,7 @@ void MainWindow::setupUi(){
     freezed = false;
 }
 
-
-void MainWindow::setSketchConfigUiVisible(const bool& visible, const bool& addUniverse){
+/*void MainWindow::setSketchConfigUiVisible(const bool& visible, const bool& addUniverse){
     sketchError->setVisible(visible);
     errorLabel->setVisible(visible);
     universeLabel->setVisible(visible);
@@ -336,9 +346,9 @@ void MainWindow::setSketchConfigUiVisible(const bool& visible, const bool& addUn
         universeLabel->setVisible(false);
         sketchUniverse->setVisible(false);
     }
-}
+}*/
 
-void MainWindow::hideConstructUi(){
+/*void MainWindow::hideConstructUi(){
     sketchsMenu->setVisible(false);
     sketchsLabel->setVisible(false);
     errorLabel->setVisible(false);
@@ -354,7 +364,7 @@ void MainWindow::hideConstructUi(){
     xResolution->setVisible(false);
     yResolution->setVisible(false);
     constructButton->setVisible(false);
-}
+}*/
 
 void MainWindow::hideFeedUi(){
     feedingMethod->setVisible(false);
@@ -382,7 +392,7 @@ void MainWindow::startUpSimulation(void){
     controller.startSimulation();
 
     hideFeedUi();
-    hideConstructUi();
+    //hideConstructUi();
 
     freezeButton->setVisible(true);
 
@@ -480,10 +490,48 @@ void MainWindow::configFeedUi(const QString& method){
     }
 }
 
+void MainWindow::onNewSimulation(){
+    SketchMenuDialog sketchMenu(this);
+
+    QObject::connect(&sketchMenu, &SketchMenuDialog::constructQQ, this, [&](const double& minXRes, const double& minYRes, const double& xRes, const double& yRes, const int& depth, const QString& sketch, const bool& leafsOpt, const double& sketchErr, const int& sketchUni){
+        qsbd::aabb<double> bounds(minXRes, minYRes, xRes, yRes);
+        
+        depthDraw->setMaximum(depth);
+
+        if(sketch == tr("kll")){
+            model.initKll(bounds, depth, leafsOpt, sketchErr);
+        }else if(sketch == tr("q_digest")){
+            model.initQDigest(bounds, depth, leafsOpt, sketchErr, sketchUni);
+        }else if(sketch == tr("gk")){
+            model.initGk(bounds, depth, leafsOpt, sketchErr);
+        }else if(sketch == tr("dcs")){
+            model.initDcs(bounds, depth, leafsOpt, sketchErr, sketchUni);
+        }else{
+            qDebug() << "Invalid sketch";
+        }
+
+        if(not view.isEnabled()){
+            view.setDomain(minXRes, minYRes, xRes, yRes);
+            view.setDepth(depth);
+            view.setEnabled(true);
+        }
+
+        setupFeedUi(sketch);
+    });
+
+    if(sketchMenu.exec()){
+        qDebug() << "New teste";
+    }
+}
+
+void MainWindow::onQuit(){
+    QApplication::quit();
+}
+
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(this), controller(view, model, this){
     setupUi();
 
-    QObject::connect(sketchsMenu, &QComboBox::currentTextChanged, this, [&](const QString &text){
+    /*QObject::connect(sketchsMenu, &QComboBox::currentTextChanged, this, [&](const QString &text){
         bool validSketch = text != tr("undefined");
 
         constructButton->setVisible(validSketch);
@@ -518,7 +566,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
         }
 
         setupFeedUi(sketch);
-    });
+    });*/
 
     QObject::connect(freezeButton, &QAbstractButton::pressed, this, [&](){
         if(not freezed){

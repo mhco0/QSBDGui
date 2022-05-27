@@ -13,6 +13,7 @@
 #include "../controller/controller.h"
 #include "../qcustomplot/qcustomplot.h"
 #include "../csvdialog/csvdialog.h"
+#include "../sketchmenudialog/sketchmenudialog.h"
 #include <QMainWindow>
 #include <QBoxLayout>
 #include <QComboBox>
@@ -27,6 +28,7 @@
 #include <QStandardItem>
 #include <QStandardItemModel>
 #include <QSlider>
+#include <QMenuBar>
 #include <aabb/aabb.hpp>
 #include <utils/utils.h>
 
@@ -42,6 +44,9 @@ private:
 
 	QHBoxLayout* mainContainer;
 	QWidget* window;
+
+	QMenuBar* menuBar;
+	QMenu* newMenu;
 	
 	QVBoxLayout* rightContainer;
 	QVBoxLayout* sketchFullContainer;
@@ -127,18 +132,17 @@ private:
 	*/
 	void setupUi();
 
-
 	/**
 	 * @brief Makes the sketch container visible based on the configuration from the sketch's menu
 	 * @param visible The visible option
 	 * @param addUniverse A boolean saying if we need to add a universe config or not
 	*/
-	void setSketchConfigUiVisible(const bool& visible, const bool& addUniverse);
+	//void setSketchConfigUiVisible(const bool& visible, const bool& addUniverse);
 
 	/**
 	 * @brief Hides from ui alls widgets relateds with the construction for the model
 	*/
-	void hideConstructUi();
+	//void hideConstructUi();
 
 	/**
 	 * @brief Hides from ui alls widgets relateds with the feed for the model
@@ -161,6 +165,16 @@ private:
 	 * @brief Starts Up Simulation
 	*/
 	void startUpSimulation();
+
+	/**
+	 * @brief Sets the start for the new simulation
+	*/
+	void onNewSimulation();
+
+	/**
+	 * @brief Quits the application
+	*/
+	void onQuit();
 public:
 
 	/**

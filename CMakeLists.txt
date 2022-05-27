@@ -48,6 +48,8 @@ if(ANDROID)
     src/qcustomplot/qcustomplot.cpp
     src/csvdialog/csvdialog.h
     src/csvdialog/csvdialog.cpp
+    src/sketchmenudialog/sketchmenudialog.h
+    src/sketchmenudialog/sketchmenudialog.cpp
   )
 else()
   add_executable(QSBDGuiTest
@@ -64,6 +66,8 @@ else()
     src/qcustomplot/qcustomplot.cpp
     src/csvdialog/csvdialog.h
     src/csvdialog/csvdialog.cpp
+    src/sketchmenudialog/sketchmenudialog.h
+    src/sketchmenudialog/sketchmenudialog.cpp
   )
 endif()
 

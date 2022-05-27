@@ -4,4 +4,5 @@
 #include "GFTB6AWTXV/moc_mainwindow.cpp"
 #include "VNQA4LF4BW/moc_model.cpp"
 #include "T4EGOWDRJ2/moc_qcustomplot.cpp"
+#include "6KKZTFNNT6/moc_sketchmenudialog.cpp"
 #include "3JYSCEOBDA/moc_view.cpp"

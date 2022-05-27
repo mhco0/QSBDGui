@@ -29,7 +29,7 @@ namespace qsbd {
 		setAttribute(Qt::WA_StyledBackground);
 		setContentsMargins(0, 0, 0, 0);
 		setMinimumSize(700, 480);
-		setFixedSize(700, 480);
+		//setFixedSize(700, 480);
 		maxXResolution = 700.0;
 		maxYResolution = 480.0; 
 		minXdomain = 0.0;
@@ -260,6 +260,10 @@ namespace qsbd {
 				//qDebug() << "_______________\n";
 			break;
 			case 3:{
+				for(auto& point : points){
+					point->setVisible(false);
+				}
+
 				ksRegions = allPairsInResolution(depthView);
 
 				std::vector<int> values_to_search = {1, 2, 3, 4}; // hardcoded , change later

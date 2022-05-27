@@ -11,6 +11,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/mainwindow/mainwindow.cpp" "/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/build/CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o"
   "/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/model/model.cpp" "/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/build/CMakeFiles/QSBDGuiTest.dir/src/model/model.cpp.o"
   "/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/qcustomplot/qcustomplot.cpp" "/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/build/CMakeFiles/QSBDGuiTest.dir/src/qcustomplot/qcustomplot.cpp.o"
+  "/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/sketchmenudialog/sketchmenudialog.cpp" "/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/build/CMakeFiles/QSBDGuiTest.dir/src/sketchmenudialog/sketchmenudialog.cpp.o"
   "/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/view/view.cpp" "/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/build/CMakeFiles/QSBDGuiTest.dir/src/view/view.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
