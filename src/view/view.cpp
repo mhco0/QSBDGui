@@ -480,10 +480,18 @@ namespace qsbd {
 	}
 
 	void View::onKsReady(const std::vector<double>& kss){
+		QColor cathegorys[10] = { QColor("#a6cee3"), QColor("#1f78b4"), QColor("#b2df8a"), QColor("#33a02c"), QColor("#fb9a99"), QColor("#e31a1c"), QColor("#fdbf6f"), QColor("#ff7f00"), QColor("#cab2d6"), QColor("#6a3d9a")}; 
+
 		for(size_t i = 0; i < kss.size(); i++){
+			int colorIndex = std::max(0, std::min(9, (int)(kss[i] * 10) - 1));
+			
 			if (kss[i] < 0.3){
-				ksRegions[i].first->setBrush(QBrush(QColor(239, 243, 255)));
-				ksRegions[i].second->setBrush(QBrush(QColor(239, 243, 255)));
+				std::uniform_int_distribution<int> distribution(0, 9);
+				std::random_device generator;
+
+
+				ksRegions[i].first->setBrush(QBrush(cathegorys[distribution(generator)]));
+				ksRegions[i].second->setBrush(QBrush(cathegorys[distribution(generator)]));
 				ksRegions[i].first->setVisible(true);
 				ksRegions[i].second->setVisible(true);
 			}
