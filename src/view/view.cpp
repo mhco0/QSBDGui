@@ -36,7 +36,7 @@ namespace qsbd {
 		minYdomain = 0.0;
 		maxXdomain = 0.0;
 		maxYdomain = 0.0;
-		drawMode = 0;
+		drawMode = ViewDrawMode::OnlyPoints;
 		queryCurId = 0;
 		dragging = false;
 		queryRegion = nullptr;
@@ -188,7 +188,7 @@ namespace qsbd {
 
 	void View::updateBasedOnDrawMode(){
 		switch(drawMode){
-			case 0:
+			case ViewDrawMode::OnlyPoints:
 				for(auto& point : points){
 					point->setVisible(true);
 				}
@@ -198,7 +198,7 @@ namespace qsbd {
 					it.second->setBrush(Qt::NoBrush);
 				}
 			break;
-			case 1:
+			case ViewDrawMode::QuadtreeDepth:
 				for(auto& point : points){
 					point->setVisible(true);
 				}
@@ -212,7 +212,7 @@ namespace qsbd {
 					}
 				}
 			break;
-			case 2:
+			case ViewDrawMode::Heatmap:
 				for(auto& point : points){
 					point->setVisible(false);
 				}
@@ -259,7 +259,7 @@ namespace qsbd {
 				}
 				//qDebug() << "_______________\n";
 			break;
-			case 3:{
+			case ViewDrawMode::KS:{
 				for(auto& point : points){
 					point->setVisible(false);
 				}
@@ -363,7 +363,7 @@ namespace qsbd {
 		return allPairs;
 	}
 
-	void View::setDrawingMode(const int& option){
+	void View::setDrawingMode(const ViewDrawMode& option){
 		drawMode = option;
 	}
 

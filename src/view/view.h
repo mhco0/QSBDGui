@@ -34,6 +34,11 @@
 
 namespace qsbd {
 
+    /** @class ViewDrawMode
+     * @brief This is a enum class to handle the draw mode for the view aplication.
+    */
+    enum class ViewDrawMode {OnlyPoints, QuadtreeDepth, Heatmap, KS};
+
     /** @class QueryGraphicsItem
     * @brief A Qt QGraphicsItem that represents a query in the view
     */
@@ -94,7 +99,7 @@ namespace qsbd {
         std::vector<std::pair<QGraphicsRectItem*, QGraphicsRectItem*>> ksRegions;
         int depth;
         int depthView;
-        int drawMode;
+        ViewDrawMode drawMode;
         int queryCurId;
         bool dragging;
         double maxXResolution;
@@ -196,9 +201,9 @@ namespace qsbd {
 
         /**
          * @brief A setter to set how the view will draw the data
-         * @param option A int to set the draw mode for the view. 
+         * @param option A @sa ViewDrawMode to set the draw mode for the view. 
         */
-        void setDrawingMode(const int& option);
+        void setDrawingMode(const ViewDrawMode& option);
 
         /**
          * @brief A setter for the virtual max depth on the quadtree model

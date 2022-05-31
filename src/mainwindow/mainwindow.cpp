@@ -695,20 +695,20 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
         
         if(method == tr("Raw data")){
             depthDraw->setVisible(false);
-            view.setDrawingMode(0);
+            view.setDrawingMode(qsbd::ViewDrawMode::OnlyPoints);
         }else if(method == tr("Raw data with Bounds")){
             depthDraw->setVisible(true);
             view.setDepthView(depthDraw->value());
-            view.setDrawingMode(1);
+            view.setDrawingMode(qsbd::ViewDrawMode::QuadtreeDepth);
         }else if(method == tr("Heat map")){
             depthDraw->setVisible(false);
-            view.setDrawingMode(2);
+            view.setDrawingMode(qsbd::ViewDrawMode::Heatmap);
         }else if(method == tr("KS")){
             depthDraw->setVisible(false);
-            view.setDrawingMode(3);
+            view.setDrawingMode(qsbd::ViewDrawMode::KS);
         }else{
             depthDraw->setVisible(false);
-            view.setDrawingMode(0);
+            view.setDrawingMode(qsbd::ViewDrawMode::OnlyPoints);
         }
 
     });
