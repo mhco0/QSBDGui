@@ -26,6 +26,7 @@ CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o
  ../../Big-Data-IC/thirdparty/nlohmann/json.hpp
  ../src/controller/controller.h
  ../src/csvdialog/csvdialog.h
+ ../src/kmedoids/kmedoids.hpp
  ../src/mainwindow/mainwindow.h
  ../src/model/model.h
  ../src/qcustomplot/qcustomplot.h
@@ -593,6 +594,7 @@ CMakeFiles/QSBDGuiTest.dir/main.cpp.o
  ../../Big-Data-IC/thirdparty/nlohmann/json.hpp
  ../src/controller/controller.h
  ../src/csvdialog/csvdialog.h
+ ../src/kmedoids/kmedoids.hpp
  ../src/mainwindow/mainwindow.h
  ../src/model/model.h
  ../src/qcustomplot/qcustomplot.h
@@ -1154,6 +1156,7 @@ CMakeFiles/QSBDGuiTest.dir/src/controller/controller.cpp.o
  ../../Big-Data-IC/thirdparty/nlohmann/json.hpp
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/controller/controller.cpp
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/controller/controller.h
+ /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/kmedoids/kmedoids.hpp
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/model/model.h
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/view/view.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QObject
@@ -1453,6 +1456,7 @@ CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o
  ../../Big-Data-IC/thirdparty/nlohmann/json.hpp
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/controller/controller.h
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/csvdialog/csvdialog.h
+ /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/kmedoids/kmedoids.hpp
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/mainwindow/mainwindow.cpp
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/mainwindow/mainwindow.h
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/model/model.h
@@ -2713,6 +2717,7 @@ CMakeFiles/QSBDGuiTest.dir/src/view/view.cpp.o
  ../../Big-Data-IC/src/aabb/aabb.hpp
  ../../Big-Data-IC/src/commum_header/commum_header.h
  ../../Big-Data-IC/src/point/point.hpp
+ /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/kmedoids/kmedoids.hpp
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/view/view.cpp
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/view/view.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QPointF

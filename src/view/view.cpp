@@ -264,16 +264,19 @@ namespace qsbd {
 					point->setVisible(false);
 				}
 
-				ksRegions = allPairsInResolution(depthView);
+				//ksRegions = allPairsInResolution(depthView);
+				cdfsRegions = regionsInResolution(depthView);
 
-				std::vector<int> values_to_search = {1, 2, 3, 4}; // hardcoded , change later
-				std::vector<std::pair<QRectF, QRectF>> pairsBounds;
+				std::vector<int> values_to_search = {1, 2, 3, 4, 5, 6}; // hardcoded , change later
+				//std::vector<std::pair<QRectF, QRectF>> pairsBounds;
+				std::vector<QRectF> regions_to_search;
 
-				for(auto& it : ksRegions){
-					pairsBounds.push_back({it.first->sceneBoundingRect(), it.second->sceneBoundingRect()});
+				for(auto& it : cdfsRegions/*ksRegions*/){
+					//pairsBounds.push_back({it.first->sceneBoundingRect(), it.second->sceneBoundingRect()});
+					regions_to_search.emplace_back(it->sceneBoundingRect());
 				}
 
-				emit ksRequest(pairsBounds, values_to_search);
+				emit cdfsRequest(regions_to_search, values_to_search);
 			}
 			break;
 			default:
@@ -344,12 +347,12 @@ namespace qsbd {
 		return {lon, lat};
 	}
 
-	std::vector<std::pair<QGraphicsRectItem*, QGraphicsRectItem*>> View::allPairsInResolution(const int& depth){
+	std::vector<std::pair<QGraphicsRectItem*, QGraphicsRectItem*>> View::allPairsInResolution(const int& pdepth){
 		std::vector<QGraphicsRectItem*> regions;
 		std::vector<std::pair<QGraphicsRectItem*, QGraphicsRectItem*>> allPairs;
 
 		for(auto& it : boxInPath){
-			if (it.first.size() - 1 == depth){
+			if (it.first.size() - 1 == pdepth){
 				regions.emplace_back(it.second);
 			}
 		}
@@ -361,6 +364,18 @@ namespace qsbd {
 		}
 
 		return allPairs;
+	}
+
+	std::vector<QGraphicsRectItem*> View::regionsInResolution(const int& pdepth){
+		std::vector<QGraphicsRectItem*> regions;
+
+		for(auto& it : boxInPath){
+			if (it.first.size() - 1 == pdepth){
+				regions.emplace_back(it.second);
+			}
+		}
+
+		return regions;
 	}
 
 	void View::setDrawingMode(const ViewDrawMode& option){
@@ -479,27 +494,46 @@ namespace qsbd {
 		show();
 	}
 
-	void View::onKsReady(const std::vector<double>& kss){
+	void View::onCdfsReady(const std::vector<std::vector<double>>& cdfs){
+		if(cdfs.size() == 0) return;
+		
 		QColor cathegorys[10] = { QColor("#a6cee3"), QColor("#1f78b4"), QColor("#b2df8a"), QColor("#33a02c"), QColor("#fb9a99"), QColor("#e31a1c"), QColor("#fdbf6f"), QColor("#ff7f00"), QColor("#cab2d6"), QColor("#6a3d9a")}; 
 
-		for(size_t i = 0; i < kss.size(); i++){
-			int colorIndex = std::max(0, std::min(9, (int)(kss[i] * 10) - 1));
+		int k = 4;
+		int step = 5;
+		auto ret = kmedoids<std::vector<double>>::cluster(k, step, cdfs, [](const std::vector<double>& lhs, const std::vector<double>& rhs){
+			double max_distance_distributions = std::numeric_limits<double>::min();
+
+			for(size_t i = 0; i < lhs.size(); i++){
+				double distribution_distance = fabs(lhs[i] - rhs[i]);
 			
-			if (kss[i] < 0.3){
-				std::uniform_int_distribution<int> distribution(0, 9);
-				std::random_device generator;
-
-
-				ksRegions[i].first->setBrush(QBrush(cathegorys[distribution(generator)]));
-				ksRegions[i].second->setBrush(QBrush(cathegorys[distribution(generator)]));
-				ksRegions[i].first->setVisible(true);
-				ksRegions[i].second->setVisible(true);
+				max_distance_distributions = std::max(max_distance_distributions, distribution_distance);
 			}
+
+			return max_distance_distributions;
+		}, centroids);
+		std::vector<int> region_clusters = ret.first;
+
+		qDebug() << cdfs.size() << " " << region_clusters.size();
+
+		assert(cdfs.size() == region_clusters.size());
+
+		for(size_t i = 0; i < cdfs.size(); i++){
+			assert(region_clusters[i] >= 0 && region_clusters[i] < k);
+
+			//ksRegions[i].first->setBrush(QBrush(cathegorys[distribution(generator)]));
+			//ksRegions[i].second->setBrush(QBrush(cathegorys[distribution(generator)]));
+			//ksRegions[i].first->setVisible(true);
+			//ksRegions[i].second->setVisible(true);
+
+			cdfsRegions[i]->setBrush(QBrush(cathegorys[region_clusters[i]]));
+			cdfsRegions[i]->setVisible(true);
 		}
 
 		show();
 	}
 
+	/*
 	void Canvas::mouseMoveEvent(QMouseEvent * event){
 		curMousePos = event->pos();
 
@@ -794,6 +828,6 @@ namespace qsbd {
 	void Canvas::setResolution(const double& xRes, const double& yRes){
 		maxXResolution = xRes;
 		maxYResolution = yRes;
-	}
+	}*/
 
 } // namespace qsbd

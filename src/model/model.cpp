@@ -168,6 +168,25 @@ namespace qsbd {
 		return ret;
 	}
 
+	std::vector<std::vector<double>> Model::onCdfsQueries(const std::vector<QRectF>& regions, const std::vector<int>& values){
+		std::vector<std::vector<double>> cdfs;
+
+		for(auto& region: regions){
+			aabb<int> discrete_region(map_coord(region.bottomLeft().x(), model_region.bounds().first.x(), model_region.bounds().second.x(), model_depth), \
+								  map_coord(region.topRight().y(),model_region.bounds().first.y(), model_region.bounds().second.y(), model_depth), \
+								  map_coord(region.topRight().x(), model_region.bounds().first.x(), model_region.bounds().second.x(), model_depth), \
+								  map_coord(region.bottomLeft().y(), model_region.bounds().first.y(), model_region.bounds().second.y(), model_depth));
+		
+			std::vector<double> ret = model->cdfs(discrete_region, values);
+
+			cdfs.emplace_back(ret);
+		}
+		
+		emit cdfsReady(cdfs);
+
+		return cdfs;
+	}
+
 	std::vector<double> Model::onKsRequest(const std::vector<std::pair<QRectF, QRectF>>& regionPairs, const std::vector<int>& values){
 		std::vector<double> ret;
 

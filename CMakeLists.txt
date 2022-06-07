@@ -50,6 +50,7 @@ if(ANDROID)
     src/csvdialog/csvdialog.cpp
     src/sketchmenudialog/sketchmenudialog.h
     src/sketchmenudialog/sketchmenudialog.cpp
+    src/kmedoids/kmedoids.hpp
   )
 else()
   add_executable(QSBDGuiTest
@@ -68,6 +69,7 @@ else()
     src/csvdialog/csvdialog.cpp
     src/sketchmenudialog/sketchmenudialog.h
     src/sketchmenudialog/sketchmenudialog.cpp
+     src/kmedoids/kmedoids.hpp
   )
 endif()
 

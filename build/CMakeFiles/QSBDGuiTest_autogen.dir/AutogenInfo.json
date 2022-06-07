@@ -18,6 +18,11 @@
 			"JOOUC7EWVH/moc_csvdialog.cpp"
 		],
 		[
+			"/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/kmedoids/kmedoids.hpp",
+			"MU",
+			"6MIOWYPPTH/moc_kmedoids.cpp"
+		],
+		[
 			"/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/mainwindow/mainwindow.h",
 			"MU",
 			"GFTB6AWTXV/moc_mainwindow.cpp"

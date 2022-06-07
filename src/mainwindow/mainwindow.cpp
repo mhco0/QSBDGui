@@ -704,7 +704,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
             depthDraw->setVisible(false);
             view.setDrawingMode(qsbd::ViewDrawMode::Heatmap);
         }else if(method == tr("KS")){
-            depthDraw->setVisible(false);
+            depthDraw->setVisible(true);
             view.setDrawingMode(qsbd::ViewDrawMode::KS);
         }else{
             depthDraw->setVisible(false);
@@ -713,8 +713,8 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
 
     });
 
-    QObject::connect(&view, &qsbd::View::ksRequest, &model, &qsbd::Model::onKsRequest);
-    QObject::connect(&model, &qsbd::Model::ksReady, &view, &qsbd::View::onKsReady);
+    QObject::connect(&view, &qsbd::View::cdfsRequest, &model, &qsbd::Model::onCdfsQueries);
+    QObject::connect(&model, &qsbd::Model::cdfsReady, &view, &qsbd::View::onCdfsReady);
 }
 
 MainWindow::~MainWindow(){

@@ -25,6 +25,7 @@ CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: ../../Big
 CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: ../../Big-Data-IC/thirdparty/nlohmann/json.hpp
 CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: ../src/controller/controller.h
 CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: ../src/csvdialog/csvdialog.h
+CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: ../src/kmedoids/kmedoids.hpp
 CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: ../src/mainwindow/mainwindow.h
 CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: ../src/model/model.h
 CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: ../src/qcustomplot/qcustomplot.h
@@ -592,6 +593,7 @@ CMakeFiles/QSBDGuiTest.dir/main.cpp.o: ../../Big-Data-IC/thirdparty/csv_parser/c
 CMakeFiles/QSBDGuiTest.dir/main.cpp.o: ../../Big-Data-IC/thirdparty/nlohmann/json.hpp
 CMakeFiles/QSBDGuiTest.dir/main.cpp.o: ../src/controller/controller.h
 CMakeFiles/QSBDGuiTest.dir/main.cpp.o: ../src/csvdialog/csvdialog.h
+CMakeFiles/QSBDGuiTest.dir/main.cpp.o: ../src/kmedoids/kmedoids.hpp
 CMakeFiles/QSBDGuiTest.dir/main.cpp.o: ../src/mainwindow/mainwindow.h
 CMakeFiles/QSBDGuiTest.dir/main.cpp.o: ../src/model/model.h
 CMakeFiles/QSBDGuiTest.dir/main.cpp.o: ../src/qcustomplot/qcustomplot.h
@@ -1153,6 +1155,7 @@ CMakeFiles/QSBDGuiTest.dir/src/controller/controller.cpp.o: ../../Big-Data-IC/th
 CMakeFiles/QSBDGuiTest.dir/src/controller/controller.cpp.o: ../../Big-Data-IC/thirdparty/nlohmann/json.hpp
 CMakeFiles/QSBDGuiTest.dir/src/controller/controller.cpp.o: ../src/controller/controller.cpp
 CMakeFiles/QSBDGuiTest.dir/src/controller/controller.cpp.o: ../src/controller/controller.h
+CMakeFiles/QSBDGuiTest.dir/src/controller/controller.cpp.o: ../src/kmedoids/kmedoids.hpp
 CMakeFiles/QSBDGuiTest.dir/src/controller/controller.cpp.o: ../src/model/model.h
 CMakeFiles/QSBDGuiTest.dir/src/controller/controller.cpp.o: ../src/view/view.h
 CMakeFiles/QSBDGuiTest.dir/src/controller/controller.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtCore/QObject
@@ -1452,6 +1455,7 @@ CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: ../../Big-Data-IC/th
 CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: ../../Big-Data-IC/thirdparty/nlohmann/json.hpp
 CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: ../src/controller/controller.h
 CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: ../src/csvdialog/csvdialog.h
+CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: ../src/kmedoids/kmedoids.hpp
 CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: ../src/mainwindow/mainwindow.cpp
 CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: ../src/mainwindow/mainwindow.h
 CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: ../src/model/model.h
@@ -2712,6 +2716,7 @@ CMakeFiles/QSBDGuiTest.dir/src/sketchmenudialog/sketchmenudialog.cpp.o: /usr/inc
 CMakeFiles/QSBDGuiTest.dir/src/view/view.cpp.o: ../../Big-Data-IC/src/aabb/aabb.hpp
 CMakeFiles/QSBDGuiTest.dir/src/view/view.cpp.o: ../../Big-Data-IC/src/commum_header/commum_header.h
 CMakeFiles/QSBDGuiTest.dir/src/view/view.cpp.o: ../../Big-Data-IC/src/point/point.hpp
+CMakeFiles/QSBDGuiTest.dir/src/view/view.cpp.o: ../src/kmedoids/kmedoids.hpp
 CMakeFiles/QSBDGuiTest.dir/src/view/view.cpp.o: ../src/view/view.cpp
 CMakeFiles/QSBDGuiTest.dir/src/view/view.cpp.o: ../src/view/view.h
 CMakeFiles/QSBDGuiTest.dir/src/view/view.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtCore/QPointF

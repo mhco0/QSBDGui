@@ -15,101 +15,109 @@
 #include <map>
 #include <random>
 
-template<class T, class distance>
+template<class T>
 class kmedoids {
 private:
     using point = T;
-    uint32_t k;
-public:
-    kmedoids(const uint32_t& k){
-        this->k = k;
+    using dmatrix = std::vector<std::vector<double>>;
+    using compair_function = std::function<double(T, T)>;
+
+    static dmatrix process_distance_matrix(const std::vector<point>& samples, compair_function f){
+        dmatrix distances(samples.size(), std::vector<double>(samples.size(), 0.0));
+        
+        for(size_t i = 0; i < samples.size(); i++){
+            for(size_t j = 0; j < samples.size(); j++){
+                if(i == j) continue;
+
+                distances[i][j] = (i < j) ? f(samples[i], samples[j]) : distances[j][i];
+            }
+        }
+
+        return distances;
     }
 
-    std::vector<uint32_t> cluster(const std::vector<point>& samples, distance f){
-        assert((uint32_t) samples.size() > this->k);
-        std::vector<point> medoids;
-        std::vector<uint32_t> clusters(samples.size(), 0);
-        std::map<uint32_t, bool> mp;
-        std::default_random_engine generator;
-        std::uniform_int_distribution<uint32_t> distribution(0, samples.size() - 1);
-        std::vector<std::vector<int32_t>> distances;
-        uint32_t min_cost = 0x3f3f3f3f;
-        uint32_t total_cost = 0;
+    static void get_random_centroids(std::vector<int>& centroids, const int& pointsNumber, const int& k){
+        assert(centroids.size() == k);
+        std::uniform_int_distribution<int> dist(0, pointsNumber - 1);
+        std::map<int, bool> mp;
+        std::random_device gen;
 
-        for(uint32_t i = 0; i < this->k; i++){
-            uint32_t idx = distribution(generator);
-            while(mp[idx]){
-                idx = distribution(generator);
+        for(int i = 0; i < k; i++){
+            int index = dist(gen);
+            while(mp[index]){
+                index = dist(gen);
             }
-            
-            metoids.emplace_back(samples[idx]);
-            mp[idx] = true;
+            mp[index] = true;
 
-            distances.emplace_back({});
+            centroids[i] = index;
+        }
+    }
+public:
+    static std::pair<std::vector<int>, std::vector<int>> cluster(const int& k, const int& steps, const std::vector<point>& samples, compair_function f, std::vector<int>& prev_cent = nullptr){
+        if(k > samples.size()){
+            std::vector<int> ret;
 
-            for(int j = 0; j < samples.size(); j++){
-                distances[i].emplace_back(0);
+            for(int i = 0; i < k; i++){
+                ret.emplace_back(i);
+            }
+
+            return std::make_pair(ret, ret);
+        }
+        
+        dmatrix distances = kmedoids::process_distance_matrix(samples, f);
+        std::vector<int> finalClusters(samples.size(), -1);
+        std::vector<int> currentClusters(samples.size(), -1);
+        std::vector<int> centroids(k, -1);
+        double total_cost = std::numeric_limits<double>::max();
+        int nSteps = 0; 
+
+        if (prev_cent.size() == 0){
+            kmedoids::get_random_centroids(centroids, samples.size(), k);
+
+            for(size_t i = 0; i < k; i++){
+                prev_cent.emplace_back(centroids[i]);
+            }
+        }else{
+            assert(prev_cent.size() == centroids.size());
+            for(size_t i = 0; i < k; i++){
+                centroids[i] = prev_cent[i];
             }
         }
 
-        for(size_t i = 0; i < samples.size(); i++){
-            if (mp[i]) continue;
+        do {
+            double previus_cost = total_cost;
+            total_cost = 0.0;
 
-            uint32_t less_distance = 0x3f3f3f3f;
-            uint32_t correct_cluster = 0;
-
-            for(uint32_t j = 0; j < this->k; j++){
-                distances[j] = distance(medoids[j], samples[i]);
-
-                if (distances[j] < less_distance){
-                    less_distance = distances[j];
-                    correct_cluster = j;
-                }
-            }
-
-            total_cost += less_distance;
-            clusters[i] = correct_cluster;
-        }
-
-        while(total_cost < min_cost){
-            min_cost = total_cost;
-
-            for(uint32_t i = 0; i < this->k; i++){
-                uint32_t old_cost = total_cost;
-                total_cost = 0;
-
-                for(size_t j = 0; j < samples.size(); j++){
-                    if (mp[j]) continue;
-
-                    swap(medoids[i], samples[j]);
-
-                    for(size_t l = 0; l < samples.size(); l++){
-                        if (mp[l]) continue;
-
-                        uint32_t less_distance = 0x3f3f3f3f;
-                        uint32_t correct_cluster = 0;
-
-                        for(uint32_t z = 0; z < this->k; z++){
-                            distances[z] = distance(medoids[z], samples[l]);
-
-                            if (distances[z] < less_distance){
-                                less_distance = distances[z];
-                                correct_cluster = z;
-                            }
-                        }
-
-                        total_cost += less_distance;
-                        clusters[l] = correct_cluster;
+            for(size_t i = 0; i < samples.size(); i++){
+                double smallDistance = std::numeric_limits<double>::max();
+                for(size_t j = 0; j < centroids.size(); j++){
+                    if (i == centroids[j]){
+                        smallDistance = 0.0;
+                        currentClusters[i] = j;
+                        continue;
                     }
 
-                    if (total_cost > old_cost){
-                        swap(medoids[i], samples[j]);
+                    if (distances[i][centroids[j]] < smallDistance){
+                        smallDistance = distances[i][centroids[j]];
+                        currentClusters[i] = j;
                     }
                 }
-            }
-        }   
 
-        return clusters;
+                total_cost += smallDistance;
+            }
+
+            qDebug() << nSteps << " " << total_cost << " " << previus_cost;
+
+            if (total_cost < previus_cost){
+                for(size_t i = 0; i < samples.size(); i++){
+                    finalClusters[i] = currentClusters[i];
+                }
+            }else break;
+
+            nSteps++;
+        }while(nSteps < steps);
+
+        return std::make_pair(finalClusters, centroids);
     }
 };
 

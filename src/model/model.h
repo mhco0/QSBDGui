@@ -128,9 +128,28 @@ namespace qsbd {
 		*/
 		std::vector<int> onMultiQuantile(const QRectF& region, const std::vector<double>& quants, const int& fromWhatQuery);
 
-
+		/**
+		 * @brief Apply a cdf queries on the quadtree in this model.
+		 * @param region The search region
+		 * @param values A vector with the values to query the cdf probability
+		 * @return A vector with the probability for each element queried
+		*/
 		std::vector<double> onCdfQuery(const QRectF& region, const std::vector<int>& values);
 
+		/**
+		 * @brief Apply multiple cdfs queries on the quadtree in this model.
+		 * @param regions The search regions
+		 * @param values A vector with the values to query the cdf probability
+		 * @return A vector for each probability searched
+		*/
+		std::vector<std::vector<double>> onCdfsQueries(const std::vector<QRectF>& regions, const std::vector<int>& values);
+
+		/**
+		 * @brief Apply multiples kolmogorov-smirnoff distance on each @p regionPairs
+		 * @param regionPairs A vector with pairs of regions to be queried
+		 * @param values A vector with the values to query the cdf probability
+		 * @return A vector with the KS for each region pair queried
+		*/
 		std::vector<double> onKsRequest(const std::vector<std::pair<QRectF, QRectF>>& regionPairs, const std::vector<int>& values);
 	signals:
 
@@ -147,9 +166,22 @@ namespace qsbd {
 		*/
 		void quantileReady(const std::vector<int>& quants, const int& fromWhatQuery);
 
+		/**
+		 * @brief A Qt signal that is emited when the Model::onCdfQuery(const QRectF&, const std::vector<int>&) finish it's work.
+		 * @param cdf The processed cdf is emitted
+		*/
+		void cdfReady(const std::vector<double>& cdf);
 
-		void cdfReady(const std::vector<double>& cdfs);
-
+		/**
+		 * @brief A Qt signal that is emited when the Model::onCdfsQueries(const std::vector<QRectF>& regions, const std::vector<int>& values) finish it's work.
+		 * @param cdfs The processed cdfs is emitted
+		*/
+		void cdfsReady(const std::vector<std::vector<double>>& cdfs);
+		
+		/**
+		 * @brief A Qt signal that is emited when the Model::onKsRequest(const std::vector<std::pair<QRectF, QRectF>>&, const std::vector<int>&) finish it's work.
+		 * @param rank The processed kss is emitted
+		*/
 		void ksReady(const std::vector<double>& kss);
 	};
 

@@ -31,6 +31,7 @@
 #include <aabb/aabb.hpp>
 #include <map>
 #include <string>
+#include "../kmedoids/kmedoids.hpp"
 
 namespace qsbd {
 
@@ -96,7 +97,9 @@ namespace qsbd {
         QGraphicsScene* scene;
         std::map<std::string, QGraphicsRectItem*> boxInPath;
         std::map<std::string, std::pair<QGraphicsRectItem*, uint>> lastDepthBoxesPath;
-        std::vector<std::pair<QGraphicsRectItem*, QGraphicsRectItem*>> ksRegions;
+        //std::vector<std::pair<QGraphicsRectItem*, QGraphicsRectItem*>> ksRegions;
+        std::vector<QGraphicsRectItem*> cdfsRegions;
+        std::vector<int> centroids;
         int depth;
         int depthView;
         ViewDrawMode drawMode;
@@ -172,6 +175,13 @@ namespace qsbd {
          * @return A vector with all pairs in the @p depth
         */
         std::vector<std::pair<QGraphicsRectItem*, QGraphicsRectItem*>> allPairsInResolution(const int& depth);
+
+        /**
+         * @brief A private function that returns all regions in some resolution
+         * @param depth the depth to be calculed
+         * @return A vector with  in the @p depth
+        */
+        std::vector<QGraphicsRectItem*> regionsInResolution(const int& depth);
     public:
 
         /**
@@ -223,8 +233,10 @@ namespace qsbd {
         */
         void addPoint(const QPointF& newPoint);
 
-
-        void onKsReady(const std::vector<double>& kss);
+        /**
+         * @brief This function is called when the view receves the cdfs for each region queried
+        */
+        void onCdfsReady(const std::vector<std::vector<double>>& cdfs);
     signals:
 
         /**
@@ -257,41 +269,43 @@ namespace qsbd {
         void quantileRequest(const QRectF& region, int queryId);
 
         /**
-        * @brief A Qt signal, this signal is triggered when we have some request for the KS algorithm
+        * @brief A Qt signal, this signal is triggered when we have some request for the cdfs in @p regions
         * @param regions The regions queried in the view
         * @param values The values queried in the view
         */
-        void ksRequest(const std::vector<std::pair<QRectF, QRectF>>& regionPairs, const std::vector<int>& values);
+        void cdfsRequest(const std::vector<QRectF>& regions, const std::vector<int>& values);
     };
 
+    
     /** @class Canvas
     * @brief A Qt widget that represents a canvas in a read-only mode
     */
+    /*
     class Canvas : public QWidget {
         Q_OBJECT
     protected:
         /**
         * @brief A method to handle a mouse movement event
         * @param event The mouse event 
-        */
+        *//*
         virtual void mouseMoveEvent(QMouseEvent * event) override;
 
         /**
         * @brief A method to handle a mouse press event
         * @param event The mouse event 
-        */
+        *//*
         virtual void mousePressEvent(QMouseEvent * event) override;
 
         /**
         * @brief A method to handle a mouse release event
         * @param event The mouse event 
-        */
+        *//*
         virtual void mouseReleaseEvent(QMouseEvent * event) override;
 
         /**
         * @brief A method to handle a mouse wheel event
         * @param event The mouse wheel event 
-        */
+        *//*
         virtual void wheelEvent(QWheelEvent * event) override;
 
         /**
@@ -303,7 +317,7 @@ namespace qsbd {
 		 * 
 		 * @warning 
 		 * The @p cur_box will be changed.
-		*/
+		*//*
 		void change_box(QRect& cur_box, short direction);
 
         /**
@@ -315,27 +329,27 @@ namespace qsbd {
 		 * 
 		 * @warning 
 		 * The @p cur_box will be changed.
-		*/
+		*//*
         short direction(const QRect& box, const QPointF& pos);
 
         /**
 		 * @brief A private quantile quadtree copy function, that checks if some aabb @p regions is a box 1 x 1.
 		 * @param region A AABB to be tested
 		 * @return true if it's is a box 1x1, false otherwise.
-		*/
+		*//*
 		bool unit_box(const QRect& region);
 
         /**
          * @brief Converts the queried canvas resolution to the actual query resolution
          * @param region The region to be queried in the Canvas
-        */
+        *//*
         QRect convertRegion(const QRect& region);
 
         /**
          * @brief Return some color from the valiable boxGradient[9], based on the frequency of elements in a given region
          * @param points The number of points in a given region;
          * @return The color for this number of points
-        */
+        *//*
         QColor colorBasedOnFrequency(const uint& points);
     private:
         QBrush myBrush;
@@ -362,13 +376,13 @@ namespace qsbd {
         /**
         * @brief A constructor for the canvas
         * @param parent The parent for this widget
-        */
+        *//*
         explicit Canvas(QWidget *parent = nullptr);
 
         /**
         * @brief A method to handle a paint event
         * @param event The paint event 
-        */
+        *//*
         virtual void paintEvent(QPaintEvent* event) override;
 
     public slots:
@@ -377,25 +391,25 @@ namespace qsbd {
         * @brief A setter for the virtual resolution that this canvas will represent 
         * @param xRest The virtual x resolution
         * @param yRest The virtual y resolution
-        */
+        *//*
         void setResolution(const double& xRes, const double& yRes);
 
         /**
          * @brief A setter to see if the canvas will draw the quadtree bounds or not
          * @param option A boolean to set if we draw the bounds for the quadtree. 
-        */
+        *//*
         void setBoundsDrawing(const bool& option);
 
         /**
          * @brief A setter for the virtual max depth on the quadtree model
          * @param maxDepth The depth
-        */
+        *//*
         void setDepth(const int& maxDepth);
         
         /**
         * @brief A function to add a new point on the plot
         * @param newPoint The new point 
-        */
+        *//*
         void addPoint(const QPointF& newPoint);
         //void onClickStart();
         //void onClickStop();
@@ -404,26 +418,26 @@ namespace qsbd {
         /**
         * @brief A Qt signal, this signal is triggered when we have some movent on the canvas region
         * @param coord The point in the canvas where the movement occured
-        */
+        *//*
         void mouseMovement(const QPoint& coord);
         
         /**
         * @brief A Qt signal, this signal is triggered when the mouse is pressed on the canvas
-        */
+        *//*
         void mousePressed();
 
         /**
         * @brief A Qt signal, this signal is triggered when the mouse is released on the canvas
-        */
+        *//*
         void mouseRelease();
 
         /**
         * @brief A Qt signal, this signal is triggered when we have some movent on the wigdet region
         * @param region The region queried in the canvas
-        */
+        *//*
         void queryRequest(const QRect& region);
 
-    };
+    };*/
 
 } // namespace qsbd
 
