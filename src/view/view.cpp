@@ -264,16 +264,34 @@ namespace qsbd {
 					point->setVisible(false);
 				}
 
+				for(auto& it : boxInPath){
+					it.second->setBrush(Qt::NoBrush);
+					if (it.first.size() - 1 == depthView){
+						it.second->setVisible(true);
+					}else{
+						it.second->setVisible(false);
+					}
+				}
+
 				//ksRegions = allPairsInResolution(depthView);
 				cdfsRegions = regionsInResolution(depthView);
 
-				std::vector<int> values_to_search = {1, 2, 3, 4, 5, 6}; // hardcoded , change later
+				std::vector<int> values_to_search = {1, 2, 3, 4}; // hardcoded , change later
 				//std::vector<std::pair<QRectF, QRectF>> pairsBounds;
 				std::vector<QRectF> regions_to_search;
 
 				for(auto& it : cdfsRegions/*ksRegions*/){
 					//pairsBounds.push_back({it.first->sceneBoundingRect(), it.second->sceneBoundingRect()});
-					regions_to_search.emplace_back(it->sceneBoundingRect());
+
+					QRectF itemQueryBound = it->sceneBoundingRect();
+
+					std::pair<double, double> itemTranslatedTopLeft = mapScreenToLonLat(itemQueryBound.topLeft());
+					std::pair<double, double> itemTranslatedBottomRight = mapScreenToLonLat(itemQueryBound.bottomRight());
+					
+					QPointF itemTopLeftMapped = QPointF(itemTranslatedTopLeft.first, itemTranslatedBottomRight.second);
+					QPointF itemBottomRightMapped = QPointF(itemTranslatedBottomRight.first,  itemTranslatedTopLeft.second);
+					QRectF itemQueryMapped = QRectF(itemTopLeftMapped, itemBottomRightMapped);
+					regions_to_search.emplace_back(itemQueryMapped);
 				}
 
 				emit cdfsRequest(regions_to_search, values_to_search);
@@ -380,6 +398,7 @@ namespace qsbd {
 
 	void View::setDrawingMode(const ViewDrawMode& option){
 		drawMode = option;
+		this->updateBasedOnDrawMode();
 	}
 
 	void View::setDomain(const double& minXRes, const double& minYRes, const double& maxXRes, const double& maxYRes){
@@ -513,6 +532,14 @@ namespace qsbd {
 			return max_distance_distributions;
 		}, centroids);
 		std::vector<int> region_clusters = ret.first;
+
+		for(auto& it : centroids){
+			std::cout << "cluster: " << region_clusters[it] << std::endl;
+			for(size_t i = 0; i < cdfs[it].size(); i++){
+				std::cout << cdfs[it][i] << " ";
+			}
+			std::cout << std::endl;
+		}
 
 		qDebug() << cdfs.size() << " " << region_clusters.size();
 

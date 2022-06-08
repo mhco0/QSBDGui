@@ -115,6 +115,7 @@ namespace qsbd {
 		point<int> discrete_pos(map_coord(pos.x(), model_region.bounds().first.x(), model_region.bounds().second.x(), model_depth), \
 			map_coord(pos.y(), model_region.bounds().first.y(), model_region.bounds().second.y(), model_depth));
 
+
 		model->update(discrete_pos, value);
 	}
 
@@ -135,6 +136,7 @@ namespace qsbd {
 								  map_coord(region.topRight().x(), model_region.bounds().first.x(), model_region.bounds().second.x(), model_depth), \
 								  map_coord(region.bottomLeft().y(), model_region.bounds().first.y(), model_region.bounds().second.y(), model_depth));
 
+		std::cout << discrete_region << std::endl;
 		int rank = model->query(discrete_region, value); 
 
 		emit requestReady(rank);
@@ -177,7 +179,16 @@ namespace qsbd {
 								  map_coord(region.topRight().x(), model_region.bounds().first.x(), model_region.bounds().second.x(), model_depth), \
 								  map_coord(region.bottomLeft().y(), model_region.bounds().first.y(), model_region.bounds().second.y(), model_depth));
 		
+			std::cout << discrete_region << std::endl;
+
 			std::vector<double> ret = model->cdfs(discrete_region, values);
+
+			std::cout << "In cdf query: " << std::endl;
+
+			for(auto& it : ret){
+				std::cout << it << " ";
+			}
+			std::cout << std::endl;
 
 			cdfs.emplace_back(ret);
 		}

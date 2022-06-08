@@ -608,7 +608,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
     QObject::connect(loadStreamMethodButton, &QAbstractButton::pressed, this, [&](){
         QFileDialog dialog(this);
         dialog.setFileMode(QFileDialog::ExistingFile);
-        dialog.setNameFilter(tr("JSON (*.json);;CSV (*.csv)"));
+        dialog.setNameFilter(tr("CSV (*.csv);;JSON (*.json)"));
 
         if (dialog.exec()){
             QString path = dialog.selectedFiles()[0];

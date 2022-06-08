@@ -52,8 +52,20 @@ private:
             centroids[i] = index;
         }
     }
+
+    static void swap_centroids(std::vector<int>& centroids, const std::vector<int>& currentClusters){
+        for(size_t i = 0; i < centroids.size(); i++){
+            for(size_t j = 0; j < currentClusters[j]; j++){
+                if (currentClusters[j] == i and centroids[i] != j){
+                    centroids[i] = j;
+                    break;
+                }
+            }
+        }
+    }
+
 public:
-    static std::pair<std::vector<int>, std::vector<int>> cluster(const int& k, const int& steps, const std::vector<point>& samples, compair_function f, std::vector<int>& prev_cent = nullptr){
+    static std::pair<std::vector<int>, std::vector<int>> cluster(const int& k, const int& steps, const std::vector<point>& samples, compair_function f, std::vector<int>& prev_cent){
         if(k > samples.size()){
             std::vector<int> ret;
 
@@ -78,6 +90,7 @@ public:
                 prev_cent.emplace_back(centroids[i]);
             }
         }else{
+            
             assert(prev_cent.size() == centroids.size());
             for(size_t i = 0; i < k; i++){
                 centroids[i] = prev_cent[i];
@@ -112,6 +125,8 @@ public:
                 for(size_t i = 0; i < samples.size(); i++){
                     finalClusters[i] = currentClusters[i];
                 }
+
+                kmedoids::swap_centroids(centroids, currentClusters);
             }else break;
 
             nSteps++;

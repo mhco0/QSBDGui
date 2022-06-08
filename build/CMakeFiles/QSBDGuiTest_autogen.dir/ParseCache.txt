@@ -2,7 +2,8 @@
 /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/model/model.h
  mmc:Q_OBJECT
 /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/qcustomplot/qcustomplot.cpp
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/model/model.cpp
+/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/mainwindow/mainwindow.h
+ mmc:Q_OBJECT
 /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/sketchmenudialog/sketchmenudialog.h
  mmc:Q_OBJECT
 /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/controller/controller.cpp
@@ -14,11 +15,10 @@
  mmc:Q_OBJECT
 /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/controller/controller.h
  mmc:Q_OBJECT
+/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/main.cpp
 /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/view/view.cpp
 /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/mainwindow/mainwindow.cpp
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/main.cpp
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/kmedoids/kmedoids.hpp
 /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/view/view.h
  mmc:Q_OBJECT
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/mainwindow/mainwindow.h
- mmc:Q_OBJECT
+/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/kmedoids/kmedoids.hpp
+/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/model/model.cpp
