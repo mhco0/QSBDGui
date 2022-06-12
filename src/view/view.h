@@ -102,6 +102,8 @@ namespace qsbd {
         std::vector<int> centroids;
         int depth;
         int depthView;
+        int kCluster;
+        int kSteps;
         ViewDrawMode drawMode;
         int queryCurId;
         bool dragging;
@@ -228,6 +230,13 @@ namespace qsbd {
         void setDepthView(const int& dpView);
 
         /**
+         * @brief A setter for the k value in the K-Medoids cluster
+         * @param kc The K value
+         * @warning The values should be between 1 and 10
+        */
+        void setKCluster(const int& kc);
+
+        /**
         * @brief A function to add a new point on the plot
         * @param newPoint The new point 
         */
@@ -237,6 +246,7 @@ namespace qsbd {
          * @brief This function is called when the view receves the cdfs for each region queried
         */
         void onCdfsReady(const std::vector<std::vector<double>>& cdfs);
+
     signals:
 
         /**

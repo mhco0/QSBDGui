@@ -258,12 +258,26 @@ void MainWindow::setupUi(){
     depthDraw->setValue(0);
     depthDraw->setVisible(false);
     depthDraw->setOrientation(Qt::Horizontal);
-    depthDraw->setMaximumWidth(250);  
+    depthDraw->setMaximumWidth(250); 
+
+    kClusterLabel = new QLabel("Clusters:");
+    kClusterLabel->setVisible(false);
+
+    kCluster = new QSlider();
+    kCluster->setMinimum(1);
+    kCluster->setMaximum(10);
+    kCluster->setSingleStep(1);
+    kCluster->setValue(0);
+    kCluster->setVisible(false);
+    kCluster->setOrientation(Qt::Horizontal);
+    kCluster->setMaximumWidth(250);  
 
     drawModesContainer->addWidget(drawModesLabel);
     drawModesContainer->addWidget(drawModes);
     drawOptionsContainer->addLayout(drawModesContainer);
     drawOptionsContainer->addWidget(depthDraw);
+    drawOptionsContainer->addWidget(kClusterLabel);
+    drawOptionsContainer->addWidget(kCluster);
 
     rankQueryContainer->addWidget(rankQueryLabel);
     rankQueryContainer->addWidget(valueForRankQuery);
@@ -690,24 +704,41 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
         view.setDepthView(value);
     });
 
+    QObject::connect(kCluster, &QAbstractSlider::valueChanged, this, [&](int value){
+        view.setKCluster(value);
+    });
+
     QObject::connect(drawModes, &QComboBox::currentTextChanged, this, [&](){
         QString method = drawModes->currentText();
         
         if(method == tr("Raw data")){
             depthDraw->setVisible(false);
+            kClusterLabel->setVisible(false);
+            kCluster->setVisible(false);
             view.setDrawingMode(qsbd::ViewDrawMode::OnlyPoints);
         }else if(method == tr("Raw data with Bounds")){
             depthDraw->setVisible(true);
+            kClusterLabel->setVisible(false);
+            kCluster->setVisible(false);
+            view.setKCluster(kCluster->value());
             view.setDepthView(depthDraw->value());
             view.setDrawingMode(qsbd::ViewDrawMode::QuadtreeDepth);
         }else if(method == tr("Heat map")){
             depthDraw->setVisible(false);
+            kClusterLabel->setVisible(false);
+            kCluster->setVisible(false);
             view.setDrawingMode(qsbd::ViewDrawMode::Heatmap);
         }else if(method == tr("KS")){
             depthDraw->setVisible(true);
+            kClusterLabel->setVisible(true);
+            kCluster->setVisible(true);
             view.setDrawingMode(qsbd::ViewDrawMode::KS);
         }else{
             depthDraw->setVisible(false);
+            kClusterLabel->setVisible(false);
+            kCluster->setVisible(false);
+            view.setKCluster(kCluster->value());
+            view.setDepthView(depthDraw->value());
             view.setDrawingMode(qsbd::ViewDrawMode::OnlyPoints);
         }
 

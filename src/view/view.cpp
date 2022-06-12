@@ -30,6 +30,8 @@ namespace qsbd {
 		setContentsMargins(0, 0, 0, 0);
 		setMinimumSize(700, 480);
 		//setFixedSize(700, 480);
+		kCluster = 5;
+		kSteps = 10;
 		maxXResolution = 700.0;
 		maxYResolution = 480.0; 
 		minXdomain = 0.0;
@@ -261,7 +263,7 @@ namespace qsbd {
 			break;
 			case ViewDrawMode::KS:{
 				for(auto& point : points){
-					point->setVisible(false);
+					point->setVisible(true);
 				}
 
 				for(auto& it : boxInPath){
@@ -423,6 +425,11 @@ namespace qsbd {
 		depthView = std::min(dpView, depth);
 	}
 
+	void View::setKCluster(const int& kc){
+		kCluster = std::min(10, std::max(1, kc));
+		centroids.clear();
+	}
+
 	void View::addPoint(const QPointF& newPoint){
 		//qDebug() << newPoint;
 
@@ -518,9 +525,11 @@ namespace qsbd {
 		
 		QColor cathegorys[10] = { QColor("#a6cee3"), QColor("#1f78b4"), QColor("#b2df8a"), QColor("#33a02c"), QColor("#fb9a99"), QColor("#e31a1c"), QColor("#fdbf6f"), QColor("#ff7f00"), QColor("#cab2d6"), QColor("#6a3d9a")}; 
 
-		int k = 4;
-		int step = 5;
-		auto ret = kmedoids<std::vector<double>>::cluster(k, step, cdfs, [](const std::vector<double>& lhs, const std::vector<double>& rhs){
+		for(int i = 0; i < 10; i++){
+			cathegorys[i].setAlpha(155);
+		}
+
+		auto ret = kmedoids<std::vector<double>>::cluster(kCluster, kSteps, cdfs, [](const std::vector<double>& lhs, const std::vector<double>& rhs){
 			double max_distance_distributions = std::numeric_limits<double>::min();
 
 			for(size_t i = 0; i < lhs.size(); i++){
@@ -531,6 +540,7 @@ namespace qsbd {
 
 			return max_distance_distributions;
 		}, centroids);
+
 		std::vector<int> region_clusters = ret.first;
 
 		for(auto& it : centroids){
@@ -546,7 +556,7 @@ namespace qsbd {
 		assert(cdfs.size() == region_clusters.size());
 
 		for(size_t i = 0; i < cdfs.size(); i++){
-			assert(region_clusters[i] >= 0 && region_clusters[i] < k);
+			assert(region_clusters[i] >= 0 && region_clusters[i] < kCluster);
 
 			//ksRegions[i].first->setBrush(QBrush(cathegorys[distribution(generator)]));
 			//ksRegions[i].second->setBrush(QBrush(cathegorys[distribution(generator)]));
