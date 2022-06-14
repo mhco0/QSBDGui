@@ -34,7 +34,7 @@ namespace qsbd{
 
 		QObject::connect(feedTimer, &QTimer::timeout, this, [&](){
 			for(int i = currentWindow, j = 0; i < dataSource.size() and j < batchWindowSize; i++, j++){
-				myView->addPoint(QPointF(dataSource[i].second.first, dataSource[i].second.second));
+				myView->addPoint(QPointF(dataSource[i].second.first, dataSource[i].second.second), dataSource[i].first);
 				myModel->onUpdate(point<double>(dataSource[i].second.first, dataSource[i].second.second), dataSource[i].first);
 				currentWindow++;
 			}
@@ -51,7 +51,7 @@ namespace qsbd{
 
 		QObject::connect(feedTimer, &QTimer::timeout, this, [&](){
 			for(int i = currentWindow, j = 0; i < dataSourceWithWeight.size() and j < batchWindowSize; i++, j++){
-				myView->addPoint(QPointF(dataSourceWithWeight[i].second.first, dataSourceWithWeight[i].second.second));
+				myView->addPoint(QPointF(dataSourceWithWeight[i].second.first, dataSourceWithWeight[i].second.second), dataSourceWithWeight[i].first.first);
 				myModel->onUpdate(point<double>(dataSourceWithWeight[i].second.first, dataSourceWithWeight[i].second.second), dataSourceWithWeight[i].first.first, dataSourceWithWeight[i].first.second);
 				currentWindow++;
 			}
@@ -67,7 +67,7 @@ namespace qsbd{
 
 		QObject::connect(feedTimer, &QTimer::timeout, this, [&](){
 			for(int i = currentWindow, j = 0; i < dataSource.size() and j < batchWindowSize; i++, j++){
-				myView->addPoint(QPointF(dataSource[i].second.first, dataSource[i].second.second));
+				myView->addPoint(QPointF(dataSource[i].second.first, dataSource[i].second.second), dataSource[i].first);
 				myModel->onUpdate(point<double>(dataSource[i].second.first, dataSource[i].second.second), dataSource[i].first);
 				currentWindow++;
 			}
@@ -83,7 +83,7 @@ namespace qsbd{
 
 		QObject::connect(feedTimer, &QTimer::timeout, this, [&](){
 			for(int i = currentWindow, j = 0; i < dataSourceWithWeight.size() and j < batchWindowSize; i++, j++){
-				myView->addPoint(QPointF(dataSourceWithWeight[i].second.first, dataSourceWithWeight[i].second.second));
+				myView->addPoint(QPointF(dataSourceWithWeight[i].second.first, dataSourceWithWeight[i].second.second), dataSourceWithWeight[i].first.first);
 				myModel->onUpdate(point<double>(dataSourceWithWeight[i].second.first, dataSourceWithWeight[i].second.second), dataSourceWithWeight[i].first.first, dataSourceWithWeight[i].first.second);
 				currentWindow++;
 			}
@@ -98,7 +98,7 @@ namespace qsbd{
 		
 		QObject::connect(feedTimer, &QTimer::timeout, this, [&](){
 			for(int i = currentWindow, j = 0; i < dataSource.size() and j < batchWindowSize; i++, j++){
-				myView->addPoint(QPointF(dataSource[i].second.first, dataSource[i].second.second));
+				myView->addPoint(QPointF(dataSource[i].second.first, dataSource[i].second.second), dataSource[i].first);
 				myModel->onUpdate(point<double>(dataSource[i].second.first, dataSource[i].second.second), dataSource[i].first);
 				currentWindow++;
 			}

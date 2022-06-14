@@ -32,6 +32,8 @@ namespace qsbd {
 		//setFixedSize(700, 480);
 		kCluster = 5;
 		kSteps = 10;
+		minValueSeen = 0x3f3f3f3f;
+		maxValueSeen = -0x3f3f3f3f;
 		maxXResolution = 700.0;
 		maxYResolution = 480.0; 
 		minXdomain = 0.0;
@@ -278,7 +280,7 @@ namespace qsbd {
 				//ksRegions = allPairsInResolution(depthView);
 				cdfsRegions = regionsInResolution(depthView);
 
-				std::vector<int> values_to_search = {1, 2, 3, 4}; // hardcoded , change later
+				std::vector<int> values_to_search = this->getKSLERP(5); 
 				//std::vector<std::pair<QRectF, QRectF>> pairsBounds;
 				std::vector<QRectF> regions_to_search;
 
@@ -398,6 +400,20 @@ namespace qsbd {
 		return regions;
 	}
 
+	std::vector<int> View::getKSLERP(const int& n){
+		assert(n > 0);
+		std::vector<int> res;
+		int range = maxValueSeen - minValueSeen;
+		int step = range / n;
+
+
+		for(int i = minValueSeen; i <= maxValueSeen and res.size() < n; i += step){
+			res.push_back(i);
+		}
+
+		return res;
+	}
+
 	void View::setDrawingMode(const ViewDrawMode& option){
 		drawMode = option;
 		this->updateBasedOnDrawMode();
@@ -430,11 +446,14 @@ namespace qsbd {
 		centroids.clear();
 	}
 
-	void View::addPoint(const QPointF& newPoint){
+	void View::addPoint(const QPointF& newPoint, const int& val){
 		//qDebug() << newPoint;
 
 		if (newPoint.x() < minXdomain or newPoint.x() > maxXdomain or \
 			newPoint.y() < minYdomain or newPoint.y() > maxYdomain) return;
+
+		minValueSeen = std::min(minValueSeen, val);
+		maxValueSeen = std::max(maxValueSeen, val);
 
 		auto translatedPoint = this->mapLonLatToScreen(newPoint.x(), newPoint.y());
 
@@ -557,6 +576,7 @@ namespace qsbd {
 
 		for(size_t i = 0; i < cdfs.size(); i++){
 			assert(region_clusters[i] >= 0 && region_clusters[i] < kCluster);
+			
 
 			//ksRegions[i].first->setBrush(QBrush(cathegorys[distribution(generator)]));
 			//ksRegions[i].second->setBrush(QBrush(cathegorys[distribution(generator)]));

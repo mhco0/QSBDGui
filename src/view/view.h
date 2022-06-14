@@ -104,6 +104,8 @@ namespace qsbd {
         int depthView;
         int kCluster;
         int kSteps;
+        int minValueSeen;
+        int maxValueSeen;
         ViewDrawMode drawMode;
         int queryCurId;
         bool dragging;
@@ -184,6 +186,14 @@ namespace qsbd {
          * @return A vector with  in the @p depth
         */
         std::vector<QGraphicsRectItem*> regionsInResolution(const int& depth);
+
+
+        /**
+         * @brief A private function to get @p n or less values from minValueSeen to maxValueSeen  
+         * @param n The number of values asked.
+         * @return A vector with n or less points in the between of the two values.
+        */
+        std::vector<int> getKSLERP(const int& n);
     public:
 
         /**
@@ -240,7 +250,7 @@ namespace qsbd {
         * @brief A function to add a new point on the plot
         * @param newPoint The new point 
         */
-        void addPoint(const QPointF& newPoint);
+        void addPoint(const QPointF& newPoint, const int& val);
 
         /**
          * @brief This function is called when the view receves the cdfs for each region queried
