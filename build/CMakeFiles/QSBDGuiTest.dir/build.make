@@ -199,6 +199,7 @@ bin/QSBDGuiTest: CMakeFiles/QSBDGuiTest.dir/src/qcustomplot/qcustomplot.cpp.o
 bin/QSBDGuiTest: CMakeFiles/QSBDGuiTest.dir/src/csvdialog/csvdialog.cpp.o
 bin/QSBDGuiTest: CMakeFiles/QSBDGuiTest.dir/src/sketchmenudialog/sketchmenudialog.cpp.o
 bin/QSBDGuiTest: CMakeFiles/QSBDGuiTest.dir/build.make
+bin/QSBDGuiTest: /usr/lib/x86_64-linux-gnu/libQt5QuickWidgets.so.5.12.8
 bin/QSBDGuiTest: /usr/lib/x86_64-linux-gnu/libQt5PrintSupport.so.5.12.8
 bin/QSBDGuiTest: /usr/lib/x86_64-linux-gnu/libQt5Svg.so.5.12.8
 bin/QSBDGuiTest: lib/libnlohmann_json.a
@@ -210,6 +211,9 @@ bin/QSBDGuiTest: lib/libQSBD_KLL_FACTORY.a
 bin/QSBDGuiTest: lib/libQSBD_DCS_FACTORY.a
 bin/QSBDGuiTest: lib/libQSBD_Q_DIGEST_FACTORY.a
 bin/QSBDGuiTest: lib/libQSBD_UTILS.a
+bin/QSBDGuiTest: /usr/lib/x86_64-linux-gnu/libQt5Quick.so.5.12.8
+bin/QSBDGuiTest: /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.12.8
+bin/QSBDGuiTest: /usr/lib/x86_64-linux-gnu/libQt5Network.so.5.12.8
 bin/QSBDGuiTest: /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.12.8
 bin/QSBDGuiTest: /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.12.8
 bin/QSBDGuiTest: /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.12.8

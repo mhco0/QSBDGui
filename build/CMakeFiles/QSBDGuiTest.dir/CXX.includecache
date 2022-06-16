@@ -833,6 +833,8 @@ QtMath
 -
 QGraphicsSvgItem
 -
+QQuickWidget
+-
 aabb/aabb.hpp
 -
 map
@@ -842,136 +844,10 @@ string
 ../kmedoids/kmedoids.hpp
 ../src/kmedoids/kmedoids.hpp
 
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/build/QSBDGuiTest_autogen/3JYSCEOBDA/moc_view.cpp
-src/view/view.h
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/build/QSBDGuiTest_autogen/3JYSCEOBDA/src/view/view.h
-QtCore/qbytearray.h
--
-QtCore/qmetatype.h
--
-
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/build/QSBDGuiTest_autogen/6KKZTFNNT6/moc_sketchmenudialog.cpp
-src/sketchmenudialog/sketchmenudialog.h
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/build/QSBDGuiTest_autogen/6KKZTFNNT6/src/sketchmenudialog/sketchmenudialog.h
-QtCore/qbytearray.h
--
-QtCore/qmetatype.h
--
-
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/build/QSBDGuiTest_autogen/GFTB6AWTXV/moc_mainwindow.cpp
-src/mainwindow/mainwindow.h
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/build/QSBDGuiTest_autogen/GFTB6AWTXV/src/mainwindow/mainwindow.h
-QtCore/qbytearray.h
--
-QtCore/qmetatype.h
--
-
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/build/QSBDGuiTest_autogen/JOOUC7EWVH/moc_csvdialog.cpp
-src/csvdialog/csvdialog.h
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/build/QSBDGuiTest_autogen/JOOUC7EWVH/src/csvdialog/csvdialog.h
-QtCore/qbytearray.h
--
-QtCore/qmetatype.h
--
-
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/build/QSBDGuiTest_autogen/KECQXMYYOW/moc_controller.cpp
-src/controller/controller.h
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/build/QSBDGuiTest_autogen/KECQXMYYOW/src/controller/controller.h
-QtCore/qbytearray.h
--
-QtCore/qmetatype.h
--
-
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/build/QSBDGuiTest_autogen/T4EGOWDRJ2/moc_qcustomplot.cpp
-src/qcustomplot/qcustomplot.h
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/build/QSBDGuiTest_autogen/T4EGOWDRJ2/src/qcustomplot/qcustomplot.h
-QtCore/qbytearray.h
--
-QtCore/qmetatype.h
--
-QtCore/QSharedPointer
--
-QtCore/QList
--
-QtCore/QVector
--
-
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/build/QSBDGuiTest_autogen/VNQA4LF4BW/moc_model.cpp
-src/model/model.h
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/build/QSBDGuiTest_autogen/VNQA4LF4BW/src/model/model.h
-QtCore/qbytearray.h
--
-QtCore/qmetatype.h
--
-
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/build/QSBDGuiTest_autogen/mocs_compilation.cpp
-KECQXMYYOW/moc_controller.cpp
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/build/QSBDGuiTest_autogen/KECQXMYYOW/moc_controller.cpp
-JOOUC7EWVH/moc_csvdialog.cpp
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/build/QSBDGuiTest_autogen/JOOUC7EWVH/moc_csvdialog.cpp
-GFTB6AWTXV/moc_mainwindow.cpp
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/build/QSBDGuiTest_autogen/GFTB6AWTXV/moc_mainwindow.cpp
-VNQA4LF4BW/moc_model.cpp
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/build/QSBDGuiTest_autogen/VNQA4LF4BW/moc_model.cpp
-T4EGOWDRJ2/moc_qcustomplot.cpp
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/build/QSBDGuiTest_autogen/T4EGOWDRJ2/moc_qcustomplot.cpp
-6KKZTFNNT6/moc_sketchmenudialog.cpp
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/build/QSBDGuiTest_autogen/6KKZTFNNT6/moc_sketchmenudialog.cpp
-3JYSCEOBDA/moc_view.cpp
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/build/QSBDGuiTest_autogen/3JYSCEOBDA/moc_view.cpp
-
 /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/main.cpp
 mainwindow/mainwindow.h
 -
 QApplication
--
-
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/controller/controller.cpp
-controller.h
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/controller/controller.h
-
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/controller/controller.h
-../view/view.h
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/view/view.h
-../model/model.h
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/model/model.h
-string
--
-QObject
--
-QString
--
-QPointF
--
-QTimer
--
-stream_maker/stream_maker.h
--
-nlohmann/json.hpp
--
-csv_parser/csv.h
--
-
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/csvdialog/csvdialog.h
-QDialog
--
-QBoxLayout
--
-QLabel
--
-QPushButton
--
-QComboBox
--
-QDebug
--
-string
--
-vector
--
-fstream
--
-iostream
 -
 
 /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/kmedoids/kmedoids.hpp
@@ -984,180 +860,6 @@ utility
 map
 -
 random
--
-
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/mainwindow/mainwindow.cpp
-mainwindow.h
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/mainwindow/mainwindow.h
-
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/mainwindow/mainwindow.h
-../view/view.h
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/view/view.h
-../model/model.h
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/model/model.h
-../controller/controller.h
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/controller/controller.h
-../qcustomplot/qcustomplot.h
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/qcustomplot/qcustomplot.h
-../csvdialog/csvdialog.h
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/csvdialog/csvdialog.h
-../sketchmenudialog/sketchmenudialog.h
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/sketchmenudialog/sketchmenudialog.h
-QMainWindow
--
-QBoxLayout
--
-QComboBox
--
-QLabel
--
-QSpinBox
--
-QString
--
-QDoubleSpinBox
--
-QPushButton
--
-QLineEdit
--
-QCheckBox
--
-QFileDialog
--
-QStandardItem
--
-QStandardItemModel
--
-QSlider
--
-QMenuBar
--
-aabb/aabb.hpp
--
-utils/utils.h
--
-
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/model/model.h
-iostream
--
-string
--
-QObject
--
-QRect
--
-quantile_quadtree/quantile_quadtree.hpp
--
-kll_factory/kll_factory.hpp
--
-dcs_factory/dcs_factory.h
--
-q_digest_factory/q_digest_factory.h
--
-gk_factory/gk_factory.hpp
--
-
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/qcustomplot/qcustomplot.h
-QtCore/qglobal.h
--
-QtCore/QObject
--
-QtCore/QPointer
--
-QtCore/QSharedPointer
--
-QtCore/QTimer
--
-QtGui/QPainter
--
-QtGui/QPainterPath
--
-QtGui/QPaintEvent
--
-QtGui/QMouseEvent
--
-QtGui/QWheelEvent
--
-QtGui/QPixmap
--
-QtCore/QVector
--
-QtCore/QString
--
-QtCore/QDateTime
--
-QtCore/QMultiMap
--
-QtCore/QFlags
--
-QtCore/QDebug
--
-QtCore/QStack
--
-QtCore/QCache
--
-QtCore/QMargins
--
-qmath.h
--
-limits
--
-algorithm
--
-QtGui/QOpenGLContext
--
-QtGui/QOpenGLFramebufferObject
--
-QOpenGLFramebufferObject
--
-QOpenGLPaintDevice
--
-QtGui/QOffscreenSurface
--
-QtGui/QWindow
--
-QtOpenGL/QGLPixelBuffer
--
-qnumeric.h
--
-QtGui/QWidget
--
-QtGui/QPrinter
--
-QtGui/QPrintEngine
--
-QtNumeric
--
-QtWidgets/QWidget
--
-QtPrintSupport/QtPrintSupport
--
-QtCore/QElapsedTimer
--
-QtCore/QTimeZone
--
-
-/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/sketchmenudialog/sketchmenudialog.h
-QDialog
--
-QBoxLayout
--
-QLabel
--
-QPushButton
--
-QSpinBox
--
-QString
--
-QDoubleSpinBox
--
-QComboBox
--
-QDebug
--
-QCheckBox
 -
 
 /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/view/view.cpp
@@ -1202,6 +904,8 @@ QGraphicsRectItem
 QtMath
 -
 QGraphicsSvgItem
+-
+QQuickWidget
 -
 aabb/aabb.hpp
 -
@@ -1269,6 +973,10 @@ qpointer.h
 /usr/include/x86_64-linux-gnu/qt5/QtCore/qpointer.h
 
 /usr/include/x86_64-linux-gnu/qt5/QtCore/QRect
+qrect.h
+/usr/include/x86_64-linux-gnu/qt5/QtCore/qrect.h
+
+/usr/include/x86_64-linux-gnu/qt5/QtCore/QRectF
 qrect.h
 /usr/include/x86_64-linux-gnu/qt5/QtCore/qrect.h
 
@@ -4722,6 +4430,14 @@ QtGui/qwindowdefs_win.h
 QtGui/qtguiglobal.h
 -
 
+/usr/include/x86_64-linux-gnu/qt5/QtNetwork/qtnetwork-config.h
+
+/usr/include/x86_64-linux-gnu/qt5/QtNetwork/qtnetworkglobal.h
+QtCore/qglobal.h
+-
+QtNetwork/qtnetwork-config.h
+-
+
 /usr/include/x86_64-linux-gnu/qt5/QtOpenGL/QGLPixelBuffer
 qglpixelbuffer.h
 /usr/include/x86_64-linux-gnu/qt5/QtOpenGL/qglpixelbuffer.h
@@ -4865,6 +4581,136 @@ QtPrintSupport/qtprintsupport-config.h
 -
 
 /usr/include/x86_64-linux-gnu/qt5/QtPrintSupport/qtprintsupportversion.h
+
+/usr/include/x86_64-linux-gnu/qt5/QtQml/qqml.h
+QtQml/qqmlprivate.h
+-
+QtQml/qqmlparserstatus.h
+-
+QtQml/qqmlpropertyvaluesource.h
+-
+QtQml/qqmllist.h
+-
+QtCore/qbytearray.h
+-
+QtCore/qmetaobject.h
+-
+
+/usr/include/x86_64-linux-gnu/qt5/QtQml/qqmldebug.h
+QtQml/qtqmlglobal.h
+-
+QtCore/qstring.h
+-
+QtCore/qvariant.h
+-
+
+/usr/include/x86_64-linux-gnu/qt5/QtQml/qqmllist.h
+QtQml/qtqmlglobal.h
+-
+QtCore/qlist.h
+-
+QtCore/qvariant.h
+-
+
+/usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlparserstatus.h
+QtQml/qtqmlglobal.h
+-
+QtCore/qobject.h
+-
+
+/usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlprivate.h
+QtQml/qtqmlglobal.h
+-
+QtCore/qglobal.h
+-
+QtCore/qvariant.h
+-
+QtCore/qurl.h
+-
+
+/usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlpropertyvaluesource.h
+QtQml/qtqmlglobal.h
+-
+QtCore/qobject.h
+-
+
+/usr/include/x86_64-linux-gnu/qt5/QtQml/qtqml-config.h
+
+/usr/include/x86_64-linux-gnu/qt5/QtQml/qtqmlglobal.h
+QtCore/qglobal.h
+-
+QtQml/qtqml-config.h
+-
+QtNetwork/qtnetworkglobal.h
+-
+
+/usr/include/x86_64-linux-gnu/qt5/QtQuick/qquickwindow.h
+QtQuick/qtquickglobal.h
+-
+QtQuick/qsgrendererinterface.h
+-
+QtCore/qmetatype.h
+-
+QtGui/qopengl.h
+-
+QtGui/qwindow.h
+-
+QtGui/qevent.h
+-
+QtQml/qqml.h
+-
+QtQml/qqmldebug.h
+-
+
+/usr/include/x86_64-linux-gnu/qt5/QtQuick/qsggeometry.h
+QtQuick/qtquickglobal.h
+-
+QtGui/qopengl.h
+-
+QtCore/QRectF
+-
+
+/usr/include/x86_64-linux-gnu/qt5/QtQuick/qsgnode.h
+QtQuick/qsggeometry.h
+-
+QtGui/QMatrix4x4
+-
+float.h
+-
+
+/usr/include/x86_64-linux-gnu/qt5/QtQuick/qsgrendererinterface.h
+QtQuick/qsgnode.h
+-
+
+/usr/include/x86_64-linux-gnu/qt5/QtQuick/qtquick-config.h
+
+/usr/include/x86_64-linux-gnu/qt5/QtQuick/qtquickglobal.h
+QtQml/qtqmlglobal.h
+-
+QtGui/qtguiglobal.h
+-
+QtQuick/qtquick-config.h
+-
+
+/usr/include/x86_64-linux-gnu/qt5/QtQuickWidgets/QQuickWidget
+qquickwidget.h
+/usr/include/x86_64-linux-gnu/qt5/QtQuickWidgets/qquickwidget.h
+
+/usr/include/x86_64-linux-gnu/qt5/QtQuickWidgets/qquickwidget.h
+QtWidgets/qwidget.h
+-
+QtQuick/qquickwindow.h
+-
+QtCore/qurl.h
+-
+QtQuickWidgets/qtquickwidgetsglobal.h
+-
+QtGui/qimage.h
+-
+
+/usr/include/x86_64-linux-gnu/qt5/QtQuickWidgets/qtquickwidgetsglobal.h
+QtCore/qglobal.h
+-
 
 /usr/include/x86_64-linux-gnu/qt5/QtSvg/QGraphicsSvgItem
 qgraphicssvgitem.h

@@ -28,6 +28,7 @@
 #include <QGraphicsRectItem>
 #include <QtMath>
 #include <QGraphicsSvgItem>
+#include <QQuickWidget>
 #include <aabb/aabb.hpp>
 #include <map>
 #include <string>

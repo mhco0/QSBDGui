@@ -51,7 +51,11 @@ namespace qsbd {
 		queriesColors[4] = Qt::black;
 
 		svgBackground = new QGraphicsSvgItem("../assert/svg/USA_New_York_City_location_map.svg");
+		QQuickWidget * osm = new QQuickWidget();
 
+		osm->setSource(QUrl::fromLocalFile("../assert/qml/map.qml"));
+		osm->setResizeMode(QQuickWidget::SizeRootObjectToView);
+		osm->setMinimumSize(700, 480);
 		// set view size		
 		
 		auto pointBegin = scene->addEllipse(QRectF(-2, -2, 4, 4), QPen(Qt::blue));
@@ -72,6 +76,7 @@ namespace qsbd {
 
 		svgBackground->setTransform(svgBackground->transform().scale(0.87500, 0.63408)); // fit to current view map scale based on svg file size. This only works with the current view port, change this scale after
 		scene->addItem(svgBackground);
+		scene->addWidget(osm);
 
 		show();
 	}

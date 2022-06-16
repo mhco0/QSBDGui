@@ -1254,6 +1254,18 @@
 			"value" : "/usr/lib/x86_64-linux-gnu/cmake/Qt5Gui"
 		},
 		{
+			"name" : "Qt5Network_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for Qt5Network."
+				}
+			],
+			"type" : "PATH",
+			"value" : "/usr/lib/x86_64-linux-gnu/cmake/Qt5Network"
+		},
+		{
 			"name" : "Qt5PrintSupport_DIR",
 			"properties" : 
 			[
@@ -1264,6 +1276,66 @@
 			],
 			"type" : "PATH",
 			"value" : "/usr/lib/x86_64-linux-gnu/cmake/Qt5PrintSupport"
+		},
+		{
+			"name" : "Qt5QQuickWidget_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for Qt5QQuickWidget."
+				}
+			],
+			"type" : "PATH",
+			"value" : "Qt5QQuickWidget_DIR-NOTFOUND"
+		},
+		{
+			"name" : "Qt5Qml_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for Qt5Qml."
+				}
+			],
+			"type" : "PATH",
+			"value" : "/usr/lib/x86_64-linux-gnu/cmake/Qt5Qml"
+		},
+		{
+			"name" : "Qt5QuickControls2_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for Qt5QuickControls2."
+				}
+			],
+			"type" : "PATH",
+			"value" : "Qt5QuickControls2_DIR-NOTFOUND"
+		},
+		{
+			"name" : "Qt5QuickWidgets_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for Qt5QuickWidgets."
+				}
+			],
+			"type" : "PATH",
+			"value" : "/usr/lib/x86_64-linux-gnu/cmake/Qt5QuickWidgets"
+		},
+		{
+			"name" : "Qt5Quick_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for Qt5Quick."
+				}
+			],
+			"type" : "PATH",
+			"value" : "/usr/lib/x86_64-linux-gnu/cmake/Qt5Quick"
 		},
 		{
 			"name" : "Qt5Svg_DIR",
@@ -1300,6 +1372,18 @@
 			],
 			"type" : "PATH",
 			"value" : "/usr/lib/x86_64-linux-gnu/cmake/Qt5"
+		},
+		{
+			"name" : "Qt6_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for Qt6."
+				}
+			],
+			"type" : "PATH",
+			"value" : "Qt6_DIR-NOTFOUND"
 		}
 	],
 	"kind" : "cache",

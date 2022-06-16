@@ -32,6 +32,12 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt5 COMPONENTS PrintSupport REQUIRED)
 find_package(Qt5 COMPONENTS Svg REQUIRED)
+find_package(Qt5 COMPONENTS QuickWidgets REQUIRED)
+#find_package(Qt5 COMPONENTS Quick REQUIRED)
+
+#find /usr/lib/x86_64-linux-gnu -name "*Config.cmake" |
+#  sed 's/^.*\/Qt5//; s/Config.cmake$//; /^\s*$/d' |
+#  sort | pr -t -3
 
 if(ANDROID)
   add_library(QSBDGuiTest SHARED
@@ -77,5 +83,5 @@ endif()
 target_include_directories(QSBDGuiTest PRIVATE src)
 target_include_directories(QSBDGuiTest PRIVATE "../Big-Data-IC/src")
 target_include_directories(QSBDGuiTest PRIVATE "../Big-Data-IC/thirdparty")
-target_link_libraries(QSBDGuiTest PRIVATE Qt5::Widgets Qt5::PrintSupport Qt5::Svg nlohmann_json csv_parser pthread QSBD_STREAM_MAKER QSBD_QUANTILE_QUADTREE QSBD_GK_FACTORY QSBD_KLL_FACTORY QSBD_DCS_FACTORY QSBD_Q_DIGEST_FACTORY QSBD_UTILS)
+target_link_libraries(QSBDGuiTest PRIVATE Qt5::QuickWidgets Qt5::Widgets Qt5::PrintSupport Qt5::Svg nlohmann_json csv_parser pthread QSBD_STREAM_MAKER QSBD_QUANTILE_QUADTREE QSBD_GK_FACTORY QSBD_KLL_FACTORY QSBD_DCS_FACTORY QSBD_Q_DIGEST_FACTORY QSBD_UTILS)
 #qt5_import_plugins(QSBDGuiTest INCLUDE Qt5::QSvgPlugin)

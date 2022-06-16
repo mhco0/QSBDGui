@@ -26,31 +26,31 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 56,
+				"line" : 62,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 80,
+				"line" : 86,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 77,
+				"line" : 83,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 78,
+				"line" : 84,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 79,
+				"line" : 85,
 				"parent" : 0
 			}
 		]
@@ -83,11 +83,27 @@
 				},
 				{
 					"backtrace" : 2,
+					"define" : "QT_NETWORK_LIB"
+				},
+				{
+					"backtrace" : 2,
 					"define" : "QT_NO_DEBUG"
 				},
 				{
 					"backtrace" : 2,
 					"define" : "QT_PRINTSUPPORT_LIB"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "QT_QML_LIB"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "QT_QUICKWIDGETS_LIB"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "QT_QUICK_LIB"
 				},
 				{
 					"backtrace" : 2,
@@ -130,12 +146,22 @@
 				{
 					"backtrace" : 2,
 					"isSystem" : true,
-					"path" : "/usr/include/x86_64-linux-gnu/qt5/QtWidgets"
+					"path" : "/usr/include/x86_64-linux-gnu/qt5/QtQuickWidgets"
 				},
 				{
 					"backtrace" : 2,
 					"isSystem" : true,
-					"path" : "/usr/include/x86_64-linux-gnu/qt5/QtGui"
+					"path" : "/usr/include/x86_64-linux-gnu/qt5/QtQuick"
+				},
+				{
+					"backtrace" : 2,
+					"isSystem" : true,
+					"path" : "/usr/include/x86_64-linux-gnu/qt5/QtQml"
+				},
+				{
+					"backtrace" : 2,
+					"isSystem" : true,
+					"path" : "/usr/include/x86_64-linux-gnu/qt5/QtNetwork"
 				},
 				{
 					"backtrace" : 2,
@@ -146,6 +172,16 @@
 					"backtrace" : 2,
 					"isSystem" : true,
 					"path" : "/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++"
+				},
+				{
+					"backtrace" : 2,
+					"isSystem" : true,
+					"path" : "/usr/include/x86_64-linux-gnu/qt5/QtGui"
+				},
+				{
+					"backtrace" : 2,
+					"isSystem" : true,
+					"path" : "/usr/include/x86_64-linux-gnu/qt5/QtWidgets"
 				},
 				{
 					"backtrace" : 2,
@@ -279,6 +315,11 @@
 			},
 			{
 				"backtrace" : 2,
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libQt5QuickWidgets.so.5.12.8",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
 				"fragment" : "/usr/lib/x86_64-linux-gnu/libQt5PrintSupport.so.5.12.8",
 				"role" : "libraries"
 			},
@@ -334,6 +375,18 @@
 			{
 				"backtrace" : 2,
 				"fragment" : "lib/libQSBD_UTILS.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libQt5Quick.so.5.12.8",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.12.8",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libQt5Network.so.5.12.8",
 				"role" : "libraries"
 			},
 			{

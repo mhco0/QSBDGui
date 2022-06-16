@@ -55,6 +55,7 @@ CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QPointF
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QPointer
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QRect
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QRectF
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QScopedPointer
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QSharedDataPointer
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QSharedPointer
@@ -396,6 +397,8 @@ CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qwindow.h
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qwindowdefs.h
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qwindowdefs_win.h
+ /usr/include/x86_64-linux-gnu/qt5/QtNetwork/qtnetwork-config.h
+ /usr/include/x86_64-linux-gnu/qt5/QtNetwork/qtnetworkglobal.h
  /usr/include/x86_64-linux-gnu/qt5/QtOpenGL/QGLPixelBuffer
  /usr/include/x86_64-linux-gnu/qt5/QtOpenGL/qgl.h
  /usr/include/x86_64-linux-gnu/qt5/QtOpenGL/qglcolormap.h
@@ -414,6 +417,23 @@ CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtPrintSupport/qtprintsupport-config.h
  /usr/include/x86_64-linux-gnu/qt5/QtPrintSupport/qtprintsupportglobal.h
  /usr/include/x86_64-linux-gnu/qt5/QtPrintSupport/qtprintsupportversion.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qqml.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmldebug.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmllist.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlparserstatus.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlprivate.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlpropertyvaluesource.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qtqml-config.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qtqmlglobal.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQuick/qquickwindow.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQuick/qsggeometry.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQuick/qsgnode.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQuick/qsgrendererinterface.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQuick/qtquick-config.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQuick/qtquickglobal.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQuickWidgets/QQuickWidget
+ /usr/include/x86_64-linux-gnu/qt5/QtQuickWidgets/qquickwidget.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQuickWidgets/qtquickwidgetsglobal.h
  /usr/include/x86_64-linux-gnu/qt5/QtSvg/QGraphicsSvgItem
  /usr/include/x86_64-linux-gnu/qt5/QtSvg/qgraphicssvgitem.h
  /usr/include/x86_64-linux-gnu/qt5/QtSvg/qtsvgglobal.h
@@ -616,6 +636,7 @@ CMakeFiles/QSBDGuiTest.dir/main.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QPointF
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QPointer
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QRect
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QRectF
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QScopedPointer
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QSharedDataPointer
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QSharedPointer
@@ -957,6 +978,8 @@ CMakeFiles/QSBDGuiTest.dir/main.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qwindow.h
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qwindowdefs.h
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qwindowdefs_win.h
+ /usr/include/x86_64-linux-gnu/qt5/QtNetwork/qtnetwork-config.h
+ /usr/include/x86_64-linux-gnu/qt5/QtNetwork/qtnetworkglobal.h
  /usr/include/x86_64-linux-gnu/qt5/QtOpenGL/QGLPixelBuffer
  /usr/include/x86_64-linux-gnu/qt5/QtOpenGL/qgl.h
  /usr/include/x86_64-linux-gnu/qt5/QtOpenGL/qglcolormap.h
@@ -975,6 +998,23 @@ CMakeFiles/QSBDGuiTest.dir/main.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtPrintSupport/qtprintsupport-config.h
  /usr/include/x86_64-linux-gnu/qt5/QtPrintSupport/qtprintsupportglobal.h
  /usr/include/x86_64-linux-gnu/qt5/QtPrintSupport/qtprintsupportversion.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qqml.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmldebug.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmllist.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlparserstatus.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlprivate.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlpropertyvaluesource.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qtqml-config.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qtqmlglobal.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQuick/qquickwindow.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQuick/qsggeometry.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQuick/qsgnode.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQuick/qsgrendererinterface.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQuick/qtquick-config.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQuick/qtquickglobal.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQuickWidgets/QQuickWidget
+ /usr/include/x86_64-linux-gnu/qt5/QtQuickWidgets/qquickwidget.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQuickWidgets/qtquickwidgetsglobal.h
  /usr/include/x86_64-linux-gnu/qt5/QtSvg/QGraphicsSvgItem
  /usr/include/x86_64-linux-gnu/qt5/QtSvg/qgraphicssvgitem.h
  /usr/include/x86_64-linux-gnu/qt5/QtSvg/qtsvgglobal.h
@@ -2720,8 +2760,12 @@ CMakeFiles/QSBDGuiTest.dir/src/view/view.cpp.o
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/kmedoids/kmedoids.hpp
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/view/view.cpp
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/view/view.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QEvent
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QMargins
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QObject
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QPointF
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QRect
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QRectF
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QSize
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QVector
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QtDebug
@@ -2762,6 +2806,7 @@ CMakeFiles/QSBDGuiTest.dir/src/view/view.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qmap.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qmargins.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qmath.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qmetaobject.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qmetatype.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qmutex.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qnamespace.h
@@ -2791,6 +2836,7 @@ CMakeFiles/QSBDGuiTest.dir/src/view/view.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qstringview.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qsysinfo.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qsystemdetection.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qt_windows.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qtcore-config.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qtextstream.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qtypeinfo.h
@@ -2802,6 +2848,7 @@ CMakeFiles/QSBDGuiTest.dir/src/view/view.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qversiontagging.h
  /usr/include/x86_64-linux-gnu/qt5/QtGui/QBrush
  /usr/include/x86_64-linux-gnu/qt5/QtGui/QColor
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/QMatrix4x4
  /usr/include/x86_64-linux-gnu/qt5/QtGui/QMouseEvent
  /usr/include/x86_64-linux-gnu/qt5/QtGui/QPainter
  /usr/include/x86_64-linux-gnu/qt5/QtGui/QPen
@@ -2813,9 +2860,15 @@ CMakeFiles/QSBDGuiTest.dir/src/view/view.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qfont.h
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qfontinfo.h
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qfontmetrics.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qgenericmatrix.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qicon.h
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qimage.h
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qkeysequence.h
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qmatrix.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qmatrix4x4.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qopengl.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qopengles2ext.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qopenglext.h
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qpaintdevice.h
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qpainter.h
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qpainterpath.h
@@ -2824,17 +2877,42 @@ CMakeFiles/QSBDGuiTest.dir/src/view/view.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qpixelformat.h
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qpixmap.h
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qpolygon.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qquaternion.h
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qregion.h
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qrgb.h
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qrgba64.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qsurface.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qsurfaceformat.h
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qtextoption.h
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qtgui-config.h
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qtguiglobal.h
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qtouchdevice.h
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qtransform.h
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qvector2d.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qvector3d.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qvector4d.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qwindow.h
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qwindowdefs.h
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qwindowdefs_win.h
+ /usr/include/x86_64-linux-gnu/qt5/QtNetwork/qtnetwork-config.h
+ /usr/include/x86_64-linux-gnu/qt5/QtNetwork/qtnetworkglobal.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qqml.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmldebug.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmllist.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlparserstatus.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlprivate.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlpropertyvaluesource.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qtqml-config.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qtqmlglobal.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQuick/qquickwindow.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQuick/qsggeometry.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQuick/qsgnode.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQuick/qsgrendererinterface.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQuick/qtquick-config.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQuick/qtquickglobal.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQuickWidgets/QQuickWidget
+ /usr/include/x86_64-linux-gnu/qt5/QtQuickWidgets/qquickwidget.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQuickWidgets/qtquickwidgetsglobal.h
  /usr/include/x86_64-linux-gnu/qt5/QtSvg/QGraphicsSvgItem
  /usr/include/x86_64-linux-gnu/qt5/QtSvg/qgraphicssvgitem.h
  /usr/include/x86_64-linux-gnu/qt5/QtSvg/qtsvgglobal.h
