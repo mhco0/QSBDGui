@@ -30,8 +30,10 @@ namespace qsbd {
 		setContentsMargins(0, 0, 0, 0);
 		setMinimumSize(700, 480);
 		//setFixedSize(700, 480);
-		kCluster = 5;
+		kCluster = 1;
 		kSteps = 10;
+		depthView = 0;
+		clusterMethod = ClusterMethod::KMedoids;
 		minValueSeen = 0x3f3f3f3f;
 		maxValueSeen = -0x3f3f3f3f;
 		maxXResolution = 700.0;
@@ -50,7 +52,7 @@ namespace qsbd {
 		queriesColors[3] = Qt::magenta;
 		queriesColors[4] = Qt::black;
 
-		svgBackground = new QGraphicsSvgItem("../assert/svg/USA_New_York_City_location_map.svg");
+		//svgBackground = new QGraphicsSvgItem("../assert/svg/USA_New_York_City_location_map.svg");
 		QQuickWidget * osm = new QQuickWidget();
 
 		osm->setSource(QUrl::fromLocalFile("../assert/qml/map.qml"));
@@ -74,8 +76,8 @@ namespace qsbd {
 		//background-image: url('../assert/svg/USA_New_York_City_location_map.svg')  0 0 0 0 stretch stretch; background-repeat: no-repeat; background-position: center;
 		// 
 
-		svgBackground->setTransform(svgBackground->transform().scale(0.87500, 0.63408)); // fit to current view map scale based on svg file size. This only works with the current view port, change this scale after
-		scene->addItem(svgBackground);
+		//svgBackground->setTransform(svgBackground->transform().scale(0.87500, 0.63408)); // fit to current view map scale based on svg file size. This only works with the current view port, change this scale after
+		//scene->addItem(svgBackground);
 		scene->addWidget(osm);
 
 		show();
@@ -424,6 +426,11 @@ namespace qsbd {
 		this->updateBasedOnDrawMode();
 	}
 
+	void View::setClusteringMethod(const ClusterMethod& option){
+		clusterMethod = option;
+		this->updateBasedOnDrawMode();
+	}
+
 	void View::setDomain(const double& minXRes, const double& minYRes, const double& maxXRes, const double& maxYRes){
 		minXdomain = minXRes;
 		minYdomain = minYRes;
@@ -553,34 +560,75 @@ namespace qsbd {
 			cathegorys[i].setAlpha(155);
 		}
 
-		auto ret = kmedoids<std::vector<double>>::cluster(kCluster, kSteps, cdfs, [](const std::vector<double>& lhs, const std::vector<double>& rhs){
-			double max_distance_distributions = std::numeric_limits<double>::min();
+		auto ksFunction = [](const std::vector<double>& lhs, const std::vector<double>& rhs){
+								double max_distance_distributions = std::numeric_limits<double>::min();
 
-			for(size_t i = 0; i < lhs.size(); i++){
-				double distribution_distance = fabs(lhs[i] - rhs[i]);
-			
-				max_distance_distributions = std::max(max_distance_distributions, distribution_distance);
+								for(size_t i = 0; i < lhs.size(); i++){
+									double distribution_distance = fabs(lhs[i] - rhs[i]);
+								
+									max_distance_distributions = std::max(max_distance_distributions, distribution_distance);
+								}
+
+								return max_distance_distributions;
+							};
+
+		std::vector<int> region_clusters;
+		switch(clusterMethod){
+			case ClusterMethod::KMedoids:{
+				auto ret = kmedoids<std::vector<double>>::cluster(kCluster, kSteps, cdfs, ksFunction, centroids);
+
+				region_clusters = ret.first;
 			}
+			break;
+			case ClusterMethod::DBSCAN:{
+				std::vector<std::vector<double>> data = cdfs;
 
-			return max_distance_distributions;
-		}, centroids);
+				auto dbscan = DBSCAN<std::vector<double>, double>();
 
-		std::vector<int> region_clusters = ret.first;
+				//std::cout << "minC: " << (float) (kCluster / 10.0) << std::endl;
+				int ret = dbscan.Run(&data, cdfs[0].size(), (float) (kCluster / 10.0), cdfs[0].size() + 1, ksFunction);
 
-		for(auto& it : centroids){
+				auto clusters = dbscan.Clusters;
+				auto noise = dbscan.Noise;
+
+				region_clusters.resize(cdfs.size(), 0);
+
+				//std::cout << "cluster sizes: " << clusters.size() << std::endl;
+
+				//std::cout << "noise sizes: " << noise.size() << std::endl;
+
+				size_t i = 0;
+				for(; i < clusters.size(); i++){
+					for(auto& it : clusters[i]){
+						region_clusters[it] = i;
+					}
+				}
+
+
+				for(size_t j = 0; j < noise.size(); j++){
+					region_clusters[noise[j]] = std::min(i, (size_t)9);
+					i++;
+				}
+			}
+			break;
+			case ClusterMethod::KMeans:
+			break;
+		}
+		
+		/*for(auto& it : centroids){
 			std::cout << "cluster: " << region_clusters[it] << std::endl;
 			for(size_t i = 0; i < cdfs[it].size(); i++){
 				std::cout << cdfs[it][i] << " ";
 			}
 			std::cout << std::endl;
-		}
+		}*/
 
-		qDebug() << cdfs.size() << " " << region_clusters.size();
+		//qDebug() << cdfs.size() << " " << region_clusters.size();
 
-		assert(cdfs.size() == region_clusters.size());
+		//assert(cdfs.size() == region_clusters.size());
 
 		for(size_t i = 0; i < cdfs.size(); i++){
-			assert(region_clusters[i] >= 0 && region_clusters[i] < kCluster);
+			assert(region_clusters[i] >= 0 && region_clusters[i] < 10);
 			
 
 			//ksRegions[i].first->setBrush(QBrush(cathegorys[distribution(generator)]));

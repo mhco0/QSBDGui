@@ -18,6 +18,16 @@
 			"JOOUC7EWVH/moc_csvdialog.cpp"
 		],
 		[
+			"/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/dbscan/dbscan.h",
+			"MU",
+			"Q62UJ5UWI4/moc_dbscan.cpp"
+		],
+		[
+			"/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/dbscan/kdtree.h",
+			"MU",
+			"Q62UJ5UWI4/moc_kdtree.cpp"
+		],
+		[
 			"/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/kmedoids/kmedoids.hpp",
 			"MU",
 			"6MIOWYPPTH/moc_kmedoids.cpp"
@@ -130,6 +140,10 @@
 		],
 		[
 			"/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/csvdialog/csvdialog.cpp",
+			"MU"
+		],
+		[
+			"/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/dbscan/kdtree.cpp",
 			"MU"
 		],
 		[

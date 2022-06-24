@@ -252,6 +252,9 @@ void MainWindow::setupUi(){
     drawModes->addItem(tr("KS"));
     drawModes->setVisible(false);
 
+    depthDrawLabel = new QLabel("Depth:");
+    depthDrawLabel->setVisible(false);
+
     depthDraw = new QSlider();
     depthDraw->setMinimum(0);
     depthDraw->setSingleStep(1);
@@ -270,14 +273,22 @@ void MainWindow::setupUi(){
     kCluster->setValue(0);
     kCluster->setVisible(false);
     kCluster->setOrientation(Qt::Horizontal);
-    kCluster->setMaximumWidth(250);  
+    kCluster->setMaximumWidth(250);
+
+    kClusterMethod = new QComboBox();
+    kClusterMethod->addItem(tr("K-Medoids"));
+    kClusterMethod->addItem(tr("DBSCAN"));
+    kClusterMethod->addItem(tr("K-Means"));
+    kClusterMethod->setVisible(false);
 
     drawModesContainer->addWidget(drawModesLabel);
     drawModesContainer->addWidget(drawModes);
     drawOptionsContainer->addLayout(drawModesContainer);
+    drawOptionsContainer->addWidget(depthDrawLabel);
     drawOptionsContainer->addWidget(depthDraw);
     drawOptionsContainer->addWidget(kClusterLabel);
     drawOptionsContainer->addWidget(kCluster);
+    drawOptionsContainer->addWidget(kClusterMethod);
 
     rankQueryContainer->addWidget(rankQueryLabel);
     rankQueryContainer->addWidget(valueForRankQuery);
@@ -708,18 +719,40 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
         view.setKCluster(value);
     });
 
+    QObject::connect(kClusterMethod, &QComboBox::currentTextChanged, this, [&](){
+        QString method = kClusterMethod->currentText();
+
+        if (method == tr("K-Medoids")){
+            kClusterLabel->setText(tr("Clusters:"));
+            view.setClusteringMethod(qsbd::ClusterMethod::KMedoids);            
+        }else if(method == tr("DBSCAN")){
+            kClusterLabel->setText(tr("Epsilon:"));
+            view.setClusteringMethod(qsbd::ClusterMethod::DBSCAN);
+        }else if(method == tr("K-Means")){
+            kClusterLabel->setText(tr("Clusters:"));
+            view.setClusteringMethod(qsbd::ClusterMethod::KMeans);
+        }else{
+            kClusterLabel->setText(tr("Clusters:"));
+            view.setClusteringMethod(qsbd::ClusterMethod::KMedoids);
+        }
+    });
+
     QObject::connect(drawModes, &QComboBox::currentTextChanged, this, [&](){
         QString method = drawModes->currentText();
         
         if(method == tr("Raw data")){
+            depthDrawLabel->setVisible(false);
             depthDraw->setVisible(false);
             kClusterLabel->setVisible(false);
             kCluster->setVisible(false);
+            kClusterMethod->setVisible(false);
             view.setDrawingMode(qsbd::ViewDrawMode::OnlyPoints);
         }else if(method == tr("Raw data with Bounds")){
+            depthDrawLabel->setVisible(true);
             depthDraw->setVisible(true);
             kClusterLabel->setVisible(false);
             kCluster->setVisible(false);
+            kClusterMethod->setVisible(false);
             view.setKCluster(kCluster->value());
             view.setDepthView(depthDraw->value());
             view.setDrawingMode(qsbd::ViewDrawMode::QuadtreeDepth);
@@ -727,16 +760,21 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
             depthDraw->setVisible(false);
             kClusterLabel->setVisible(false);
             kCluster->setVisible(false);
+            kClusterMethod->setVisible(false);
             view.setDrawingMode(qsbd::ViewDrawMode::Heatmap);
         }else if(method == tr("KS")){
+            depthDrawLabel->setVisible(true);
             depthDraw->setVisible(true);
             kClusterLabel->setVisible(true);
             kCluster->setVisible(true);
+            kClusterMethod->setVisible(true);
             view.setDrawingMode(qsbd::ViewDrawMode::KS);
         }else{
+            depthDrawLabel->setVisible(false);
             depthDraw->setVisible(false);
             kClusterLabel->setVisible(false);
             kCluster->setVisible(false);
+            kClusterMethod->setVisible(false);
             view.setKCluster(kCluster->value());
             view.setDepthView(depthDraw->value());
             view.setDrawingMode(qsbd::ViewDrawMode::OnlyPoints);

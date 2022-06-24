@@ -115,9 +115,11 @@ private:
 	QHBoxLayout* drawModesContainer;
 	QLabel* drawModesLabel;
 	QComboBox* drawModes;
+	QLabel* depthDrawLabel;
 	QSlider* depthDraw;
 	QLabel* kClusterLabel;
 	QSlider* kCluster;
+	QComboBox* kClusterMethod;
 
 	QPushButton* freezeButton;
 	QPushButton* loadStreamMethodButton;

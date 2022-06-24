@@ -57,6 +57,9 @@ if(ANDROID)
     src/sketchmenudialog/sketchmenudialog.h
     src/sketchmenudialog/sketchmenudialog.cpp
     src/kmedoids/kmedoids.hpp
+    src/dbscan/dbscan.h
+    src/dbscan/kdtree.h
+    src/dbscan/kdtree.cpp
   )
 else()
   add_executable(QSBDGuiTest
@@ -75,7 +78,10 @@ else()
     src/csvdialog/csvdialog.cpp
     src/sketchmenudialog/sketchmenudialog.h
     src/sketchmenudialog/sketchmenudialog.cpp
-     src/kmedoids/kmedoids.hpp
+    src/kmedoids/kmedoids.hpp
+    src/dbscan/dbscan.h
+    src/dbscan/kdtree.h
+    src/dbscan/kdtree.cpp
   )
 endif()
 

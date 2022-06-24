@@ -33,13 +33,19 @@
 #include <map>
 #include <string>
 #include "../kmedoids/kmedoids.hpp"
+#include "../dbscan/dbscan.h"
 
 namespace qsbd {
 
     /** @class ViewDrawMode
      * @brief This is a enum class to handle the draw mode for the view aplication.
     */
-    enum class ViewDrawMode {OnlyPoints, QuadtreeDepth, Heatmap, KS};
+    enum class ViewDrawMode {OnlyPoints = 0, QuadtreeDepth, Heatmap, KS};
+
+    /** @class ClusterMethod
+     * @brief This is a enum class to handle the clustering methods for the view aplication.
+    */
+    enum class ClusterMethod {KMedoids = 0, DBSCAN, KMeans};
 
     /** @class QueryGraphicsItem
     * @brief A Qt QGraphicsItem that represents a query in the view
@@ -105,6 +111,7 @@ namespace qsbd {
         int depthView;
         int kCluster;
         int kSteps;
+        ClusterMethod clusterMethod;
         int minValueSeen;
         int maxValueSeen;
         ViewDrawMode drawMode;
@@ -227,6 +234,12 @@ namespace qsbd {
          * @param option A @sa ViewDrawMode to set the draw mode for the view. 
         */
         void setDrawingMode(const ViewDrawMode& option);
+
+        /**
+         * @brief A setter to set how the view will use the clustering method
+         * @param option A @sa ClusterMethod to set the clustering method for the view. 
+        */
+        void setClusteringMethod(const ClusterMethod& option);
 
         /**
          * @brief A setter for the virtual max depth on the quadtree model

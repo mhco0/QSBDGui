@@ -6,6 +6,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/QSBDGuiTest.dir/main.cpp.o"
   "CMakeFiles/QSBDGuiTest.dir/src/controller/controller.cpp.o"
   "CMakeFiles/QSBDGuiTest.dir/src/csvdialog/csvdialog.cpp.o"
+  "CMakeFiles/QSBDGuiTest.dir/src/dbscan/kdtree.cpp.o"
   "CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o"
   "CMakeFiles/QSBDGuiTest.dir/src/model/model.cpp.o"
   "CMakeFiles/QSBDGuiTest.dir/src/qcustomplot/qcustomplot.cpp.o"
