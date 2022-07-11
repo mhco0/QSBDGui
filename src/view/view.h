@@ -34,6 +34,7 @@
 #include <string>
 #include "../kmedoids/kmedoids.hpp"
 #include "../dbscan/dbscan.h"
+#include "../kmeans/kmeans.h"
 
 namespace qsbd {
 

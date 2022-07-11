@@ -27,6 +27,7 @@ CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: ../src/co
 CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: ../src/csvdialog/csvdialog.h
 CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: ../src/dbscan/dbscan.h
 CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: ../src/dbscan/kdtree.h
+CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: ../src/kmeans/kmeans.h
 CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: ../src/kmedoids/kmedoids.hpp
 CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: ../src/mainwindow/mainwindow.h
 CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: ../src/model/model.h
@@ -617,6 +618,7 @@ CMakeFiles/QSBDGuiTest.dir/main.cpp.o: ../src/controller/controller.h
 CMakeFiles/QSBDGuiTest.dir/main.cpp.o: ../src/csvdialog/csvdialog.h
 CMakeFiles/QSBDGuiTest.dir/main.cpp.o: ../src/dbscan/dbscan.h
 CMakeFiles/QSBDGuiTest.dir/main.cpp.o: ../src/dbscan/kdtree.h
+CMakeFiles/QSBDGuiTest.dir/main.cpp.o: ../src/kmeans/kmeans.h
 CMakeFiles/QSBDGuiTest.dir/main.cpp.o: ../src/kmedoids/kmedoids.hpp
 CMakeFiles/QSBDGuiTest.dir/main.cpp.o: ../src/mainwindow/mainwindow.h
 CMakeFiles/QSBDGuiTest.dir/main.cpp.o: ../src/model/model.h
@@ -1201,6 +1203,7 @@ CMakeFiles/QSBDGuiTest.dir/src/controller/controller.cpp.o: ../src/controller/co
 CMakeFiles/QSBDGuiTest.dir/src/controller/controller.cpp.o: ../src/controller/controller.h
 CMakeFiles/QSBDGuiTest.dir/src/controller/controller.cpp.o: ../src/dbscan/dbscan.h
 CMakeFiles/QSBDGuiTest.dir/src/controller/controller.cpp.o: ../src/dbscan/kdtree.h
+CMakeFiles/QSBDGuiTest.dir/src/controller/controller.cpp.o: ../src/kmeans/kmeans.h
 CMakeFiles/QSBDGuiTest.dir/src/controller/controller.cpp.o: ../src/kmedoids/kmedoids.hpp
 CMakeFiles/QSBDGuiTest.dir/src/controller/controller.cpp.o: ../src/model/model.h
 CMakeFiles/QSBDGuiTest.dir/src/controller/controller.cpp.o: ../src/view/view.h
@@ -1543,6 +1546,7 @@ CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: ../src/controller/co
 CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: ../src/csvdialog/csvdialog.h
 CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: ../src/dbscan/dbscan.h
 CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: ../src/dbscan/kdtree.h
+CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: ../src/kmeans/kmeans.h
 CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: ../src/kmedoids/kmedoids.hpp
 CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: ../src/mainwindow/mainwindow.cpp
 CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: ../src/mainwindow/mainwindow.h
@@ -2826,6 +2830,7 @@ CMakeFiles/QSBDGuiTest.dir/src/view/view.cpp.o: ../../Big-Data-IC/src/commum_hea
 CMakeFiles/QSBDGuiTest.dir/src/view/view.cpp.o: ../../Big-Data-IC/src/point/point.hpp
 CMakeFiles/QSBDGuiTest.dir/src/view/view.cpp.o: ../src/dbscan/dbscan.h
 CMakeFiles/QSBDGuiTest.dir/src/view/view.cpp.o: ../src/dbscan/kdtree.h
+CMakeFiles/QSBDGuiTest.dir/src/view/view.cpp.o: ../src/kmeans/kmeans.h
 CMakeFiles/QSBDGuiTest.dir/src/view/view.cpp.o: ../src/kmedoids/kmedoids.hpp
 CMakeFiles/QSBDGuiTest.dir/src/view/view.cpp.o: ../src/view/view.cpp
 CMakeFiles/QSBDGuiTest.dir/src/view/view.cpp.o: ../src/view/view.h

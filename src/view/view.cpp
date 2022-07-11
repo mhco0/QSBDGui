@@ -611,7 +611,24 @@ namespace qsbd {
 				}
 			}
 			break;
-			case ClusterMethod::KMeans:
+			case ClusterMethod::KMeans:{
+
+				std::vector<std::vector<double>> data = cdfs;
+				std::vector<carlosClustering::Point> cPoints;
+				for(size_t i = 0; i < data.size(); i++){
+					cPoints.emplace_back(i, data[i]);
+				}
+
+				std::cout << "before" << std::endl;
+				carlosClustering::KMeans cluster(kCluster, data.size(), data[0].size(), kSteps);
+				std::cout << "here" << std::endl; 
+				cluster.run(cPoints);
+
+				
+				for(size_t i = 0; i < cPoints.size(); i++){
+					region_clusters.emplace_back(cPoints[i].getCluster() + 1);
+				}
+			}
 			break;
 		}
 		

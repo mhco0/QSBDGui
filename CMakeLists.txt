@@ -60,6 +60,7 @@ if(ANDROID)
     src/dbscan/dbscan.h
     src/dbscan/kdtree.h
     src/dbscan/kdtree.cpp
+    src/kmeans/kmeans.h
   )
 else()
   add_executable(QSBDGuiTest
@@ -82,6 +83,7 @@ else()
     src/dbscan/dbscan.h
     src/dbscan/kdtree.h
     src/dbscan/kdtree.cpp
+    src/kmeans/kmeans.h
   )
 endif()
 

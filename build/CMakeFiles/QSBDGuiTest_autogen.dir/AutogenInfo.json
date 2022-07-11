@@ -28,6 +28,11 @@
 			"Q62UJ5UWI4/moc_kdtree.cpp"
 		],
 		[
+			"/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/kmeans/kmeans.h",
+			"MU",
+			"W2BY7VK2HN/moc_kmeans.cpp"
+		],
+		[
 			"/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/kmedoids/kmedoids.hpp",
 			"MU",
 			"6MIOWYPPTH/moc_kmedoids.cpp"
