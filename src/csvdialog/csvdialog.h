@@ -15,6 +15,8 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QComboBox>
+#include <QCheckBox>
+#include <QSpinBox>
 #include <QDebug>
 #include <string>
 #include <vector>
@@ -29,14 +31,27 @@ class CsvDialog : public QDialog {
     //QLineEdit* lonEdit;
     QComboBox* lonBox;
     QLabel* lonLabel;
+    
     QHBoxLayout* latContainer;
     //QLineEdit* latEdit;
     QComboBox* latBox;
     QLabel* latLabel;
+    
     QHBoxLayout* indexContainer;
     QLabel* indexLabel;
     //QLineEdit* indexEdit;
     QComboBox* indexBox;
+    
+    QHBoxLayout* indexOptionsContainer;
+    QLabel* indexTypeLabel;
+    QCheckBox* indexType;
+    QLabel* minValueLabel;
+    QSpinBox* minValue;
+    QLabel* maxValueLabel;
+    QSpinBox* maxValue;
+    QLabel* depthLabel;
+    QSpinBox* depth;
+    
     QPushButton* confirmButton;
 
     void setupUi();

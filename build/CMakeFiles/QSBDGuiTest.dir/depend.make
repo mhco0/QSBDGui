@@ -1489,15 +1489,18 @@ CMakeFiles/QSBDGuiTest.dir/src/csvdialog/csvdialog.cpp.o: /usr/include/x86_64-li
 CMakeFiles/QSBDGuiTest.dir/src/csvdialog/csvdialog.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtGui/qwindowdefs.h
 CMakeFiles/QSBDGuiTest.dir/src/csvdialog/csvdialog.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtGui/qwindowdefs_win.h
 CMakeFiles/QSBDGuiTest.dir/src/csvdialog/csvdialog.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QBoxLayout
+CMakeFiles/QSBDGuiTest.dir/src/csvdialog/csvdialog.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QCheckBox
 CMakeFiles/QSBDGuiTest.dir/src/csvdialog/csvdialog.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QComboBox
 CMakeFiles/QSBDGuiTest.dir/src/csvdialog/csvdialog.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QDialog
 CMakeFiles/QSBDGuiTest.dir/src/csvdialog/csvdialog.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QLabel
 CMakeFiles/QSBDGuiTest.dir/src/csvdialog/csvdialog.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QPushButton
+CMakeFiles/QSBDGuiTest.dir/src/csvdialog/csvdialog.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QSpinBox
 CMakeFiles/QSBDGuiTest.dir/src/csvdialog/csvdialog.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractbutton.h
 CMakeFiles/QSBDGuiTest.dir/src/csvdialog/csvdialog.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractitemdelegate.h
 CMakeFiles/QSBDGuiTest.dir/src/csvdialog/csvdialog.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractslider.h
 CMakeFiles/QSBDGuiTest.dir/src/csvdialog/csvdialog.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractspinbox.h
 CMakeFiles/QSBDGuiTest.dir/src/csvdialog/csvdialog.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qboxlayout.h
+CMakeFiles/QSBDGuiTest.dir/src/csvdialog/csvdialog.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qcheckbox.h
 CMakeFiles/QSBDGuiTest.dir/src/csvdialog/csvdialog.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qcombobox.h
 CMakeFiles/QSBDGuiTest.dir/src/csvdialog/csvdialog.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qdialog.h
 CMakeFiles/QSBDGuiTest.dir/src/csvdialog/csvdialog.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qframe.h
@@ -1509,6 +1512,7 @@ CMakeFiles/QSBDGuiTest.dir/src/csvdialog/csvdialog.cpp.o: /usr/include/x86_64-li
 CMakeFiles/QSBDGuiTest.dir/src/csvdialog/csvdialog.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qrubberband.h
 CMakeFiles/QSBDGuiTest.dir/src/csvdialog/csvdialog.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qsizepolicy.h
 CMakeFiles/QSBDGuiTest.dir/src/csvdialog/csvdialog.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qslider.h
+CMakeFiles/QSBDGuiTest.dir/src/csvdialog/csvdialog.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qspinbox.h
 CMakeFiles/QSBDGuiTest.dir/src/csvdialog/csvdialog.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qstyle.h
 CMakeFiles/QSBDGuiTest.dir/src/csvdialog/csvdialog.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qstyleoption.h
 CMakeFiles/QSBDGuiTest.dir/src/csvdialog/csvdialog.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtabbar.h

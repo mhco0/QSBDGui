@@ -29,12 +29,44 @@ void CsvDialog::setupUi(){
     //indexContainer->addWidget(indexEdit);
     indexContainer->addWidget(indexBox);
 
+
+    indexOptionsContainer = new QHBoxLayout();
+    indexTypeLabel = new QLabel("Index type is double ?");
+    indexType = new QCheckBox();
+    
+    minValueLabel = new QLabel("Min value:");
+    minValueLabel->setVisible(false);
+    minValue = new QSpinBox();
+    minValue->setVisible(false);
+    minValue->setRange(-1000, 1000); 
+
+    maxValueLabel = new QLabel("Max value:");
+    maxValueLabel->setVisible(false);
+    maxValue = new QSpinBox();
+    maxValue->setVisible(false);
+    maxValue->setRange(-1000, 1000); 
+    
+    depthLabel = new QLabel("Discretization Depth:");
+    depthLabel->setVisible(false);
+    depth = new QSpinBox();
+    depth->setVisible(false);
+
+    indexOptionsContainer->addWidget(indexTypeLabel);
+    indexOptionsContainer->addWidget(indexType);
+    indexOptionsContainer->addWidget(minValueLabel);
+    indexOptionsContainer->addWidget(minValue);
+    indexOptionsContainer->addWidget(maxValueLabel);
+    indexOptionsContainer->addWidget(maxValue);
+    indexOptionsContainer->addWidget(depthLabel);
+    indexOptionsContainer->addWidget(depth);
+
     confirmButton = new QPushButton("Confirm");
 
     centralContainer = new QVBoxLayout();
     centralContainer->addLayout(lonContainer);
     centralContainer->addLayout(latContainer);
     centralContainer->addLayout(indexContainer);
+    centralContainer->addLayout(indexOptionsContainer);
     centralContainer->addWidget(confirmButton);
 
     setLayout(centralContainer);
@@ -42,6 +74,15 @@ void CsvDialog::setupUi(){
 
 CsvDialog::CsvDialog(QWidget* parent): QDialog(parent) {
     this->setupUi();
+
+    QObject::connect(indexType, &QCheckBox::stateChanged, this, [&](){
+        minValueLabel->setVisible(indexType->isChecked());
+        minValue->setVisible(indexType->isChecked());
+        maxValueLabel->setVisible(indexType->isChecked());
+        maxValue->setVisible(indexType->isChecked());
+        depthLabel->setVisible(indexType->isChecked());
+        depth->setVisible(indexType->isChecked());
+    });
 
     QObject::connect(confirmButton, &QAbstractButton::pressed, this, [&](){
         qDebug() << "ok pressed";
@@ -51,6 +92,11 @@ CsvDialog::CsvDialog(QWidget* parent): QDialog(parent) {
         qDebug() << lonBox->currentText();
         qDebug() << latBox->currentText();
         qDebug() << indexBox->currentText();
+
+        /*if(indexType.isChecked()){
+            minVue
+        }*/ /// save here the function to discretize and save all double to int values than pass it to the feeding function
+
 
         emit collumnsSelected(lonBox->currentText(), latBox->currentText(), indexBox->currentText());
 
