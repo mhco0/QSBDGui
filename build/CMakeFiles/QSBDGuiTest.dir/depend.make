@@ -459,6 +459,7 @@ CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: /usr/incl
 CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QScrollerProperties
 CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QSlider
 CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QSpinBox
+CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QTabWidget
 CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QWidget
 CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QtWidgets
 CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QtWidgetsDepends
@@ -1044,6 +1045,7 @@ CMakeFiles/QSBDGuiTest.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidge
 CMakeFiles/QSBDGuiTest.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QScrollerProperties
 CMakeFiles/QSBDGuiTest.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QSlider
 CMakeFiles/QSBDGuiTest.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QSpinBox
+CMakeFiles/QSBDGuiTest.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QTabWidget
 CMakeFiles/QSBDGuiTest.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QWidget
 CMakeFiles/QSBDGuiTest.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QtWidgets
 CMakeFiles/QSBDGuiTest.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QtWidgetsDepends
@@ -1975,6 +1977,7 @@ CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: /usr/include/x86_64-
 CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QScrollerProperties
 CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QSlider
 CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QSpinBox
+CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QTabWidget
 CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QWidget
 CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QtWidgets
 CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QtWidgetsDepends

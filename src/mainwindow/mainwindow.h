@@ -29,6 +29,7 @@
 #include <QStandardItemModel>
 #include <QSlider>
 #include <QMenuBar>
+#include <QTabWidget>
 #include <aabb/aabb.hpp>
 #include <utils/utils.h>
 
@@ -48,6 +49,11 @@ private:
 	QMenuBar* menuBar;
 	QMenu* newMenu;
 	
+	QTabWidget* controlTab;
+	QWidget* dataPage;
+	QWidget* selectionPage;
+	QWidget* clusterPage;
+
 	QVBoxLayout* rightContainer;
 	QVBoxLayout* sketchFullContainer;
 	QHBoxLayout* sketchContainer;

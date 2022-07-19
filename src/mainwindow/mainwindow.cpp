@@ -337,6 +337,19 @@ void MainWindow::setupUi(){
 
     sketchInfoContainer->addWidget(sketchInfo);
 
+    controlTab = new QTabWidget();
+
+    dataPage = new QWidget();
+    selectionPage = new QWidget();
+    clusterPage = new QWidget();
+
+    controlTab->insertTab(0, dataPage, tr("Data"));
+    controlTab->widget(0)->setLayout(drawOptionsContainer);
+    controlTab->insertTab(1, selectionPage, tr("Selection"));
+    controlTab->widget(1)->setLayout(rankQueryContainer);
+    controlTab->insertTab(2, clusterPage, tr("Cluster"));
+    controlTab->widget(2)->setLayout(sketchInfoContainer);
+
     rightContainer = new QVBoxLayout();
     //rightContainer->addLayout(resolutionContainer);
     //rightContainer->addLayout(depthContainer);
@@ -344,10 +357,11 @@ void MainWindow::setupUi(){
     //rightContainer->addWidget(constructButton);
     rightContainer->addLayout(simulationContainer);
     rightContainer->addWidget(freezeButton);
-    rightContainer->addLayout(rankQueryContainer);
-    rightContainer->addLayout(drawOptionsContainer);
-    rightContainer->addLayout(sketchInfoContainer);
+    //rightContainer->addLayout(rankQueryContainer);
+    //rightContainer->addLayout(drawOptionsContainer);
+    //rightContainer->addLayout(sketchInfoContainer);
     rightContainer->addWidget(customPlot);
+    rightContainer->addWidget(controlTab);
     rightContainer->addStretch();
 
     mainContainer = new QHBoxLayout();
