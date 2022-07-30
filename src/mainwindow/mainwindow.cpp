@@ -10,10 +10,86 @@ void MainWindow::setupUi(){
     newMenu->addSeparator();
     newMenu->addAction(tr("Quit"), this, &MainWindow::onQuit);
 
+    freezeButton = new QPushButton("Freeze Simulation");
+    freezeButton->setVisible(false);
+    
+    bTimeContainer = new QHBoxLayout();
+	bTimeLabel = new QLabel("Batch Time: ");
+    bTimeLabel->setVisible(false);
+	bTime = new QDoubleSpinBox();
+    bTime->setMinimum(0.01);
+    bTime->setValue(0.5);
+    bTime->setSuffix(" s");
+    bTime->setVisible(false);
+
+    bTimeContainer->addWidget(bTimeLabel);
+    bTimeContainer->addWidget(bTime);
+
     menuBar = new QMenuBar();
     menuBar->addMenu(newMenu);
 
     this->setMenuBar(menuBar);
+
+    topDock = new QDockWidget();
+    topContainer = new QHBoxLayout();
+
+    topContainer->addWidget(freezeButton);
+    topContainer->addLayout(bTimeContainer);
+    topContainer->addStretch();
+
+    QWidget* topWidget = new QWidget();
+    topWidget->setLayout(topContainer);
+
+    topDock->setWidget(topWidget);
+    topDock->setFeatures(QDockWidget::NoDockWidgetFeatures);
+    topDock->setVisible(false);
+    topDock->setMaximumHeight(100);
+
+    bottomDock = new QDockWidget();
+    bottomContainer = new QHBoxLayout();
+    
+    drawBounds = new QCheckBox();
+    drawBounds->setCheckState(Qt::Unchecked);
+
+    drawBoundsLabel = new QLabel("Show Grid");
+    drawBoundsLabel->setVisible(false);
+
+    depthDrawLabel = new QLabel("Depth:");
+    depthDrawLabel->setVisible(false);
+
+    depthDraw = new QSpinBox();
+    depthDraw->setMinimum(0);
+    depthDraw->setSingleStep(1);
+    depthDraw->setValue(0);
+    depthDraw->setVisible(false);
+    //depthDraw->setOrientation(Qt::Horizontal);
+    depthDraw->setMaximumWidth(250);
+
+    bottomContainer->addWidget(drawBounds);
+    bottomContainer->setAlignment(drawBounds, Qt::AlignCenter);
+    bottomContainer->addWidget(drawBoundsLabel);
+    bottomContainer->setAlignment(drawBoundsLabel, Qt::AlignCenter);
+    bottomContainer->addWidget(depthDrawLabel);
+    bottomContainer->setAlignment(depthDrawLabel, Qt::AlignCenter);
+    bottomContainer->addWidget(depthDraw);
+    bottomContainer->setAlignment(depthDraw, Qt::AlignCenter);
+    bottomContainer->addStretch();
+
+    QWidget* bottomWidget = new QWidget();
+    bottomWidget->setLayout(bottomContainer);
+
+    bottomDock->setWidget(bottomWidget);
+    bottomDock->setFeatures(QDockWidget::NoDockWidgetFeatures);
+    bottomDock->setVisible(false);
+    bottomDock->setMaximumHeight(100);
+
+    this->addDockWidget(Qt::TopDockWidgetArea, topDock);
+    this->addDockWidget(Qt::BottomDockWidgetArea, bottomDock);
+
+    //toolBar = new QToolBar();
+
+    //toolBar->addWidget(freezeButton);
+    //toolBar->addLayout(bTimeContainer);
 
     sketchsMenu = new QComboBox();
     sketchsMenu->addItem(tr("undefined"));
@@ -118,7 +194,6 @@ void MainWindow::setupUi(){
     resolutionContainer->addWidget(resolutionLabel);
     resolutionContainer->addLayout(valueResolutionContainer);
  
-
     constructButton = new QPushButton("Construct");
     constructButton->setVisible(false);
 
@@ -132,7 +207,6 @@ void MainWindow::setupUi(){
     feedingMethod->addItem(tr("Stream City with weight"));
     feedingMethod->setVisible(false);
     
-
 	fSizeLabel = new QLabel("Stream size: ");
     fSizeLabel->setVisible(false);
 	fSize = new QSpinBox();
@@ -200,18 +274,6 @@ void MainWindow::setupUi(){
 
 	batchContainer = new QVBoxLayout();
 
-    bTimeContainer = new QHBoxLayout();
-	bTimeLabel = new QLabel("Batch Time: ");
-    bTimeLabel->setVisible(false);
-	bTime = new QDoubleSpinBox();
-    bTime->setMinimum(0.01);
-    bTime->setValue(0.5);
-    bTime->setSuffix(" s");
-    bTime->setVisible(false);
-
-    bTimeContainer->addWidget(bTimeLabel);
-    bTimeContainer->addWidget(bTime);
-
     bItemQuantContainer = new QHBoxLayout();
     bItemQuantLabel = new QLabel("Items per batch");
     bItemQuantLabel->setVisible(false);
@@ -222,7 +284,7 @@ void MainWindow::setupUi(){
     bItemQuantContainer->addWidget(bItemQuantLabel);
     bItemQuantContainer->addWidget(bItemQuant);
 
-    batchContainer->addLayout(bTimeContainer);
+    //batchContainer->addLayout(bTimeContainer);
     batchContainer->addLayout(bItemQuantContainer);
 
 	simulationButton = new QPushButton("Start Simulation");
@@ -232,88 +294,57 @@ void MainWindow::setupUi(){
     simulationContainer->addLayout(batchContainer);
     simulationContainer->addWidget(simulationButton);
 
+    sketchInfo = new QLabel();
+    sketchInfo->setAlignment(Qt::AlignCenter);
+    sketchInfo->setText("");
+
+    sketchInfoContainer->addWidget(sketchInfo);
+
+    controlTab = new QTabWidget();
+    controlTab->setVisible(false);
+
+	clearButton = new QPushButton("Clear");
+
+    queryIdContainer = new QHBoxLayout();
+    queryIdLabel = new QLabel("Show:");
+    queryIdLabel->setVisible(false);
+    queryIdComboBox = new QComboBox();
+    queryIdComboBox->addItem(tr("Show all"));
+    /*queryIdComboBox->addItem(tr("Red"));
+    queryIdComboBox->addItem(tr("Green"));
+    queryIdComboBox->addItem(tr("Blue"));
+    queryIdComboBox->addItem(tr("Magenta"));
+    queryIdComboBox->addItem(tr("Black"));*/
+    queryIdComboBox->setVisible(false);
+
+    queryIdContainer->addWidget(queryIdLabel);
+    queryIdContainer->addWidget(queryIdComboBox);
+
     rankQueryContainer = new QHBoxLayout();
 	rankQueryLabel = new QLabel("Rank query: ");
     rankQueryLabel->setVisible(false);
     valueForRankQuery = new QSpinBox();
     valueForRankQuery->setRange(0, 10000);
     valueForRankQuery->setVisible(false);
-
-    drawOptionsContainer = new QVBoxLayout();
-
-    drawModesContainer = new QHBoxLayout();
-	drawModesLabel = new QLabel("Draw mode: ");
-    drawModesLabel->setVisible(false);
-
-    drawModes = new QComboBox();
-    drawModes->addItem(tr("Raw data"));
-    drawModes->addItem(tr("Raw data with Bounds"));
-    drawModes->addItem(tr("Heat map"));
-    drawModes->addItem(tr("KS"));
-    drawModes->setVisible(false);
-
-    depthDrawLabel = new QLabel("Depth:");
-    depthDrawLabel->setVisible(false);
-
-    depthDraw = new QSlider();
-    depthDraw->setMinimum(0);
-    depthDraw->setSingleStep(1);
-    depthDraw->setValue(0);
-    depthDraw->setVisible(false);
-    depthDraw->setOrientation(Qt::Horizontal);
-    depthDraw->setMaximumWidth(250); 
-
-    kClusterLabel = new QLabel("Clusters:");
-    kClusterLabel->setVisible(false);
-
-    kCluster = new QSlider();
-    kCluster->setMinimum(1);
-    kCluster->setMaximum(10);
-    kCluster->setSingleStep(1);
-    kCluster->setValue(0);
-    kCluster->setVisible(false);
-    kCluster->setOrientation(Qt::Horizontal);
-    kCluster->setMaximumWidth(250);
-
-    kClusterMethod = new QComboBox();
-    kClusterMethod->addItem(tr("K-Medoids"));
-    kClusterMethod->addItem(tr("DBSCAN"));
-    kClusterMethod->addItem(tr("K-Means"));
-    kClusterMethod->setVisible(false);
-
-    drawModesContainer->addWidget(drawModesLabel);
-    drawModesContainer->addWidget(drawModes);
-    drawOptionsContainer->addLayout(drawModesContainer);
-    drawOptionsContainer->addWidget(depthDrawLabel);
-    drawOptionsContainer->addWidget(depthDraw);
-    drawOptionsContainer->addWidget(kClusterLabel);
-    drawOptionsContainer->addWidget(kCluster);
-    drawOptionsContainer->addWidget(kClusterMethod);
+    rankQueryButton =  new QPushButton("Query");
+    rankQueryButton->setVisible(false);
 
     rankQueryContainer->addWidget(rankQueryLabel);
     rankQueryContainer->addWidget(valueForRankQuery);
-
-    freezeButton = new QPushButton("Freeze Simulation");
-    freezeButton->setVisible(false);
-
-    sketchInfo = new QLabel();
-    sketchInfo->setAlignment(Qt::AlignCenter);
-    sketchInfo->setText("");
+    rankQueryContainer->addWidget(rankQueryButton);
 
     customPlot = new QCustomPlot();
-
+    
     customPlot->setMinimumHeight(150);
 
     statistical = new QCPStatisticalBox(customPlot->xAxis, customPlot->yAxis);
     QBrush boxBrush(QColor(60, 60, 255, 100));
     boxBrush.setStyle(Qt::Dense6Pattern); // make it look oldschool
     statistical->setBrush(boxBrush);
-    
     // specify data:
     //statistical->addData(1, 1.1, 1.9, 2.25, 2.7, 4.2);
     //statistical->addData(2, 0.8, 1.6, 2.2, 3.2, 4.9, QVector<double>() << 0.7 << 0.34 << 0.45 << 6.2 << 5.84); // provide some outliers as QVector
     //statistical->addData(3, 0.2, 0.7, 1.1, 1.6, 2.9);
-    
     // prepare manual x axis labels:
     customPlot->xAxis->setSubTicks(false);
     customPlot->xAxis->setTickLength(0, 4);
@@ -325,30 +356,77 @@ void MainWindow::setupUi(){
     textTicker->addTick(4, "Magenta");
     textTicker->addTick(5, "Black");
     customPlot->xAxis->setTicker(textTicker);
-    
     // prepare axes:
     customPlot->yAxis->setLabel(QString::fromUtf8("Elements"));
     customPlot->rescaleAxes();
     customPlot->xAxis->scaleRange(2.0, customPlot->xAxis->range().center());
     customPlot->yAxis->setRange(0, 7);
     customPlot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
-    
     customPlot->setVisible(false);
 
-    sketchInfoContainer->addWidget(sketchInfo);
+    selectionPageContainer = new QVBoxLayout();
+    selectionPageContainer->addWidget(clearButton);
+    selectionPageContainer->addLayout(queryIdContainer);
+    selectionPageContainer->addLayout(rankQueryContainer);
+    selectionPageContainer->addWidget(customPlot);
 
-    controlTab = new QTabWidget();
-
-    dataPage = new QWidget();
     selectionPage = new QWidget();
-    clusterPage = new QWidget();
+    controlTab->insertTab(0, selectionPage, tr("Selection"));
+    controlTab->widget(0)->setLayout(selectionPageContainer);
 
-    controlTab->insertTab(0, dataPage, tr("Data"));
-    controlTab->widget(0)->setLayout(drawOptionsContainer);
-    controlTab->insertTab(1, selectionPage, tr("Selection"));
-    controlTab->widget(1)->setLayout(rankQueryContainer);
-    controlTab->insertTab(2, clusterPage, tr("Cluster"));
-    controlTab->widget(2)->setLayout(sketchInfoContainer);
+    clusterPageContainer = new QVBoxLayout();
+
+    /*drawModesContainer = new QHBoxLayout();
+	drawModesLabel = new QLabel("Draw mode: ");
+    drawModesLabel->setVisible(false);
+
+    drawModes = new QComboBox();
+    drawModes->addItem(tr("Raw data"));
+    drawModes->addItem(tr("Raw data with Bounds"));
+    drawModes->addItem(tr("Heat map"));
+    drawModes->addItem(tr("KS"));
+    drawModes->setVisible(false);*/
+
+    kClusterContainer =  new QHBoxLayout();
+
+    kClusterLabel = new QLabel("Clusters:");
+    kClusterLabel->setVisible(false);
+
+    kCluster = new QSpinBox();
+    kCluster->setMinimum(1);
+    kCluster->setMaximum(10);
+    kCluster->setSingleStep(1);
+    kCluster->setValue(0);
+    kCluster->setVisible(false);
+    //kCluster->setOrientation(Qt::Horizontal);
+    kCluster->setMaximumWidth(250);
+
+    kClusterContainer->addWidget(kClusterLabel);
+    kClusterContainer->addWidget(kCluster);
+
+    kClusterMethodContainer = new QHBoxLayout();
+
+    kClusterMethodLabel = new QLabel("Algorithms: ");
+
+    kClusterMethod = new QComboBox();
+    kClusterMethod->addItem(tr("K-Medoids"));
+    kClusterMethod->addItem(tr("DBSCAN"));
+    kClusterMethod->addItem(tr("K-Means"));
+    kClusterMethod->setVisible(false);
+
+    kClusterMethodContainer->addWidget(kClusterMethodLabel);
+    kClusterMethodContainer->addWidget(kClusterMethod);
+
+    /*drawModesContainer->addWidget(drawModesLabel);
+    drawModesContainer->addWidget(drawModes);
+    clusterPageContainer->addLayout(drawModesContainer);*/
+    clusterPageContainer->addLayout(kClusterMethodContainer);
+    clusterPageContainer->addLayout(kClusterContainer);
+    clusterPageContainer->addStretch();
+
+    clusterPage = new QWidget();
+    controlTab->insertTab(1, clusterPage, tr("Cluster"));
+    controlTab->widget(1)->setLayout(clusterPageContainer);
 
     rightContainer = new QVBoxLayout();
     //rightContainer->addLayout(resolutionContainer);
@@ -356,11 +434,7 @@ void MainWindow::setupUi(){
     //rightContainer->addLayout(sketchFullContainer);
     //rightContainer->addWidget(constructButton);
     rightContainer->addLayout(simulationContainer);
-    rightContainer->addWidget(freezeButton);
-    //rightContainer->addLayout(rankQueryContainer);
-    //rightContainer->addLayout(drawOptionsContainer);
     //rightContainer->addLayout(sketchInfoContainer);
-    rightContainer->addWidget(customPlot);
     rightContainer->addWidget(controlTab);
     rightContainer->addStretch();
 
@@ -433,16 +507,13 @@ void MainWindow::startUpSimulation(void){
     hideFeedUi();
     //hideConstructUi();
 
-    freezeButton->setVisible(true);
+    controlTab->setVisible(true);
 
-    rankQueryLabel->setVisible(true);
-    valueForRankQuery->setVisible(true);
-    drawModes->setVisible(true);
-    drawModesLabel->setVisible(true);
+    topDock->setVisible(true);
+
+    freezeButton->setVisible(true);
     bTimeLabel->setVisible(true);
     bTime->setVisible(true);
-    valueForRankQuery->setMaximum(fMaxValue->value());
-    customPlot->setVisible(true);
 
     QObject::connect(bTime,  QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, [&](double d){
         controller.setTimeInterval(d);
@@ -450,6 +521,33 @@ void MainWindow::startUpSimulation(void){
             controller.startSimulation();
         }
     });
+
+    bottomDock->setVisible(true);
+
+    drawBoundsLabel->setVisible(true);
+    drawBounds->setVisible(true);
+
+    QObject::connect(drawBounds, &QCheckBox::stateChanged, this, [&](int state){
+        if(state == Qt::Checked){
+            depthDrawLabel->setVisible(true);
+            depthDraw->setVisible(true);
+            view.setDrawingMode(qsbd::ViewDrawMode::QuadtreeDepth);
+        }else{
+            depthDrawLabel->setVisible(false);
+            depthDraw->setVisible(false);
+            view.setDrawingMode(qsbd::ViewDrawMode::OnlyPoints);
+        }
+    });
+
+    queryIdLabel->setVisible(true);
+    queryIdComboBox->setVisible(true);
+    //rankQueryLabel->setVisible(true);
+    //valueForRankQuery->setVisible(true);
+    //drawModes->setVisible(true);
+    //drawModesLabel->setVisible(true);
+    
+    valueForRankQuery->setMaximum(fMaxValue->value());
+    customPlot->setVisible(true);
 }
 
 void MainWindow::setupFeedUi(const QString& sketch){
@@ -607,6 +705,41 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
         setupFeedUi(sketch);
     });*/
 
+    QObject::connect(clearButton, &QAbstractButton::pressed, this, [&](){
+        queryIdComboBox->clear();
+        queryIdComboBox->addItem(tr("Show all"));
+        view.clearQueries();
+        statistical->data().data()->clear();
+        customPlot->rescaleAxes();
+        customPlot->xAxis->scaleRange(2.0, customPlot->xAxis->range().center());
+        customPlot->replot();
+    });
+
+    QObject::connect(queryIdComboBox,  &QComboBox::currentTextChanged, this, [&](){
+        QString curQueryId = queryIdComboBox->currentText();
+
+        if(curQueryId == tr("Show all")){
+            view.showAllQueries();
+
+            rankQueryLabel->setVisible(false);
+            valueForRankQuery->setVisible(false);
+            rankQueryButton->setVisible(false);
+        }else{
+            int queryId = 0;
+
+            if(curQueryId == tr("Red")) queryId = 0;
+            else if(curQueryId == tr("Green")) queryId = 1;
+            else if(curQueryId == tr("Blue")) queryId = 2;
+            else if(curQueryId == tr("Magenta")) queryId = 3;
+            else if(curQueryId == tr("Black")) queryId = 4;
+
+            rankQueryLabel->setVisible(true);
+            valueForRankQuery->setVisible(true);
+            rankQueryButton->setVisible(true);
+            view.showOnlyQueryId(queryId);
+        }
+    });
+
     QObject::connect(freezeButton, &QAbstractButton::pressed, this, [&](){
         if(not freezed){
             freezeButton->setText("Restart Simulation");
@@ -707,6 +840,11 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
 
         if(not findData){
             statistical->addData(queryId + 1, quants[0], quants[1], quants[2], quants[3], quants[4]);
+            if(queryId + 1 == 1) queryIdComboBox->addItem(tr("Red"));
+            if(queryId + 1 == 2) queryIdComboBox->addItem(tr("Green"));
+            if(queryId + 1 == 3) queryIdComboBox->addItem(tr("Blue"));
+            if(queryId + 1 == 4) queryIdComboBox->addItem(tr("Magenta"));
+            if(queryId + 1 == 5) queryIdComboBox->addItem(tr("Black"));
         }
         customPlot->rescaleAxes();
         customPlot->xAxis->scaleRange(2.0, customPlot->xAxis->range().center());
@@ -725,11 +863,11 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
         model.onMultiQuantile(region, {0.1, 0.25, 0.5, 0.75, 0.9}, queryId);
     });
 
-    QObject::connect(depthDraw, &QAbstractSlider::valueChanged, this, [&](int value){
+    QObject::connect(depthDraw, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, [&](int value){
         view.setDepthView(value);
     });
 
-    QObject::connect(kCluster, &QAbstractSlider::valueChanged, this, [&](int value){
+    QObject::connect(kCluster, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, [&](int value){
         view.setKCluster(value);
     });
 
@@ -751,7 +889,34 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
         }
     });
 
-    QObject::connect(drawModes, &QComboBox::currentTextChanged, this, [&](){
+    QObject::connect(controlTab, &QTabWidget::currentChanged, this, [&](int index){
+        if(index != -1){
+            if (controlTab->tabText(index) == "Cluster"){
+                drawBounds->setCheckState(Qt::Checked);
+                drawBounds->setEnabled(false);
+                depthDrawLabel->setVisible(true);
+                depthDraw->setVisible(true);
+                kClusterLabel->setVisible(true);
+                kCluster->setVisible(true);
+                kClusterMethod->setVisible(true);
+                view.setDrawingMode(qsbd::ViewDrawMode::KS);
+            }
+            
+            if(controlTab->tabText(index) == "Selection"){
+                drawBounds->setEnabled(true);
+                depthDrawLabel->setVisible(true);
+                depthDraw->setVisible(true);
+                kClusterLabel->setVisible(false);
+                kCluster->setVisible(false);
+                kClusterMethod->setVisible(false);
+                view.setKCluster(kCluster->value());
+                view.setDepthView(depthDraw->value());
+                view.setDrawingMode(qsbd::ViewDrawMode::QuadtreeDepth);
+            }
+        }
+    });
+
+    /*QObject::connect(drawModes, &QComboBox::currentTextChanged, this, [&](){
         QString method = drawModes->currentText();
         
         if(method == tr("Raw data")){
@@ -794,7 +959,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
             view.setDrawingMode(qsbd::ViewDrawMode::OnlyPoints);
         }
 
-    });
+    });*/
 
     QObject::connect(&view, &qsbd::View::cdfsRequest, &model, &qsbd::Model::onCdfsQueries);
     QObject::connect(&model, &qsbd::Model::cdfsReady, &view, &qsbd::View::onCdfsReady);

@@ -118,6 +118,7 @@ namespace qsbd {
         ViewDrawMode drawMode;
         int queryCurId;
         bool dragging;
+        bool showingAllQueries;
         double maxXResolution;
         double maxYResolution;
         double minXdomain;
@@ -269,8 +270,25 @@ namespace qsbd {
 
         /**
          * @brief This function is called when the view receves the cdfs for each region queried
+         * @param cdfs A vector with all the cdfs that were queried
         */
         void onCdfsReady(const std::vector<std::vector<double>>& cdfs);
+
+        /**
+         * @brief This method shows only the query region with the current @p queryId
+         * @param queryId The queryId for the region queried
+        */
+        void showOnlyQueryId(const int& queryId);
+
+        /**
+         * @brief This method sets all query regions as visibles
+        */
+        void showAllQueries();
+
+        /**
+         * @brief This method clear all query regions from the scene
+        */
+        void clearQueries();
 
     signals:
 

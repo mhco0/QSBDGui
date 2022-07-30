@@ -28,6 +28,8 @@
 #include <QStandardItem>
 #include <QStandardItemModel>
 #include <QSlider>
+#include <QWidgetAction>
+#include <QDockWidget>
 #include <QMenuBar>
 #include <QTabWidget>
 #include <aabb/aabb.hpp>
@@ -48,9 +50,13 @@ private:
 
 	QMenuBar* menuBar;
 	QMenu* newMenu;
+
+	QDockWidget* topDock;
+	QHBoxLayout* topContainer;
+	QDockWidget* bottomDock;
+	QHBoxLayout* bottomContainer;
 	
 	QTabWidget* controlTab;
-	QWidget* dataPage;
 	QWidget* selectionPage;
 	QWidget* clusterPage;
 
@@ -113,27 +119,43 @@ private:
 
 	QPushButton* constructButton;
 
+	QVBoxLayout* selectionPageContainer;
+
+	QPushButton* clearButton;
+
+	QHBoxLayout* queryIdContainer;
+	QLabel* queryIdLabel;
+	QComboBox* queryIdComboBox;
+
 	QHBoxLayout* rankQueryContainer;
 	QLabel* rankQueryLabel;
 	QSpinBox* valueForRankQuery;
-
-	QVBoxLayout* drawOptionsContainer;
-	QHBoxLayout* drawModesContainer;
-	QLabel* drawModesLabel;
-	QComboBox* drawModes;
-	QLabel* depthDrawLabel;
-	QSlider* depthDraw;
-	QLabel* kClusterLabel;
-	QSlider* kCluster;
-	QComboBox* kClusterMethod;
-
-	QPushButton* freezeButton;
-	QPushButton* loadStreamMethodButton;
+	QPushButton* rankQueryButton;
 
 	QHBoxLayout* sketchInfoContainer;
 	QLabel* sketchInfo;
 	QCustomPlot* customPlot;
 	QCPStatisticalBox* statistical;
+
+	QVBoxLayout* clusterPageContainer;
+
+	/*QHBoxLayout* drawModesContainer;
+	QLabel* drawModesLabel;
+	QComboBox* drawModes;*/
+	QHBoxLayout* kClusterMethodContainer;
+	QLabel* kClusterMethodLabel;
+	QComboBox* kClusterMethod;
+	QHBoxLayout* kClusterContainer;
+	QLabel* kClusterLabel;
+	QSpinBox* kCluster;
+
+	QLabel* drawBoundsLabel;
+	QCheckBox* drawBounds;
+	QLabel* depthDrawLabel;
+	QSpinBox* depthDraw;
+	
+	QPushButton* freezeButton;
+	QPushButton* loadStreamMethodButton;
 
 	bool freezed;
 

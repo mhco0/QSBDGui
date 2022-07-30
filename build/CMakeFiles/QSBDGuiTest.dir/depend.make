@@ -444,6 +444,7 @@ CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: /usr/incl
 CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QComboBox
 CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QCommonStyle
 CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QDialog
+CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QDockWidget
 CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QDoubleSpinBox
 CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QFileDialog
 CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsItem
@@ -461,6 +462,7 @@ CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: /usr/incl
 CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QSpinBox
 CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QTabWidget
 CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QWidget
+CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QWidgetAction
 CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QtWidgets
 CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QtWidgetsDepends
 CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractbutton.h
@@ -1030,6 +1032,7 @@ CMakeFiles/QSBDGuiTest.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidge
 CMakeFiles/QSBDGuiTest.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QComboBox
 CMakeFiles/QSBDGuiTest.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QCommonStyle
 CMakeFiles/QSBDGuiTest.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QDialog
+CMakeFiles/QSBDGuiTest.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QDockWidget
 CMakeFiles/QSBDGuiTest.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QDoubleSpinBox
 CMakeFiles/QSBDGuiTest.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QFileDialog
 CMakeFiles/QSBDGuiTest.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsItem
@@ -1047,6 +1050,7 @@ CMakeFiles/QSBDGuiTest.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidge
 CMakeFiles/QSBDGuiTest.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QSpinBox
 CMakeFiles/QSBDGuiTest.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QTabWidget
 CMakeFiles/QSBDGuiTest.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QWidget
+CMakeFiles/QSBDGuiTest.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QWidgetAction
 CMakeFiles/QSBDGuiTest.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QtWidgets
 CMakeFiles/QSBDGuiTest.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QtWidgetsDepends
 CMakeFiles/QSBDGuiTest.dir/main.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractbutton.h
@@ -1962,6 +1966,7 @@ CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: /usr/include/x86_64-
 CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QComboBox
 CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QCommonStyle
 CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QDialog
+CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QDockWidget
 CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QDoubleSpinBox
 CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QFileDialog
 CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsItem
@@ -1979,6 +1984,7 @@ CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: /usr/include/x86_64-
 CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QSpinBox
 CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QTabWidget
 CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QWidget
+CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QWidgetAction
 CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QtWidgets
 CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QtWidgetsDepends
 CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o: /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractbutton.h

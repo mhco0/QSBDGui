@@ -703,6 +703,10 @@ QStandardItemModel
 -
 QSlider
 -
+QWidgetAction
+-
+QDockWidget
+-
 QMenuBar
 -
 QTabWidget
@@ -4720,6 +4724,10 @@ qcommonstyle.h
 qdialog.h
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qdialog.h
 
+/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QDockWidget
+qdockwidget.h
+/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qdockwidget.h
+
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QDoubleSpinBox
 qspinbox.h
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qspinbox.h
@@ -4787,6 +4795,10 @@ qtabwidget.h
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QWidget
 qwidget.h
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qwidget.h
+
+/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QWidgetAction
+qwidgetaction.h
+/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qwidgetaction.h
 
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QtWidgets
 QtWidgets/QtWidgetsDepends

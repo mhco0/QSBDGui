@@ -45,6 +45,7 @@ namespace qsbd {
 		drawMode = ViewDrawMode::OnlyPoints;
 		queryCurId = 0;
 		dragging = false;
+		showingAllQueries = true;
 		queryRegion = nullptr;
 		queriesColors[0] = Qt::red;
 		queriesColors[1] = Qt::green;
@@ -139,6 +140,8 @@ namespace qsbd {
 				QueryGraphicsItem * item = new QueryGraphicsItem(queryCurId);
 				item->setRect(query);
 				item->setPen(QPen(queriesColors[queryCurId]));
+
+				if (!showingAllQueries) item->setVisible(false);
 
 				scene->addItem(item);
 
@@ -658,6 +661,35 @@ namespace qsbd {
 		}
 
 		show();
+	}
+
+	void View::showOnlyQueryId(const int& queryId){
+		for(size_t i = 0; i < queries.size(); i++){
+			if (dynamic_cast<QueryGraphicsItem *>(queries[i])->id != queryId){
+				queries[i]->setVisible(false);
+			}else{
+				queries[i]->setVisible(true);
+			}
+		}
+		showingAllQueries = false;
+	}
+
+	void View::showAllQueries(){
+		for(size_t i = 0; i < queries.size(); i++){
+			queries[i]->setVisible(true);
+		}
+		showingAllQueries = true;
+	}
+
+	void View::clearQueries(){
+		for(size_t i = 0; i < queries.size(); i++){
+			scene->removeItem(queries[i]);
+
+			delete queries[i];
+		}
+
+		queries.clear();
+		queryCurId = 0;
 	}
 
 	/*
