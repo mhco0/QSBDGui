@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 
 void MainWindow::setupUi(){
-    //setFixedSize(1000, 500);
+    //setMaximumSize(1000, 500);
 
     view.setEnabled(false);
 
@@ -206,13 +206,16 @@ void MainWindow::setupUi(){
     feedingMethod->addItem(tr("Stream City"));
     feedingMethod->addItem(tr("Stream City with weight"));
     feedingMethod->setVisible(false);
+    feedingMethod->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
     
 	fSizeLabel = new QLabel("Stream size: ");
     fSizeLabel->setVisible(false);
+    fSizeLabel->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
 	fSize = new QSpinBox();
     fSize->setRange(1, 10000000);
     fSize->setValue(1000);
     fSize->setVisible(false);
+    fSize->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
 
     fSizeContainer = new QHBoxLayout();
     fSizeContainer->addWidget(fSizeLabel);
@@ -220,10 +223,12 @@ void MainWindow::setupUi(){
 
 	fMaxValueLabel = new QLabel("Max value on Stream: ");
     fMaxValueLabel->setVisible(false);
+    fMaxValueLabel->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
 	fMaxValue = new QSpinBox();
     fMaxValue->setRange(0, 10000);
     fMaxValue->setValue(1000);
     fMaxValue->setVisible(false);
+    fMaxValue->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
 
     fMaxValueContainer = new QHBoxLayout();
     fMaxValueContainer->addWidget(fMaxValueLabel);
@@ -231,10 +236,12 @@ void MainWindow::setupUi(){
 
 	fMaxWeightLabel = new QLabel("Max weight for a element: ");
     fMaxWeightLabel->setVisible(false);
+    fMaxWeightLabel->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
 	fMaxWeight = new QSpinBox();
     fMaxWeight->setRange(1, 1000);
     fMaxWeight->setValue(10);
     fMaxWeight->setVisible(false);
+    fMaxWeight->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
 
     fMaxWeightContainer = new QHBoxLayout();
     fMaxWeightContainer->addWidget(fMaxWeightLabel);
@@ -242,10 +249,12 @@ void MainWindow::setupUi(){
 
 	fCitiesLabel = new QLabel("Cities: ");
     fCitiesLabel->setVisible(false);
+    fCitiesLabel->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
     fCities = new QSpinBox();
     fCities->setMinimum(1);
     fCities->setValue(10);
     fCities->setVisible(false);
+    fCities->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
 
     fCitiesContainer = new QHBoxLayout();
     fCitiesContainer->addWidget(fCitiesLabel);
@@ -253,9 +262,11 @@ void MainWindow::setupUi(){
 
 	fMaxRadiusLabel = new QLabel("Max Radius for next elements: ");
     fMaxRadiusLabel->setVisible(false);
+    fMaxRadiusLabel->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
 	fMaxRadius = new QDoubleSpinBox();
     fMaxRadius->setMinimum(0.1);
     fMaxRadius->setVisible(false);
+    fMaxRadius->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
 
     fMaxRadiusContainer = new QHBoxLayout();
     fMaxRadiusContainer->addWidget(fMaxRadiusLabel);
@@ -263,6 +274,7 @@ void MainWindow::setupUi(){
 
     loadStreamMethodButton = new QPushButton("Feed from file");
     loadStreamMethodButton->setVisible(false);
+    loadStreamMethodButton->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
 
     feedContainer->addWidget(feedingMethod);
     feedContainer->addLayout(fSizeContainer);
@@ -277,9 +289,11 @@ void MainWindow::setupUi(){
     bItemQuantContainer = new QHBoxLayout();
     bItemQuantLabel = new QLabel("Items per batch");
     bItemQuantLabel->setVisible(false);
+    bItemQuantLabel->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
 	bItemQuant = new QSpinBox();
     bItemQuant->setRange(1, 100);
     bItemQuant->setVisible(false);
+    bItemQuant->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
 
     bItemQuantContainer->addWidget(bItemQuantLabel);
     bItemQuantContainer->addWidget(bItemQuant);
@@ -289,10 +303,12 @@ void MainWindow::setupUi(){
 
 	simulationButton = new QPushButton("Start Simulation");
     simulationButton->setVisible(false);
+    simulationButton->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
 
     simulationContainer->addLayout(feedContainer);
     simulationContainer->addLayout(batchContainer);
     simulationContainer->addWidget(simulationButton);
+    simulationContainer->addStretch();
 
     sketchInfo = new QLabel();
     sketchInfo->setAlignment(Qt::AlignCenter);
@@ -428,6 +444,8 @@ void MainWindow::setupUi(){
     controlTab->insertTab(1, clusterPage, tr("Cluster"));
     controlTab->widget(1)->setLayout(clusterPageContainer);
 
+    controlTab->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Expanding);
+
     rightContainer = new QVBoxLayout();
     //rightContainer->addLayout(resolutionContainer);
     //rightContainer->addLayout(depthContainer);
@@ -436,11 +454,11 @@ void MainWindow::setupUi(){
     rightContainer->addLayout(simulationContainer);
     //rightContainer->addLayout(sketchInfoContainer);
     rightContainer->addWidget(controlTab);
-    rightContainer->addStretch();
+    //rightContainer->addStretch();
 
     mainContainer = new QHBoxLayout();
-    mainContainer->addWidget(&view);
-    mainContainer->addLayout(rightContainer);
+    mainContainer->addWidget(&view, 80);
+    mainContainer->addLayout(rightContainer, 20);
 
     window = new QWidget();
     window->setLayout(mainContainer);
@@ -497,6 +515,8 @@ void MainWindow::hideFeedUi(){
     bItemQuant->setVisible(false);
     loadStreamMethodButton->setVisible(false);
     simulationButton->setVisible(false);
+    // remeber to add this spacer again in the loop
+    simulationContainer->removeItem(simulationContainer->itemAt(simulationContainer->count() - 1));
 }
 
 void MainWindow::startUpSimulation(void){
