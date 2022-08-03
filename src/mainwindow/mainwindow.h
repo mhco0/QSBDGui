@@ -148,6 +148,12 @@ private:
 	QHBoxLayout* kClusterContainer;
 	QLabel* kClusterLabel;
 	QSpinBox* kCluster;
+	QHBoxLayout* epsilonContainer;
+	QLabel* epsilonLabel;
+	QDoubleSpinBox* epsilonBox;
+	QHBoxLayout* dbscanContainer;
+	QLabel* dbscanMinLabel;
+	QSpinBox* dbscanMin;
 
 	QLabel* drawBoundsLabel;
 	QCheckBox* drawBounds;

@@ -112,6 +112,8 @@ namespace qsbd {
         int depthView;
         int kCluster;
         int kSteps;
+        double epsilon;
+        int dbscanMin;
         ClusterMethod clusterMethod;
         int minValueSeen;
         int maxValueSeen;
@@ -256,11 +258,23 @@ namespace qsbd {
         void setDepthView(const int& dpView);
 
         /**
-         * @brief A setter for the k value in the K-Medoids cluster
+         * @brief A setter for the k value in the K-Medoids and K-Means cluster. In the DBSCAN algorithm this works as the epsilon value (epsilon = K / 10.0)
          * @param kc The K value
          * @warning The values should be between 1 and 10
         */
         void setKCluster(const int& kc);
+
+        /**
+         * @brief A setter for the epsilon in the DBSCAN algorithm
+         * @param eps The epsilon value for the DSBSCAN algorithm
+        */
+        void setDSBSCANEpsilon(const double& eps);
+
+        /**
+         * @brief A setter for the minimal number of points in the DBSCAN algorithm used by the epsilon radian, then the point is cluster core point
+         * @param dbmin The minimal number
+        */
+        void setDBSCANMin(const int& dbmin);
 
         /**
         * @brief A function to add a new point on the plot

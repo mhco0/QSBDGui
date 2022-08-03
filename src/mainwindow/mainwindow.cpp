@@ -313,6 +313,8 @@ void MainWindow::setupUi(){
     sketchInfo = new QLabel();
     sketchInfo->setAlignment(Qt::AlignCenter);
     sketchInfo->setText("");
+    sketchInfo->setVisible(false);
+    sketchInfo->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
 
     sketchInfoContainer->addWidget(sketchInfo);
 
@@ -379,11 +381,13 @@ void MainWindow::setupUi(){
     customPlot->yAxis->setRange(0, 7);
     customPlot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
     customPlot->setVisible(false);
+    customPlot->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Expanding);
 
     selectionPageContainer = new QVBoxLayout();
     selectionPageContainer->addWidget(clearButton);
     selectionPageContainer->addLayout(queryIdContainer);
     selectionPageContainer->addLayout(rankQueryContainer);
+    selectionPageContainer->addLayout(sketchInfoContainer);
     selectionPageContainer->addWidget(customPlot);
 
     selectionPage = new QWidget();
@@ -403,7 +407,7 @@ void MainWindow::setupUi(){
     drawModes->addItem(tr("KS"));
     drawModes->setVisible(false);*/
 
-    kClusterContainer =  new QHBoxLayout();
+    kClusterContainer = new QHBoxLayout();
 
     kClusterLabel = new QLabel("Clusters:");
     kClusterLabel->setVisible(false);
@@ -419,6 +423,36 @@ void MainWindow::setupUi(){
 
     kClusterContainer->addWidget(kClusterLabel);
     kClusterContainer->addWidget(kCluster);
+
+    epsilonContainer = new QHBoxLayout();
+
+    epsilonLabel = new QLabel("Epsilon: ");
+    epsilonLabel->setVisible(false);
+
+    epsilonBox = new QDoubleSpinBox();
+    epsilonBox->setDecimals(1);
+    epsilonBox->setRange(0.1, 0.9);
+    epsilonBox->setSingleStep(0.1);
+    epsilonBox->setValue(0.1);
+    epsilonBox->setVisible(false);
+
+    epsilonContainer->addWidget(epsilonLabel);
+    epsilonContainer->addWidget(epsilonBox);
+
+    dbscanContainer = new QHBoxLayout();
+
+    dbscanMinLabel = new QLabel("Min Points for Epsilon:");
+    dbscanMinLabel->setVisible(false);
+
+    dbscanMin = new QSpinBox();
+    dbscanMin->setMinimum(1);
+    dbscanMin->setMaximum(10);
+    dbscanMin->setSingleStep(1);
+    dbscanMin->setValue(0);
+    dbscanMin->setVisible(false);
+
+    dbscanContainer->addWidget(dbscanMinLabel);
+    dbscanContainer->addWidget(dbscanMin);
 
     kClusterMethodContainer = new QHBoxLayout();
 
@@ -438,6 +472,8 @@ void MainWindow::setupUi(){
     clusterPageContainer->addLayout(drawModesContainer);*/
     clusterPageContainer->addLayout(kClusterMethodContainer);
     clusterPageContainer->addLayout(kClusterContainer);
+    clusterPageContainer->addLayout(epsilonContainer);
+    clusterPageContainer->addLayout(dbscanContainer);
     clusterPageContainer->addStretch();
 
     clusterPage = new QWidget();
@@ -726,6 +762,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
     });*/
 
     QObject::connect(clearButton, &QAbstractButton::pressed, this, [&](){
+        sketchInfo->setVisible(false);
         queryIdComboBox->clear();
         queryIdComboBox->addItem(tr("Show all"));
         view.clearQueries();
@@ -741,6 +778,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
         if(curQueryId == tr("Show all")){
             view.showAllQueries();
 
+            sketchInfo->setVisible(false);
             rankQueryLabel->setVisible(false);
             valueForRankQuery->setVisible(false);
             rankQueryButton->setVisible(false);
@@ -833,6 +871,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
             controller.startSimulation();
         }
 
+        sketchInfo->setVisible(true);
         sketchInfo->setText(tr("rank : %1").arg(rank));
     });
 
@@ -871,9 +910,14 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
         customPlot->replot();
     });
 
+    QObject::connect(rankQueryButton, &QAbstractButton::pressed, this, [&](){
+        qDebug() << "Change here the query process";
+    });
+
     QObject::connect(&view, &qsbd::View::queryRequest, this, [&](const QRectF& region){
         controller.freeze();
         //qDebug() << tr("Loading... [%1, %2, %3, %4]").arg(region.bottomLeft().x()).arg(region.topRight().y()).arg(region.topRight().x()).arg(region.bottomLeft().y());
+        sketchInfo->setVisible(true);
         sketchInfo->setText(tr("Loading... [%1, %2, %3, %4]").arg(region.bottomLeft().x()).arg(region.topRight().y()).arg(region.topRight().x()).arg(region.bottomLeft().y()));
         model.onQuery(region, valueForRankQuery->value());
     });
@@ -891,14 +935,34 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
         view.setKCluster(value);
     });
 
+    QObject::connect(epsilonBox, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), this, [&](double value){
+        view.setDSBSCANEpsilon(value);
+    });
+
+    QObject::connect(dbscanMin, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, [&](int value){
+        view.setDBSCANMin(value);
+    });
+
     QObject::connect(kClusterMethod, &QComboBox::currentTextChanged, this, [&](){
         QString method = kClusterMethod->currentText();
+
+        kClusterLabel->setVisible(true);
+        kCluster->setVisible(true);
+        epsilonLabel->setVisible(false);
+        epsilonBox->setVisible(false);
+        dbscanMinLabel->setVisible(false);
+        dbscanMin->setVisible(false);
 
         if (method == tr("K-Medoids")){
             kClusterLabel->setText(tr("Clusters:"));
             view.setClusteringMethod(qsbd::ClusterMethod::KMedoids);            
         }else if(method == tr("DBSCAN")){
-            kClusterLabel->setText(tr("Epsilon:"));
+            kClusterLabel->setVisible(false);
+            kCluster->setVisible(false);
+            epsilonLabel->setVisible(true);
+            epsilonBox->setVisible(true);
+            dbscanMinLabel->setVisible(true);
+            dbscanMin->setVisible(true);
             view.setClusteringMethod(qsbd::ClusterMethod::DBSCAN);
         }else if(method == tr("K-Means")){
             kClusterLabel->setText(tr("Clusters:"));
@@ -907,6 +971,8 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
             kClusterLabel->setText(tr("Clusters:"));
             view.setClusteringMethod(qsbd::ClusterMethod::KMedoids);
         }
+
+
     });
 
     QObject::connect(controlTab, &QTabWidget::currentChanged, this, [&](int index){

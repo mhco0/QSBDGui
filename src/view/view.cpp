@@ -32,6 +32,8 @@ namespace qsbd {
 		//setFixedSize(700, 480);
 		kCluster = 1;
 		kSteps = 10;
+		epsilon = 0.1;
+		dbscanMin = 0;
 		depthView = 0;
 		clusterMethod = ClusterMethod::KMedoids;
 		minValueSeen = 0x3f3f3f3f;
@@ -434,6 +436,16 @@ namespace qsbd {
 		this->updateBasedOnDrawMode();
 	}
 
+	void View::setDSBSCANEpsilon(const double& eps){
+		epsilon = eps;
+		this->updateBasedOnDrawMode();
+	}
+
+	void View::setDBSCANMin(const int& dbmin){
+		dbscanMin = dbmin;
+		this->updateBasedOnDrawMode();
+	}
+
 	void View::setDomain(const double& minXRes, const double& minYRes, const double& maxXRes, const double& maxYRes){
 		minXdomain = minXRes;
 		minYdomain = minYRes;
@@ -589,7 +601,7 @@ namespace qsbd {
 				auto dbscan = DBSCAN<std::vector<double>, double>();
 
 				//std::cout << "minC: " << (float) (kCluster / 10.0) << std::endl;
-				int ret = dbscan.Run(&data, cdfs[0].size(), (float) (kCluster / 10.0), cdfs[0].size() + 1, ksFunction);
+				int ret = dbscan.Run(&data, cdfs[0].size(), epsilon, dbscanMin, ksFunction);
 
 				auto clusters = dbscan.Clusters;
 				auto noise = dbscan.Noise;
