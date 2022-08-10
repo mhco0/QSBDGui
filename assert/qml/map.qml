@@ -25,7 +25,7 @@ Rectangle {
     Map {
         anchors.fill: parent
         plugin: mapPlugin
-        gesture.acceptedGestures: (MapGestureArea.PinchGesture | MapGestureArea.FlickGesture |MapGestureArea.RotationGesture | MapGestureArea.TiltGesture)
+        //gesture.acceptedGestures: (MapGestureArea.PinchGesture | MapGestureArea.FlickGesture |MapGestureArea.RotationGesture | MapGestureArea.TiltGesture)
         center: QtPositioning.coordinate(40.69, -73.97) 
         zoomLevel: 10   
     }

@@ -304,6 +304,13 @@ namespace qsbd {
         */
         void clearQueries();
 
+
+        /**
+         * @brief This function makes a call for some rank and quantile in a query region with @p id in a scene
+         * @param id The id for the query region
+        */
+        void setRankAndQuantileQueryRequest(const int& id);
+
     signals:
 
         /**

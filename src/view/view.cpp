@@ -61,11 +61,12 @@ namespace qsbd {
 		osm->setSource(QUrl::fromLocalFile("../assert/qml/map.qml"));
 		osm->setResizeMode(QQuickWidget::SizeRootObjectToView);
 		osm->setMinimumSize(700, 480);
+		//osm->setSizePolicy( QSizePolicy::Expanding,  QSizePolicy::Expanding);
 		// set view size		
 		
 		auto pointBegin = scene->addEllipse(QRectF(-2, -2, 4, 4), QPen(Qt::blue));
 		auto pointEnd = scene->addEllipse(QRectF(maxXResolution - 2, maxYResolution - 2, 4, 4), QPen(Qt::blue));
-		fitInView(scene->sceneRect());
+		//fitInView(scene->sceneRect());
 		scene->removeItem(pointBegin);
 		scene->removeItem(pointEnd);
 		delete pointBegin;
@@ -82,6 +83,8 @@ namespace qsbd {
 		//svgBackground->setTransform(svgBackground->transform().scale(0.87500, 0.63408)); // fit to current view map scale based on svg file size. This only works with the current view port, change this scale after
 		//scene->addItem(svgBackground);
 		scene->addWidget(osm);
+
+		fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
 
 		show();
 	}
@@ -132,7 +135,7 @@ namespace qsbd {
 				QPointF bottomRightMapped = QPointF(translatedBottomRight.first, translatedTopLeft.second);
 				QRectF queryMapped = QRectF(topLeftMapped, bottomRightMapped);
 				
-				emit queryRequest(queryMapped);
+				if(!showingAllQueries) emit queryRequest(queryMapped);
 				emit quantileRequest(queryMapped, queryCurId);
 				//QGraphicsRectItem* item = scene->addRect(query);
 
@@ -159,7 +162,7 @@ namespace qsbd {
 					QPointF itemBottomRightMapped = QPointF(itemTranslatedBottomRight.first,  itemTranslatedTopLeft.second);
 					QRectF itemQueryMapped = QRectF(itemTopLeftMapped, itemBottomRightMapped);
 
-					emit queryRequest(itemQueryMapped);
+					if(it->isVisible()) emit queryRequest(itemQueryMapped);
 					emit quantileRequest(itemQueryMapped, it->id);
 				});
 
@@ -702,6 +705,24 @@ namespace qsbd {
 
 		queries.clear();
 		queryCurId = 0;
+	}
+
+	void View::setRankAndQuantileQueryRequest(const int& id){
+		for(size_t i = 0; i < queries.size(); i++){
+			if (dynamic_cast<QueryGraphicsItem *>(queries[i])->id == id){
+				QRectF itemQueryBound = queries[i]->sceneBoundingRect();
+
+				std::pair<double, double> itemTranslatedTopLeft = mapScreenToLonLat(itemQueryBound.topLeft());
+				std::pair<double, double> itemTranslatedBottomRight = mapScreenToLonLat(itemQueryBound.bottomRight());
+				
+				QPointF itemTopLeftMapped = QPointF(itemTranslatedTopLeft.first, itemTranslatedBottomRight.second);
+				QPointF itemBottomRightMapped = QPointF(itemTranslatedBottomRight.first,  itemTranslatedTopLeft.second);
+				QRectF itemQueryMapped = QRectF(itemTopLeftMapped, itemBottomRightMapped);
+
+				emit queryRequest(itemQueryMapped);
+				emit quantileRequest(itemQueryMapped, id);
+			}
+		}
 	}
 
 	/*

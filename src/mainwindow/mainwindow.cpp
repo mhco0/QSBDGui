@@ -791,6 +791,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
             else if(curQueryId == tr("Magenta")) queryId = 3;
             else if(curQueryId == tr("Black")) queryId = 4;
 
+            sketchInfo->setVisible(true);
             rankQueryLabel->setVisible(true);
             valueForRankQuery->setVisible(true);
             rankQueryButton->setVisible(true);
@@ -871,7 +872,6 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
             controller.startSimulation();
         }
 
-        sketchInfo->setVisible(true);
         sketchInfo->setText(tr("rank : %1").arg(rank));
     });
 
@@ -911,13 +911,27 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
     });
 
     QObject::connect(rankQueryButton, &QAbstractButton::pressed, this, [&](){
-        qDebug() << "Change here the query process";
+        QString curQueryId = queryIdComboBox->currentText();
+
+        if(curQueryId == tr("Show all")){
+            // make the emit for the all regions
+        }else{
+            int queryId = 0;
+
+            if(curQueryId == tr("Red")) queryId = 0;
+            else if(curQueryId == tr("Green")) queryId = 1;
+            else if(curQueryId == tr("Blue")) queryId = 2;
+            else if(curQueryId == tr("Magenta")) queryId = 3;
+            else if(curQueryId == tr("Black")) queryId = 4;
+
+            view.setRankAndQuantileQueryRequest(queryId);
+        }
     });
 
     QObject::connect(&view, &qsbd::View::queryRequest, this, [&](const QRectF& region){
         controller.freeze();
         //qDebug() << tr("Loading... [%1, %2, %3, %4]").arg(region.bottomLeft().x()).arg(region.topRight().y()).arg(region.topRight().x()).arg(region.bottomLeft().y());
-        sketchInfo->setVisible(true);
+        //sketchInfo->setVisible(true);
         sketchInfo->setText(tr("Loading... [%1, %2, %3, %4]").arg(region.bottomLeft().x()).arg(region.topRight().y()).arg(region.topRight().x()).arg(region.bottomLeft().y()));
         model.onQuery(region, valueForRankQuery->value());
     });
