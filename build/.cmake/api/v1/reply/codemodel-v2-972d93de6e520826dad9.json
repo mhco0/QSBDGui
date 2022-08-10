@@ -19,7 +19,9 @@
 					"targetIndexes" : 
 					[
 						0,
-						1
+						1,
+						49,
+						50
 					]
 				},
 				{
@@ -106,8 +108,6 @@
 					"source" : "/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/Big-Data-IC/test",
 					"targetIndexes" : 
 					[
-						54,
-						55,
 						56,
 						57,
 						58,
@@ -120,7 +120,9 @@
 						65,
 						66,
 						67,
-						68
+						68,
+						69,
+						70
 					]
 				},
 				{
@@ -151,11 +153,11 @@
 						46,
 						47,
 						48,
-						49,
-						50,
 						51,
 						52,
-						53
+						53,
+						54,
+						55
 					]
 				}
 			],
@@ -175,7 +177,9 @@
 					"targetIndexes" : 
 					[
 						0,
-						1
+						1,
+						49,
+						50
 					]
 				},
 				{
@@ -238,8 +242,6 @@
 						46,
 						47,
 						48,
-						49,
-						50,
 						51,
 						52,
 						53,
@@ -257,7 +259,9 @@
 						65,
 						66,
 						67,
-						68
+						68,
+						69,
+						70
 					]
 				}
 			],
@@ -266,7 +270,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "QSBDGuiTest::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-QSBDGuiTest-8598afaf3a63c57e4b9a.json",
+					"jsonFile" : "target-QSBDGuiTest-8ce6597dc6869b09b7a5.json",
 					"name" : "QSBDGuiTest",
 					"projectIndex" : 0
 				},
@@ -605,6 +609,20 @@
 					"jsonFile" : "target-profiler-741eeeef510e4dda511c.json",
 					"name" : "profiler",
 					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "qmlviewtest::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-qmlviewtest-0913bcd4a1208ccd39d3.json",
+					"name" : "qmlviewtest",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "qmlviewtest_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-qmlviewtest_autogen-9aedd43b1293477b0e2a.json",
+					"name" : "qmlviewtest_autogen",
+					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 5,

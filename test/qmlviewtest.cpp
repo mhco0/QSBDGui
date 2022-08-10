@@ -1,11 +1,11 @@
 #include <QApplication>
 #include <QMainWindow>
-#include "../qmlview/qmlview.h"
+#include <qmlview/qmlview.h>
 
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
     QMainWindow w;
-    QmlView q;
+    qsbd::QmlView q;
 
     w.setCentralWidget(&q);
     w.show();

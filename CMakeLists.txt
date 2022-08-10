@@ -62,6 +62,12 @@ if(ANDROID)
     src/dbscan/kdtree.cpp
     src/kmeans/kmeans.h
   )
+
+  add_library(qmlviewtest SHARED
+    ../test/qmlviewtest.cpp
+    ../src/qmlview/qmlview.h
+    ../src/qmlview/qmlview.cpp
+  )
 else()
   add_executable(QSBDGuiTest
     main.cpp
@@ -85,6 +91,12 @@ else()
     src/dbscan/kdtree.cpp
     src/kmeans/kmeans.h
   )
+
+  add_executable(qmlviewtest
+    test/qmlviewtest.cpp
+    src/qmlview/qmlview.h
+    src/qmlview/qmlview.cpp
+  )
 endif()
 
 
@@ -93,3 +105,9 @@ target_include_directories(QSBDGuiTest PRIVATE "../Big-Data-IC/src")
 target_include_directories(QSBDGuiTest PRIVATE "../Big-Data-IC/thirdparty")
 target_link_libraries(QSBDGuiTest PRIVATE Qt5::QuickWidgets Qt5::Widgets Qt5::PrintSupport Qt5::Svg nlohmann_json csv_parser pthread QSBD_STREAM_MAKER QSBD_QUANTILE_QUADTREE QSBD_GK_FACTORY QSBD_KLL_FACTORY QSBD_DCS_FACTORY QSBD_Q_DIGEST_FACTORY QSBD_UTILS)
 #qt5_import_plugins(QSBDGuiTest INCLUDE Qt5::QSvgPlugin)
+
+target_include_directories(qmlviewtest PRIVATE src)
+target_include_directories(qmlviewtest PRIVATE "../Big-Data-IC/src")
+target_include_directories(qmlviewtest PRIVATE "../Big-Data-IC/thirdparty")
+target_link_libraries(qmlviewtest PRIVATE Qt5::QuickWidgets Qt5::Widgets Qt5::PrintSupport Qt5::Svg nlohmann_json csv_parser pthread QSBD_STREAM_MAKER QSBD_QUANTILE_QUADTREE QSBD_GK_FACTORY QSBD_KLL_FACTORY QSBD_DCS_FACTORY QSBD_Q_DIGEST_FACTORY QSBD_UTILS)
+

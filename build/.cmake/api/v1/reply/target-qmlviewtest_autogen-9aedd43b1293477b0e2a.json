@@ -1,0 +1,97 @@
+{
+	"backtrace" : 0,
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : 
+		[
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			}
+		]
+	},
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 0,
+			"id" : "nlohmann_json::@571fc159f825cda98f79"
+		},
+		{
+			"backtrace" : 0,
+			"id" : "csv_parser::@571fc159f825cda98f79"
+		},
+		{
+			"backtrace" : 0,
+			"id" : "QSBD_UTILS::@7979f27a2384e6a7ef4f"
+		},
+		{
+			"backtrace" : 0,
+			"id" : "QSBD_QUANTILE_QUADTREE::@7979f27a2384e6a7ef4f"
+		},
+		{
+			"backtrace" : 0,
+			"id" : "QSBD_GK_FACTORY::@7979f27a2384e6a7ef4f"
+		},
+		{
+			"backtrace" : 0,
+			"id" : "QSBD_STREAM_MAKER::@7979f27a2384e6a7ef4f"
+		},
+		{
+			"backtrace" : 0,
+			"id" : "QSBD_KLL_FACTORY::@7979f27a2384e6a7ef4f"
+		},
+		{
+			"backtrace" : 0,
+			"id" : "QSBD_Q_DIGEST_FACTORY::@7979f27a2384e6a7ef4f"
+		},
+		{
+			"backtrace" : 0,
+			"id" : "QSBD_DCS_FACTORY::@7979f27a2384e6a7ef4f"
+		}
+	],
+	"id" : "qmlviewtest_autogen::@6890427a1f51a3e7e1df",
+	"isGeneratorProvided" : true,
+	"name" : "qmlviewtest_autogen",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		},
+		{
+			"name" : "CMake Rules",
+			"sourceIndexes" : 
+			[
+				1
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/CMakeFiles/qmlviewtest_autogen",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/CMakeFiles/qmlviewtest_autogen.rule",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "UTILITY"
+}
