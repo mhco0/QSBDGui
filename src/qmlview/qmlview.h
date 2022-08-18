@@ -10,6 +10,7 @@
 #define QSBD_QMLVIEW_H
 #include <QtDebug>
 #include <QQuickWidget>
+#include <QQuickItem>
 
 namespace qsbd {
 
@@ -29,7 +30,7 @@ namespace qsbd {
     class QmlView : public QQuickWidget {
         Q_OBJECT
     protected:
-
+        QQuickItem* map;
     private:
 
     public:
@@ -40,10 +41,11 @@ namespace qsbd {
         */
         explicit QmlView(QWidget* parent = nullptr);
 
+        void changeDrawMode(const ViewDrawMode& mode);
+
+        void addPoint(const QPointF& newPoint, const int& val);
     public slots:
-
     signals:
-
     };
 
 } // namespace qsbd
