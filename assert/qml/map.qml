@@ -27,6 +27,10 @@ Rectangle {
         id: mapPointsList
     }
 
+    ListModel {
+        id: queryRegionsList
+    }
+
     Map {
         id: mapOsm
         objectName: "mapOsm"
@@ -51,6 +55,22 @@ Rectangle {
                 center {
                     latitude: lat
                     longitude: lon
+                }
+            }
+        }
+
+        MapItemView {
+            model: queryRegionsList
+            delegate: MapRectangle {
+                color: map_color
+                border.width: 20
+                topLeft {
+                    latitude: topLeftLat
+                    longitude: topLeftLon
+                }
+                bottomRight {
+                    latitude: bottomRightLat
+                    longitude: bottomRightLon
                 }
             }
         }
@@ -80,7 +100,10 @@ Rectangle {
         }
 
         function addRectangle(topLeftLon, topLeftLat, bottomRightLon, bottomRightLat){
+            var topCoord = QtPositioning.coordinate(topLeftLat, topLeftLon);
+            var bottomCoord = QtPositioning.coordinate(bottomRightLat, bottomRightLon);
 
+            queryRegionsList.append({map_color: "transparent", topLeftLat: topCoord.latitude, topLeftLon: topCoord.longitude, bottomRightLat: bottomCoord.latitude, bottomRightLon: bottomCoord.longitude});
         }
 
         function changeDrawMode(mode){
