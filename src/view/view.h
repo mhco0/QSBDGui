@@ -98,6 +98,12 @@ namespace qsbd {
         virtual void wheelEvent(QWheelEvent* event) override;
 
         /**
+         * @brief A method to handle the resize event
+         * @param event The event with the current and the old size
+        */
+        virtual void resizeEvent(QResizeEvent* event) override;
+
+        /**
          * @brief Updates the view based on the Draw mode.
         */
         void updateBasedOnDrawMode();
@@ -133,7 +139,6 @@ namespace qsbd {
         QGraphicsRectItem* queryRegion;
         QVector<QGraphicsEllipseItem*> points;
         QVector<QGraphicsRectItem*> queries;
-        QGraphicsSvgItem* svgBackground;
         Qt::GlobalColor queriesColors[5];
 
         /**

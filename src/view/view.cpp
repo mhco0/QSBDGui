@@ -56,12 +56,12 @@ namespace qsbd {
 		queriesColors[4] = Qt::black;
 
 		//svgBackground = new QGraphicsSvgItem("../assert/svg/USA_New_York_City_location_map.svg");
-		QQuickWidget * osm = new QQuickWidget();
+		/*QQuickWidget * osm = new QQuickWidget();
 
-		osm->setSource(QUrl::fromLocalFile("../assert/qml/map.qml"));
+		osm->setSource(QUrl::fromLocalFile("../assert/qml/mapStatic.qml"));
 		osm->setResizeMode(QQuickWidget::SizeRootObjectToView);
 		osm->setMinimumSize(700, 480);
-		//osm->setSizePolicy( QSizePolicy::Expanding,  QSizePolicy::Expanding);
+		*///osm->setSizePolicy( QSizePolicy::Expanding,  QSizePolicy::Expanding);
 		// set view size		
 		
 		auto pointBegin = scene->addEllipse(QRectF(-2, -2, 4, 4), QPen(Qt::blue));
@@ -82,8 +82,9 @@ namespace qsbd {
 
 		//svgBackground->setTransform(svgBackground->transform().scale(0.87500, 0.63408)); // fit to current view map scale based on svg file size. This only works with the current view port, change this scale after
 		//scene->addItem(svgBackground);
-		scene->addWidget(osm);
+		//scene->addWidget(osm);
 
+		
 		fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
 
 		show();
@@ -204,6 +205,14 @@ namespace qsbd {
 			return;
 		}
     }
+
+	void View::resizeEvent(QResizeEvent* event){
+
+		qDebug() << "called";
+		fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
+
+		QGraphicsView::resizeEvent(event);
+	}
 
 	void View::updateBasedOnDrawMode(){
 		switch(drawMode){

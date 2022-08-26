@@ -51,8 +51,10 @@ Rectangle {
         property double m_minLat: -90.0
         property double m_maxLat: 90.0
         property var m_boxInPath: ({})
+        property var m_lastDepthBox: ({})
 
         MapItemView {
+            id: mapPointsView
             model: mapPointsList
             delegate: MapCircle {
                 radius: 200
@@ -174,14 +176,15 @@ Rectangle {
             let centerX = (topLeftLon + bottomRightLon) / 2;
             let centerY = (topLeftLat + bottomRightLat) / 2;
 
-            if(pointLon >= centerX && pointLat >= centerY) return 3;
-            else if(pointLon < centerX && pointLat >= centerY) return 2;
-            else if(pointLon < centerX && pointLat < centerY) return 1;
-            else if(pointLon >= centerX && pointLat < centerY) return 0;
+            if(pointLon >= centerX && pointLat >= centerY) return 0;
+            else if(pointLon < centerX && pointLat >= centerY) return 1;
+            else if(pointLon < centerX && pointLat < centerY) return 2;
+            else if(pointLon >= centerX && pointLat < centerY) return 3;
             else return 0;
         }
 
         function addPoint(mLon, mLat) {
+            // change here later
             var coord = this.toCoordinate(Qt.point(mLon, mLat));
            /*if (newPoint.x() < minXdomain or newPoint.x() > maxXdomain or \
 			newPoint.y() < minYdomain or newPoint.y() > maxYdomain) return;
@@ -191,9 +194,9 @@ Rectangle {
             //let coord = QtPositioning.coordinate(mLat, mLon);
             let bound = {
                 topLeftLon: this.m_minLon,
-                topLeftLat: this.m_minLat,
+                topLeftLat: this.m_maxLat,
                 bottomRightLon: this.m_maxLon,
-                bottomRightLat: this.m_maxLat
+                bottomRightLat: this.m_minLat
             };
 
             let whatChild = direction(bound.topLeftLon, bound.topLeftLat, bound.bottomRightLon, bound.bottomRightLat, coord.longitude, coord.latitude);
@@ -201,7 +204,7 @@ Rectangle {
             let path = "r"; //root node
 
             if(!(path in this.m_boxInPath)){
-                addBound(this.m_minLon, this.m_minLat, this.m_maxLon, this.m_maxLat, path);
+                addBound(this.m_minLon, this.m_maxLat, this.m_maxLon, this.m_minLat, path);
             }
 
             while(curDepth <= this.m_depth){
@@ -231,17 +234,18 @@ Rectangle {
                 whatChild = direction(bound.topLeftLon, bound.topLeftLat, bound.bottomRightLon, bound.bottomRightLat, coord.longitude, coord.latitude);
                 
                 if(curDepth == this.m_depth){
-                    /*if(lastDepthBoxesPath.find(path) == lastDepthBoxesPath.end()){
-                        lastDepthBoxesPath[path] = {boxInPath[path], 1};
+                    if(!(path in this.m_lastDepthBox)){
+                        this.m_lastDepthBox[path] = {bound: this.m_boxInPath[path], count: 1};
                     }else{
-                        lastDepthBoxesPath[path].second += 1;
-                    }*/
+                        this.m_lastDepthBox[path].count += 1;
+                    }
                 }
             
                 curDepth += 1;
             }
 
             mapPointsList.append({lat: coord.latitude, lon: coord.longitude});
+            this.drawByDrawMode();
         }
 
         function addBound(topLeftLon, topLeftLat, bottomRightLon, bottomRightLat, path){
@@ -261,13 +265,27 @@ Rectangle {
 
         function changeDrawMode(mode){
             this.m_drawMode = mode;
+        }
 
-            console.log(mode);
+        function drawByDrawMode(){
+            switch (this.m_drawMode) {
+                case 0: { // OnlyPoints
 
-            switch (mode) {
-                case 0: // OnlyPoints
-                    break;
-            
+                    for(let i = 0; i < mapPointsList.count; i += 1){
+                        for(let key in mapPointsList.get(i)){
+                            console.log(key);
+                        }
+                    }
+
+                    /*for(let path in this.m_boxInPath){
+                        for(let prop in this.m_boxInPath[path]){
+                            console.log(prop);
+                        }
+                        console.log(this.m_boxInPath[path].visible);
+                        break;
+                    }*/
+
+                } break;
                 case 1: // DrawQuadtreeAndPoints
                     break;
 
@@ -287,7 +305,6 @@ Rectangle {
 
             onPressed: (mouse) => {
                 if (mouse.button == Qt.RightButton){
-                    console.log("calling here");
                     mapOsm.addPoint(mouse.x, mouse.y);
                 }
             }
