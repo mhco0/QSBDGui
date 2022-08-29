@@ -40,6 +40,9 @@
 */
 class MainWindow : public QMainWindow {
 	Q_OBJECT
+
+protected:
+	virtual void resizeEvent(QResizeEvent *event);
 private:
 	qsbd::View view;
 	qsbd::Model model;

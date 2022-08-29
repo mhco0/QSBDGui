@@ -1,5 +1,10 @@
 #include "mainwindow.h"
 
+void MainWindow::resizeEvent(QResizeEvent *event){
+    this->repaint();
+    QMainWindow::resizeEvent(event);
+}
+
 void MainWindow::setupUi(){
     //setMaximumSize(1000, 500);
 
@@ -587,6 +592,7 @@ void MainWindow::startUpSimulation(void){
         if(state == Qt::Checked){
             depthDrawLabel->setVisible(true);
             depthDraw->setVisible(true);
+            view.setDepthView(depthDraw->value());
             view.setDrawingMode(qsbd::ViewDrawMode::QuadtreeDepth);
         }else{
             depthDrawLabel->setVisible(false);

@@ -38,8 +38,8 @@ namespace qsbd {
 		clusterMethod = ClusterMethod::KMedoids;
 		minValueSeen = 0x3f3f3f3f;
 		maxValueSeen = -0x3f3f3f3f;
-		maxXResolution = 700.0;
-		maxYResolution = 480.0; 
+		maxXScene = 700.0;
+		maxYScene = 480.0; 
 		minXdomain = 0.0;
 		minYdomain = 0.0;
 		maxXdomain = 0.0;
@@ -64,28 +64,15 @@ namespace qsbd {
 		*///osm->setSizePolicy( QSizePolicy::Expanding,  QSizePolicy::Expanding);
 		// set view size		
 		
-		auto pointBegin = scene->addEllipse(QRectF(-2, -2, 4, 4), QPen(Qt::blue));
-		auto pointEnd = scene->addEllipse(QRectF(maxXResolution - 2, maxYResolution - 2, 4, 4), QPen(Qt::blue));
-		//fitInView(scene->sceneRect());
-		scene->removeItem(pointBegin);
-		scene->removeItem(pointEnd);
-		delete pointBegin;
-		delete pointEnd;
-		originalTransform = transform();
-		
 		setRenderHints(QPainter::HighQualityAntialiasing | QPainter::TextAntialiasing);
     	setDragMode(QGraphicsView::ScrollHandDrag);
 		setMouseTracking(true);
 		setStyleSheet(":disabled {background-color: darkGray} :enabled {background-color: white}");
 		//background-image: url('../assert/svg/USA_New_York_City_location_map.svg')  0 0 0 0 stretch stretch; background-repeat: no-repeat; background-position: center;
 		// 
-
-		//svgBackground->setTransform(svgBackground->transform().scale(0.87500, 0.63408)); // fit to current view map scale based on svg file size. This only works with the current view port, change this scale after
-		//scene->addItem(svgBackground);
-		//scene->addWidget(osm);
-
-		
-		fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
+		scene->setSceneRect(0, 0, maxXScene, maxYScene);
+		fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
+		originalTransform = transform();
 
 		show();
 	}
@@ -195,7 +182,7 @@ namespace qsbd {
 
 			scale(factor, factor);
 			QTransform zoomedTransform = transform();
-			zoomedTransform.setMatrix(qMax(originalTransform.m11(), zoomedTransform.m11()), zoomedTransform.m12(), zoomedTransform.m13(), zoomedTransform.m21(), qMax(originalTransform.m22(), zoomedTransform.m22()), zoomedTransform.m23(), zoomedTransform.m31(), zoomedTransform.m32(), zoomedTransform.m33());
+			//zoomedTransform.setMatrix(qMax(originalTransform.m11(), zoomedTransform.m11()), zoomedTransform.m12(), zoomedTransform.m13(), zoomedTransform.m21(), qMax(originalTransform.m22(), zoomedTransform.m22()), zoomedTransform.m23(), zoomedTransform.m31(), zoomedTransform.m32(), zoomedTransform.m33());
 			setTransform(zoomedTransform);
 			centerOn(targetScenePos);
 			QPointF deltaViewportPos = targetViewportPos - QPointF(viewport()->width() / 2.0, viewport()->height() / 2.0);
@@ -207,9 +194,7 @@ namespace qsbd {
     }
 
 	void View::resizeEvent(QResizeEvent* event){
-
-		qDebug() << "called";
-		fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
+		//fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
 
 		QGraphicsView::resizeEvent(event);
 	}
@@ -380,15 +365,15 @@ namespace qsbd {
 	}
 
 	std::pair<double, double> View::mapLonLatToScreen(double lon, double lat){
-		double viewX = ((maxXResolution / (maxXdomain - minXdomain)) * (lon - minXdomain));
-		double viewY = maxYResolution - ((maxYResolution / (maxYdomain - minYdomain)) * (lat - minYdomain));
+		double viewX = ((maxXScene / (maxXdomain - minXdomain)) * (lon - minXdomain));
+		double viewY = maxYScene - ((maxYScene / (maxYdomain - minYdomain)) * (lat - minYdomain));
 
 		return {viewX, viewY};
 	}
 
 	std::pair<double, double> View::mapScreenToLonLat(const QPointF& point){
-		double lon = (point.x() / ((maxXResolution / (maxXdomain - minXdomain)))) + minXdomain;
-		double lat = ((point.y() - maxYResolution) / -((maxYResolution / (maxYdomain - minYdomain)))) + minYdomain;
+		double lon = (point.x() / ((maxXScene / (maxXdomain - minXdomain)))) + minXdomain;
+		double lat = ((point.y() - maxYScene) / -((maxYScene / (maxYdomain - minYdomain)))) + minYdomain;
 
 		return {lon, lat};
 	}
@@ -464,11 +449,11 @@ namespace qsbd {
 		maxXdomain = maxXRes;
 		maxYdomain = maxYRes;
 
-		auto pointEnd = scene->addEllipse(QRectF(maxXResolution - 2, maxYResolution - 2, 4, 4), QPen(Qt::blue));
+		/*auto pointEnd = scene->addEllipse(QRectF(maxXScene - 2, maxYScene - 2, 4, 4), QPen(Qt::blue));
 		fitInView(scene->sceneRect());
 		scene->removeItem(pointEnd);
 		delete pointEnd;
-		originalTransform = transform();
+		originalTransform = transform();*/
 	}
 
 	void View::setDepth(const int& maxDepth){
@@ -504,13 +489,13 @@ namespace qsbd {
 
 		points.push_back(pointPointer);
 
-		aabb<double> bounds(0, 0, maxXResolution, maxYResolution);
+		aabb<double> bounds(0, 0, maxXScene, maxYScene);
 		int what_child = direction(bounds, point);
 		int curDepth = 1;
 		std::string path = "r"; //root node
 
 		if(boxInPath.find(path) == boxInPath.end()){
-			auto rootPointer = scene->addRect(QRectF(0, 0, maxXResolution, maxYResolution), QPen(Qt::lightGray));
+			auto rootPointer = scene->addRect(QRectF(0, 0, maxXScene, maxYScene), QPen(Qt::lightGray));
 			boxInPath[path] = rootPointer;
 		}
 
@@ -621,7 +606,6 @@ namespace qsbd {
 				region_clusters.resize(cdfs.size(), 0);
 
 				//std::cout << "cluster sizes: " << clusters.size() << std::endl;
-
 				//std::cout << "noise sizes: " << noise.size() << std::endl;
 
 				size_t i = 0;
@@ -630,7 +614,6 @@ namespace qsbd {
 						region_clusters[it] = i;
 					}
 				}
-
 
 				for(size_t j = 0; j < noise.size(); j++){
 					region_clusters[noise[j]] = std::min(i, (size_t)9);
@@ -646,9 +629,9 @@ namespace qsbd {
 					cPoints.emplace_back(i, data[i]);
 				}
 
-				std::cout << "before" << std::endl;
+				//std::cout << "before" << std::endl;
 				carlosClustering::KMeans cluster(kCluster, data.size(), data[0].size(), kSteps);
-				std::cout << "here" << std::endl; 
+				//std::cout << "here" << std::endl; 
 				cluster.run(cPoints);
 
 				
@@ -733,302 +716,5 @@ namespace qsbd {
 			}
 		}
 	}
-
-	/*
-	void Canvas::mouseMoveEvent(QMouseEvent * event){
-		curMousePos = event->pos();
-
-		emit mouseMovement(curMousePos);
-
-		update();
-	}
-
-	void Canvas::mousePressEvent(QMouseEvent * event){
-		clickStart = event->pos();
-
-		dragging = true;
-
-		emit mousePressed();
-	}
-
-	void Canvas::mouseReleaseEvent(QMouseEvent * event){
-		dragging = false;
-	
-		if(event->pos() != clickStart){
-			QPoint topLeft = QPoint(qMin(clickStart.x(), event->x()), qMin(clickStart.y(), event->y()));
-			
-			int maxx = qMax(clickStart.x(), event->x());
-			int maxy = qMax(clickStart.y(), event->y());
-			int minx = topLeft.x();
-			int miny = topLeft.y();
-
-			QSize size = QSize(maxx - minx, maxy - miny);
-			query = QRect(topLeft, size);
-
-			emit queryRequest(convertRegion(query));
-		}
-	}
-
-
-	void Canvas::wheelEvent(QWheelEvent * event){
-		if(not applyZoom and event->angleDelta().y() > 0){
-			zoomPoint = event->pos();
-			applyZoom = true;
-			update();
-		}else if(applyZoom and event->angleDelta().y() < 0){
-			zoomPoint = event->pos();
-			applyZoom = false;
-			update();
-		}
-	}
-
-	void Canvas::change_box(QRect& cur_box, short direction){
-			int center_x = (cur_box.topRight().x() + cur_box.bottomLeft().x()) / 2;
-			int center_y = (cur_box.topRight().y() + cur_box.bottomLeft().y()) / 2;
-
-			switch (direction){
-				case 0 : {
-					// ne
-					cur_box.setBottomLeft(QPoint(center_x, center_y));
-					cur_box.setTopRight(QPoint(cur_box.topRight().x(), cur_box.topRight().y()));
-
-				}
-				break;
-				case 1 : {
-					// nw
-					cur_box.setBottomLeft(QPoint(cur_box.bottomLeft().x(), center_y));
-					cur_box.setTopRight(QPoint(center_x, cur_box.topRight().y()));
-
-				}
-				break;
-				case 2 : {
-					// sw
-					cur_box.setBottomLeft(QPoint(cur_box.bottomLeft().x(), cur_box.bottomLeft().y()));
-					cur_box.setTopRight(QPoint(center_x, center_y));
-
-				}
-				break;
-				case 3 : {
-					// se
-					cur_box.setBottomLeft(QPoint(center_x, cur_box.bottomLeft().y()));
-					cur_box.setTopRight(QPoint(cur_box.topRight().x(), center_y));
-
-				}
-				break;
-				default:{
-					qDebug() << ("Invalid direction on quantile_quadtree::change_box");
-				}
-				break;
-			}
-		}
-
-	short Canvas::direction(const QRect& box, const QPointF& pos){
-		int center_x = (box.bottomLeft().x() + box.topRight().x()) / 2;
-		int center_y = (box.bottomLeft().y() + box.topRight().y()) / 2;
-
-		if(pos.x() >= center_x and pos.y() >= center_y) return 3;
-		else if(pos.x() < center_x and pos.y() >= center_y) return 2;
-		else if(pos.x() < center_x and pos.y() < center_y) return 1;
-		else if(pos.x() >= center_x and pos.y() < center_y) return 0;
-		else return 0;
-	}
-
-	bool Canvas::unit_box(const QRect& region){
-		int width = region.topRight().x() - region.bottomLeft().x();
-		int height = region.topRight().y() - region.bottomLeft().y();
-		return not (width > 1 || height > 1);
-	}
-
-	QRect Canvas::convertRegion(const QRect& region){
-		QPoint topL = region.topLeft();
-		QPoint bottomR = region.bottomRight();
-
-		topL.setX(qMax((topL.x() * maxXResolution) / minimumWidth(), 0.0));
-		topL.setY(qMin((topL.y() * maxYResolution) / minimumHeight(), maxYResolution));
-		bottomR.setX(qMin((bottomR.x() * maxXResolution) / minimumWidth(), maxXResolution));
-		bottomR.setY(qMax((bottomR.y() * maxYResolution) / minimumHeight(), 0.0));
-
-		return QRect(topL, bottomR);
-	}
-
-	QColor Canvas::colorBasedOnFrequency(const uint& points){
-		int frequencyForColor[6]  = {1, 10, 50, 100, 500, 1000};
-
-		for(int i = 0; i < 6; i++){
-			if(points <= frequencyForColor[i]){
-				return boxGradient[i];
-			}
-		}
-
-		return boxGradient[5];
-	}
-
-	Canvas::Canvas(QWidget* parent) : QWidget(parent), myPen(Qt::SolidLine), myBrush(Qt::CrossPattern), query(0, 0, 0, 0){
-		setAttribute(Qt::WA_StaticContents);
-		setAttribute(Qt::WA_StyledBackground);
-		setContentsMargins(0, 0, 0, 0);
-		setMinimumSize(620, 480);
-		maxXResolution = 620.0;
-		maxYResolution = 480.0;
-		setMouseTracking(true);
-		setStyleSheet(":disabled {background-color: darkGray } :enabled {background-color: white}");
-
-		myBrush.setColor(Qt::black);
-
-		zoomScale = 1.5;
-		applyZoom = false;
-		dragging = false;
-		drawBounds = false;
-
-		boxGradient[0] = QColor(239, 243, 255);
-		boxGradient[1] = QColor(198, 219, 239);
-		boxGradient[2] = QColor(158, 202, 225);
-		boxGradient[3] = QColor(107, 174, 214);
-		boxGradient[4] = QColor(49, 130, 189);
-		boxGradient[5] = QColor(8, 81, 156);
-
-		show();
-	}
-
-	void Canvas::paintEvent(QPaintEvent* event){
-		QPainter painter(this);
-		painter.setRenderHint(QPainter::Antialiasing);
-		int backgroundWidth = 1;
-		int pointWidth = 5;
-
-		if(applyZoom){
-			painter.translate(-zoomPoint.x() * zoomScale + minimumWidth() * zoomScale / 2, -zoomPoint.y() * zoomScale + minimumHeight() * zoomScale / 2);
-			painter.scale(zoomScale, zoomScale);
-			backgroundWidth *= zoomScale;
-			pointWidth *= zoomScale;
-		}
-
-		for(auto& it : data){
-			myPen.setColor(Qt::blue);
-			myPen.setWidth(pointWidth);
-
-			painter.setPen(myPen);
-			painter.setBackground(myBrush);
-			painter.drawPoint(it);
-
-			myPen.setColor(Qt::black);
-			myPen.setWidth(backgroundWidth);
-			painter.setPen(myPen);
-			painter.setBackground(myBrush);
-
-			QRect bounds(0, 0, minimumWidth() - 1, minimumHeight() - 1);
-			painter.drawRect(bounds);
-
-			if (drawBounds){
-				int what_child = direction(bounds, it);
-				int curDepth = 1;
-				std::string path = std::to_string(what_child);
-
-				myPen.setColor(Qt::lightGray);
-				painter.setPen(myPen);
-
-				while(curDepth <= this->depth and not unit_box(bounds)){
-					// draw all childs
-			
-					int center_x = (bounds.topRight().x() + bounds.bottomLeft().x()) / 2;
-					int center_y = (bounds.topRight().y() + bounds.bottomLeft().y()) / 2;
-
-					// Bounds used by canvas
-					QRect nwChild(QPoint(center_x, bounds.topRight().y()), QPoint(bounds.topRight().x(), center_y));
-					QRect neChild(QPoint(bounds.bottomLeft().x(), bounds.topRight().y()), QPoint(center_x, center_y));
-					QRect seChild(QPoint(bounds.bottomLeft().x(), center_y), QPoint(center_x, bounds.bottomLeft().y()));
-					QRect swChild(QPoint(center_x, center_y), QPoint(bounds.topRight().x(), bounds.bottomLeft().y()));
-
-					painter.drawRect(nwChild);
-					painter.drawRect(neChild);
-					painter.drawRect(seChild);
-					painter.drawRect(swChild);
-
-					if(curDepth == this->depth){
-						QRect copy;
-						bool find = false;
-						int leaf_child = direction(bounds, it);
-						switch(leaf_child){
-							case 0:
-								copy = nwChild;
-							break;
-							case 1:
-								copy = neChild;
-							break;
-							case 2:
-								copy = seChild;
-							break;
-							case 3:
-								copy = swChild;
-							break;
-						}
-
-						path += std::to_string(leaf_child);
-
-						if(boxInPath.find(path) == boxInPath.end()){
-							boxInPath[path] = {copy, 1};
-						}else{
-							boxInPath[path].second += 1;
-						}
-					}
-
-					change_box(bounds, what_child);
-					what_child = direction(bounds, it);
-					path += std::to_string(what_child);
-
-					curDepth++;
-				}
-			}
-		}
-
-		if(drawBounds){
-			for(auto& it : boxInPath){
-				painter.fillRect(it.second.first, colorBasedOnFrequency(it.second.second));
-				it.second.second = 0;
-			}
-		}
-
-		if(dragging){
-			QPainter painterQuery(this);
-			QPoint topLeft = QPoint(qMin(clickStart.x(), curMousePos.x()), qMin(clickStart.y(), curMousePos.y()));
-			
-			int maxx = qMax(clickStart.x(), curMousePos.x());
-			int maxy = qMax(clickStart.y(), curMousePos.y());
-			int minx = topLeft.x();
-			int miny = topLeft.y();
-
-			QSize size = QSize(maxx - minx, maxy - miny);
-			query = QRect(topLeft, size);
-
-			painterQuery.setPen(myPen);
-			painterQuery.setBackground(myBrush);
-			painterQuery.drawRect(query);
-		} 
-	}
-
-	void Canvas::addPoint(const QPointF& newPoint){
-		double xScale = (newPoint.x() * minimumWidth()) / maxXResolution;
-		double yScale = (newPoint.y() * minimumHeight()) / maxYResolution;
-
-		QPointF scalePoint(xScale, yScale);
-
-		data.push_back(scalePoint);
-		update();
-	}
-
-	void Canvas::setDepth(const int& maxDepth){
-		depth = maxDepth;
-	}
-
-	
-	void Canvas::setBoundsDrawing(const bool& option){
-		drawBounds = option;
-		update();
-	}
-
-	void Canvas::setResolution(const double& xRes, const double& yRes){
-		maxXResolution = xRes;
-		maxYResolution = yRes;
-	}*/
 
 } // namespace qsbd
