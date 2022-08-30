@@ -66,6 +66,8 @@ namespace qsbd {
 		
 		setRenderHints(QPainter::HighQualityAntialiasing | QPainter::TextAntialiasing);
     	setDragMode(QGraphicsView::ScrollHandDrag);
+		setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+		setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 		setMouseTracking(true);
 		setStyleSheet(":disabled {background-color: darkGray} :enabled {background-color: white}");
 		//background-image: url('../assert/svg/USA_New_York_City_location_map.svg')  0 0 0 0 stretch stretch; background-repeat: no-repeat; background-position: center;
@@ -74,7 +76,6 @@ namespace qsbd {
 		fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
 		originalTransform = transform();
 
-		show();
 	}
 
 	void View::mousePressEvent(QMouseEvent * event) {
@@ -182,7 +183,7 @@ namespace qsbd {
 
 			scale(factor, factor);
 			QTransform zoomedTransform = transform();
-			//zoomedTransform.setMatrix(qMax(originalTransform.m11(), zoomedTransform.m11()), zoomedTransform.m12(), zoomedTransform.m13(), zoomedTransform.m21(), qMax(originalTransform.m22(), zoomedTransform.m22()), zoomedTransform.m23(), zoomedTransform.m31(), zoomedTransform.m32(), zoomedTransform.m33());
+			zoomedTransform.setMatrix(qMax(originalTransform.m11(), zoomedTransform.m11()), zoomedTransform.m12(), zoomedTransform.m13(), zoomedTransform.m21(), qMax(originalTransform.m22(), zoomedTransform.m22()), zoomedTransform.m23(), zoomedTransform.m31(), zoomedTransform.m32(), zoomedTransform.m33());
 			setTransform(zoomedTransform);
 			centerOn(targetScenePos);
 			QPointF deltaViewportPos = targetViewportPos - QPointF(viewport()->width() / 2.0, viewport()->height() / 2.0);
@@ -194,7 +195,8 @@ namespace qsbd {
     }
 
 	void View::resizeEvent(QResizeEvent* event){
-		//fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
+		fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
+		originalTransform = transform();
 
 		QGraphicsView::resizeEvent(event);
 	}
