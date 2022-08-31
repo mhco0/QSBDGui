@@ -35,6 +35,7 @@
 #include "../kmedoids/kmedoids.hpp"
 #include "../dbscan/dbscan.h"
 #include "../kmeans/kmeans.h"
+#include "../qmlview/qmlview.h"
 
 namespace qsbd {
 
@@ -109,6 +110,8 @@ namespace qsbd {
         void updateBasedOnDrawMode();
     private:
         QGraphicsScene* scene;
+        QmlView* mapBackground;
+        const double startZoom = 10;
         std::map<std::string, QGraphicsRectItem*> boxInPath;
         std::map<std::string, std::pair<QGraphicsRectItem*, uint>> lastDepthBoxesPath;
         //std::vector<std::pair<QGraphicsRectItem*, QGraphicsRectItem*>> ksRegions;
@@ -315,6 +318,9 @@ namespace qsbd {
          * @param id The id for the query region
         */
         void setRankAndQuantileQueryRequest(const int& id);
+
+
+        void setMapVisible(const bool& val);
 
     signals:
 

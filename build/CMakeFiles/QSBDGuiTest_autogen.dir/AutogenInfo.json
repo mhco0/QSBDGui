@@ -53,6 +53,11 @@
 			"T4EGOWDRJ2/moc_qcustomplot.cpp"
 		],
 		[
+			"/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/qmlview/qmlview.h",
+			"MU",
+			"AZUOWGGHMN/moc_qmlview.cpp"
+		],
+		[
 			"/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/sketchmenudialog/sketchmenudialog.h",
 			"MU",
 			"6KKZTFNNT6/moc_sketchmenudialog.cpp"
@@ -161,6 +166,10 @@
 		],
 		[
 			"/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/qcustomplot/qcustomplot.cpp",
+			"MU"
+		],
+		[
+			"/mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/qmlview/qmlview.cpp",
 			"MU"
 		],
 		[

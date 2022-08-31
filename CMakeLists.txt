@@ -61,6 +61,8 @@ if(ANDROID)
     src/dbscan/kdtree.h
     src/dbscan/kdtree.cpp
     src/kmeans/kmeans.h
+    src/qmlview/qmlview.h
+    src/qmlview/qmlview.cpp
   )
 
   add_library(qmlviewtest SHARED
@@ -90,6 +92,8 @@ else()
     src/dbscan/kdtree.h
     src/dbscan/kdtree.cpp
     src/kmeans/kmeans.h
+    src/qmlview/qmlview.h
+    src/qmlview/qmlview.cpp
   )
 
   add_executable(qmlviewtest

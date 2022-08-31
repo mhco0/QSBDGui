@@ -713,6 +713,7 @@ void MainWindow::onNewSimulation(){
             view.setDomain(minXRes, minYRes, xRes, yRes);
             view.setDepth(depth);
             view.setEnabled(true);
+            view.setMapVisible(true);
         }
 
         setupFeedUi(sketch);

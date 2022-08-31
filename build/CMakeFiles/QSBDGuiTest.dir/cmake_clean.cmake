@@ -10,6 +10,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o"
   "CMakeFiles/QSBDGuiTest.dir/src/model/model.cpp.o"
   "CMakeFiles/QSBDGuiTest.dir/src/qcustomplot/qcustomplot.cpp.o"
+  "CMakeFiles/QSBDGuiTest.dir/src/qmlview/qmlview.cpp.o"
   "CMakeFiles/QSBDGuiTest.dir/src/sketchmenudialog/sketchmenudialog.cpp.o"
   "CMakeFiles/QSBDGuiTest.dir/src/view/view.cpp.o"
   "bin/QSBDGuiTest"

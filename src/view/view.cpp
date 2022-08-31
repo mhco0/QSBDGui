@@ -63,6 +63,11 @@ namespace qsbd {
 		osm->setMinimumSize(700, 480);
 		*///osm->setSizePolicy( QSizePolicy::Expanding,  QSizePolicy::Expanding);
 		// set view size		
+
+		mapBackground = new QmlView();
+		mapBackground->setMinimumSize(700, 480);
+		mapBackground->setVisible(false);
+		mapBackground->setZoom(startZoom);
 		
 		setRenderHints(QPainter::HighQualityAntialiasing | QPainter::TextAntialiasing);
     	setDragMode(QGraphicsView::ScrollHandDrag);
@@ -72,6 +77,9 @@ namespace qsbd {
 		setStyleSheet(":disabled {background-color: darkGray} :enabled {background-color: white}");
 		//background-image: url('../assert/svg/USA_New_York_City_location_map.svg')  0 0 0 0 stretch stretch; background-repeat: no-repeat; background-position: center;
 		// 
+		
+		scene->addWidget(mapBackground);
+		
 		scene->setSceneRect(0, 0, maxXScene, maxYScene);
 		fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
 		originalTransform = transform();
@@ -189,6 +197,8 @@ namespace qsbd {
 			QPointF deltaViewportPos = targetViewportPos - QPointF(viewport()->width() / 2.0, viewport()->height() / 2.0);
 			QPointF viewportCenter = mapFromScene(targetScenePos) - deltaViewportPos;
 			centerOn(mapToScene(viewportCenter.toPoint()));
+
+			mapBackground->setZoom(qMax(startZoom, mapBackground->getZoom() + ((factor > 1.0) ? factor : -factor)));
 
 			return;
 		}
@@ -450,6 +460,8 @@ namespace qsbd {
 		minYdomain = minYRes;
 		maxXdomain = maxXRes;
 		maxYdomain = maxYRes;
+
+		mapBackground->setBounds(minXRes, minYRes, maxXRes, maxYRes);
 
 		/*auto pointEnd = scene->addEllipse(QRectF(maxXScene - 2, maxYScene - 2, 4, 4), QPen(Qt::blue));
 		fitInView(scene->sceneRect());
@@ -717,6 +729,10 @@ namespace qsbd {
 				emit quantileRequest(itemQueryMapped, id);
 			}
 		}
+	}
+
+	void View::setMapVisible(const bool& val){
+		mapBackground->setVisible(val);
 	}
 
 } // namespace qsbd

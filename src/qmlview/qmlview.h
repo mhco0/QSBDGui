@@ -14,18 +14,8 @@
 
 namespace qsbd {
 
-    /** @class ViewDrawMode
-     * @brief This is a enum class to handle the draw mode for the view aplication.
-    */
-    enum class ViewDrawMode {OnlyPoints = 0, QuadtreeDepth, Heatmap, KS};
-
-    /** @class ClusterMethod
-     * @brief This is a enum class to handle the clustering methods for the view aplication.
-    */
-    enum class ClusterMethod {KMedoids = 0, DBSCAN, KMeans};
-
     /** @class QmlView
-    * @brief A Qt QQuickWidget that represents a view for a model in the MVC.
+    * @brief A Qt QQuickWidget that represents a quick widget for qt maps plugins
     */
     class QmlView : public QQuickWidget {
         Q_OBJECT
@@ -41,9 +31,20 @@ namespace qsbd {
         */
         explicit QmlView(QWidget* parent = nullptr);
 
-        void changeDrawMode(const ViewDrawMode& mode);
+        /**
+        * @brief A setter for the virtual resolution that this view will represent 
+        * @param minXRes The virtual min x resolution
+        * @param minYRes The virtual min y resolution
+        * @param maxXRes The virtual max x resolution
+        * @param maxYRes The virtual max y resolution
+        */
+        void setBounds(const double& minXRes, const double& minYRes, const double& maxXRes, const double& maxYRes);
 
-        void addPoint(const QPointF& newPoint, const int& val);
+        void pan(const int& dx, const int& dy);
+
+        void setZoom(const double& zoom);
+
+        double getZoom();
     public slots:
     signals:
     };

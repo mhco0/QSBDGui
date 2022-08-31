@@ -33,10 +33,12 @@ CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o
  ../src/mainwindow/mainwindow.h
  ../src/model/model.h
  ../src/qcustomplot/qcustomplot.h
+ ../src/qmlview/qmlview.h
  ../src/sketchmenudialog/sketchmenudialog.h
  ../src/view/view.h
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/build/QSBDGuiTest_autogen/3JYSCEOBDA/moc_view.cpp
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/build/QSBDGuiTest_autogen/6KKZTFNNT6/moc_sketchmenudialog.cpp
+ /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/build/QSBDGuiTest_autogen/AZUOWGGHMN/moc_qmlview.cpp
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/build/QSBDGuiTest_autogen/GFTB6AWTXV/moc_mainwindow.cpp
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/build/QSBDGuiTest_autogen/JOOUC7EWVH/moc_csvdialog.cpp
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/build/QSBDGuiTest_autogen/KECQXMYYOW/moc_controller.cpp
@@ -420,14 +422,19 @@ CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtPrintSupport/qtprintsupport-config.h
  /usr/include/x86_64-linux-gnu/qt5/QtPrintSupport/qtprintsupportglobal.h
  /usr/include/x86_64-linux-gnu/qt5/QtPrintSupport/qtprintsupportversion.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qjsvalue.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qqml.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlcomponent.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmldebug.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlerror.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmllist.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlparserstatus.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlprivate.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlpropertyvaluesource.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qtqml-config.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qtqmlglobal.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQuick/QQuickItem
+ /usr/include/x86_64-linux-gnu/qt5/QtQuick/qquickitem.h
  /usr/include/x86_64-linux-gnu/qt5/QtQuick/qquickwindow.h
  /usr/include/x86_64-linux-gnu/qt5/QtQuick/qsggeometry.h
  /usr/include/x86_64-linux-gnu/qt5/QtQuick/qsgnode.h
@@ -627,6 +634,7 @@ CMakeFiles/QSBDGuiTest.dir/main.cpp.o
  ../src/mainwindow/mainwindow.h
  ../src/model/model.h
  ../src/qcustomplot/qcustomplot.h
+ ../src/qmlview/qmlview.h
  ../src/sketchmenudialog/sketchmenudialog.h
  ../src/view/view.h
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/main.cpp
@@ -1007,14 +1015,19 @@ CMakeFiles/QSBDGuiTest.dir/main.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtPrintSupport/qtprintsupport-config.h
  /usr/include/x86_64-linux-gnu/qt5/QtPrintSupport/qtprintsupportglobal.h
  /usr/include/x86_64-linux-gnu/qt5/QtPrintSupport/qtprintsupportversion.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qjsvalue.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qqml.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlcomponent.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmldebug.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlerror.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmllist.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlparserstatus.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlprivate.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlpropertyvaluesource.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qtqml-config.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qtqmlglobal.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQuick/QQuickItem
+ /usr/include/x86_64-linux-gnu/qt5/QtQuick/qquickitem.h
  /usr/include/x86_64-linux-gnu/qt5/QtQuick/qquickwindow.h
  /usr/include/x86_64-linux-gnu/qt5/QtQuick/qsggeometry.h
  /usr/include/x86_64-linux-gnu/qt5/QtQuick/qsgnode.h
@@ -1213,8 +1226,10 @@ CMakeFiles/QSBDGuiTest.dir/src/controller/controller.cpp.o
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/kmeans/kmeans.h
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/kmedoids/kmedoids.hpp
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/model/model.h
+ /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/qmlview/qmlview.h
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/view/view.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QEvent
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QList
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QMargins
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QObject
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QPointF
@@ -1243,9 +1258,11 @@ CMakeFiles/QSBDGuiTest.dir/src/controller/controller.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qconfig.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qcontainerfwd.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qcontiguouscache.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qcoreapplication.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qcoreevent.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qdatastream.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qdebug.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qeventloop.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qfile.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qfiledevice.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qflags.h
@@ -1311,6 +1328,7 @@ CMakeFiles/QSBDGuiTest.dir/src/controller/controller.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtGui/QPainter
  /usr/include/x86_64-linux-gnu/qt5/QtGui/QPen
  /usr/include/x86_64-linux-gnu/qt5/QtGui/QWheelEvent
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qaccessible.h
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qbrush.h
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qcolor.h
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qcursor.h
@@ -1354,14 +1372,19 @@ CMakeFiles/QSBDGuiTest.dir/src/controller/controller.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qwindowdefs_win.h
  /usr/include/x86_64-linux-gnu/qt5/QtNetwork/qtnetwork-config.h
  /usr/include/x86_64-linux-gnu/qt5/QtNetwork/qtnetworkglobal.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qjsvalue.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qqml.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlcomponent.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmldebug.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlerror.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmllist.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlparserstatus.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlprivate.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlpropertyvaluesource.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qtqml-config.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qtqmlglobal.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQuick/QQuickItem
+ /usr/include/x86_64-linux-gnu/qt5/QtQuick/qquickitem.h
  /usr/include/x86_64-linux-gnu/qt5/QtQuick/qquickwindow.h
  /usr/include/x86_64-linux-gnu/qt5/QtQuick/qsggeometry.h
  /usr/include/x86_64-linux-gnu/qt5/QtQuick/qsgnode.h
@@ -1563,6 +1586,7 @@ CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/mainwindow/mainwindow.h
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/model/model.h
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/qcustomplot/qcustomplot.h
+ /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/qmlview/qmlview.h
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/sketchmenudialog/sketchmenudialog.h
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/view/view.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QCache
@@ -1942,14 +1966,19 @@ CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtPrintSupport/qtprintsupport-config.h
  /usr/include/x86_64-linux-gnu/qt5/QtPrintSupport/qtprintsupportglobal.h
  /usr/include/x86_64-linux-gnu/qt5/QtPrintSupport/qtprintsupportversion.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qjsvalue.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qqml.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlcomponent.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmldebug.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlerror.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmllist.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlparserstatus.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlprivate.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlpropertyvaluesource.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qtqml-config.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qtqmlglobal.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQuick/QQuickItem
+ /usr/include/x86_64-linux-gnu/qt5/QtQuick/qquickitem.h
  /usr/include/x86_64-linux-gnu/qt5/QtQuick/qquickwindow.h
  /usr/include/x86_64-linux-gnu/qt5/QtQuick/qsggeometry.h
  /usr/include/x86_64-linux-gnu/qt5/QtQuick/qsgnode.h
@@ -2698,6 +2727,160 @@ CMakeFiles/QSBDGuiTest.dir/src/qcustomplot/qcustomplot.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qwidget.h
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qwidgetaction.h
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qwizard.h
+CMakeFiles/QSBDGuiTest.dir/src/qmlview/qmlview.cpp.o
+ /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/qmlview/qmlview.cpp
+ /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/qmlview/qmlview.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QEvent
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QList
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QMargins
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QObject
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QRect
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QRectF
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QtDebug
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qalgorithms.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qarraydata.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qatomic.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qatomic_bootstrap.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qatomic_cxx11.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qatomic_msvc.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qbasicatomic.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qbytearray.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qbytearraylist.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qchar.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qcompilerdetection.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qconfig-bootstrapped.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qconfig.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qcontainerfwd.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qcontiguouscache.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qcoreapplication.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qcoreevent.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qdatastream.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qdebug.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qeventloop.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qfile.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qfiledevice.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qflags.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qgenericatomic.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qglobal.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qglobalstatic.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qhash.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qhashfunctions.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qiodevice.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qiterator.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qline.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qlist.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qlocale.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qlogging.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qmap.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qmargins.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qmetaobject.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qmetatype.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qmutex.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qnamespace.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qnumeric.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qobject.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qobject_impl.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qobjectdefs.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qobjectdefs_impl.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qpair.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qpoint.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qprocessordetection.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qrect.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qrefcount.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qregexp.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qscopedpointer.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qset.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qshareddata.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qsharedpointer.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qsharedpointer_impl.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qsize.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qstring.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qstringalgorithms.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qstringbuilder.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qstringlist.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qstringliteral.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qstringmatcher.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qstringview.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qsysinfo.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qsystemdetection.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qt_windows.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qtcore-config.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qtextstream.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qtypeinfo.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qurl.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qurlquery.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qvariant.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qvarlengtharray.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qvector.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qversiontagging.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/QMatrix4x4
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qaccessible.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qbrush.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qcolor.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qcursor.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qevent.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qfont.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qfontinfo.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qfontmetrics.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qgenericmatrix.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qicon.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qimage.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qkeysequence.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qmatrix.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qmatrix4x4.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qopengl.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qopengles2ext.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qopenglext.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qpaintdevice.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qpainterpath.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qpalette.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qpixelformat.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qpixmap.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qpolygon.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qquaternion.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qregion.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qrgb.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qrgba64.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qsurface.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qsurfaceformat.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qtgui-config.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qtguiglobal.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qtouchdevice.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qtransform.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qvector2d.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qvector3d.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qvector4d.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qwindow.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qwindowdefs.h
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qwindowdefs_win.h
+ /usr/include/x86_64-linux-gnu/qt5/QtNetwork/qtnetwork-config.h
+ /usr/include/x86_64-linux-gnu/qt5/QtNetwork/qtnetworkglobal.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qjsvalue.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qqml.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlcomponent.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmldebug.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlerror.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmllist.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlparserstatus.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlprivate.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlpropertyvaluesource.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qtqml-config.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qtqmlglobal.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQuick/QQuickItem
+ /usr/include/x86_64-linux-gnu/qt5/QtQuick/qquickitem.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQuick/qquickwindow.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQuick/qsggeometry.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQuick/qsgnode.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQuick/qsgrendererinterface.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQuick/qtquick-config.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQuick/qtquickglobal.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQuickWidgets/QQuickWidget
+ /usr/include/x86_64-linux-gnu/qt5/QtQuickWidgets/qquickwidget.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQuickWidgets/qtquickwidgetsglobal.h
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qsizepolicy.h
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtwidgets-config.h
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtwidgetsglobal.h
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qwidget.h
 CMakeFiles/QSBDGuiTest.dir/src/sketchmenudialog/sketchmenudialog.cpp.o
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/sketchmenudialog/sketchmenudialog.cpp
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/sketchmenudialog/sketchmenudialog.h
@@ -2846,9 +3029,11 @@ CMakeFiles/QSBDGuiTest.dir/src/view/view.cpp.o
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/dbscan/kdtree.h
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/kmeans/kmeans.h
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/kmedoids/kmedoids.hpp
+ /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/qmlview/qmlview.h
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/view/view.cpp
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/view/view.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QEvent
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QList
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QMargins
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QObject
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QPointF
@@ -2874,9 +3059,11 @@ CMakeFiles/QSBDGuiTest.dir/src/view/view.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qconfig.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qcontainerfwd.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qcontiguouscache.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qcoreapplication.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qcoreevent.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qdatastream.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qdebug.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qeventloop.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qfile.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qfiledevice.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qflags.h
@@ -2941,6 +3128,7 @@ CMakeFiles/QSBDGuiTest.dir/src/view/view.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtGui/QPainter
  /usr/include/x86_64-linux-gnu/qt5/QtGui/QPen
  /usr/include/x86_64-linux-gnu/qt5/QtGui/QWheelEvent
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qaccessible.h
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qbrush.h
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qcolor.h
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qcursor.h
@@ -2984,14 +3172,19 @@ CMakeFiles/QSBDGuiTest.dir/src/view/view.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qwindowdefs_win.h
  /usr/include/x86_64-linux-gnu/qt5/QtNetwork/qtnetwork-config.h
  /usr/include/x86_64-linux-gnu/qt5/QtNetwork/qtnetworkglobal.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qjsvalue.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qqml.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlcomponent.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmldebug.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlerror.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmllist.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlparserstatus.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlprivate.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qqmlpropertyvaluesource.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qtqml-config.h
  /usr/include/x86_64-linux-gnu/qt5/QtQml/qtqmlglobal.h
+ /usr/include/x86_64-linux-gnu/qt5/QtQuick/QQuickItem
+ /usr/include/x86_64-linux-gnu/qt5/QtQuick/qquickitem.h
  /usr/include/x86_64-linux-gnu/qt5/QtQuick/qquickwindow.h
  /usr/include/x86_64-linux-gnu/qt5/QtQuick/qsggeometry.h
  /usr/include/x86_64-linux-gnu/qt5/QtQuick/qsgnode.h
