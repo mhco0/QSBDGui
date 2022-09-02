@@ -68,6 +68,7 @@ namespace qsbd {
 		mapBackground->setMinimumSize(700, 480);
 		mapBackground->setVisible(false);
 		mapBackground->setZoom(startZoom);
+		mapBackground->installEventFilter(this);
 		
 		setRenderHints(QPainter::HighQualityAntialiasing | QPainter::TextAntialiasing);
     	setDragMode(QGraphicsView::ScrollHandDrag);
@@ -188,7 +189,7 @@ namespace qsbd {
 
 			auto targetViewportPos = pWheelEvent->pos();
 			auto targetScenePos = mapToScene(pWheelEvent->pos());
-
+			qDebug() << "factor : " << factor;
 			scale(factor, factor);
 			QTransform zoomedTransform = transform();
 			zoomedTransform.setMatrix(qMax(originalTransform.m11(), zoomedTransform.m11()), zoomedTransform.m12(), zoomedTransform.m13(), zoomedTransform.m21(), qMax(originalTransform.m22(), zoomedTransform.m22()), zoomedTransform.m23(), zoomedTransform.m31(), zoomedTransform.m32(), zoomedTransform.m33());
@@ -198,13 +199,19 @@ namespace qsbd {
 			QPointF viewportCenter = mapFromScene(targetScenePos) - deltaViewportPos;
 			centerOn(mapToScene(viewportCenter.toPoint()));
 
-			mapBackground->setZoom(qMax(startZoom, mapBackground->getZoom() + ((factor > 1.0) ? factor : -factor)));
+			auto lonLat = mapScreenToLonLat(mapToScene(viewportCenter.toPoint()));
+
+			qDebug() << lonLat;
+
+			mapBackground->centerOn(lonLat.first, lonLat.second);
+			mapBackground->setZoom(qMax(startZoom, mapBackground->getZoom()  + (factor - 1.0)));
 
 			return;
 		}
     }
 
 	void View::resizeEvent(QResizeEvent* event){
+
 		fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
 		originalTransform = transform();
 

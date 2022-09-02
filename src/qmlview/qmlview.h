@@ -23,7 +23,27 @@ namespace qsbd {
         QQuickItem* map;
     private:
 
+        /**
+        * @brief A method to handle a mouse movement event
+        * @param event The mouse event 
+        */
+        virtual void mouseMoveEvent(QMouseEvent* event) override;
+
+        /**
+        * @brief A method to handle a mouse press event
+        * @param event The mouse event 
+        */
+        virtual void mousePressEvent(QMouseEvent* event) override;
+
+        /**
+        * @brief A method to handle a mouse release event
+        * @param event The mouse event 
+        */
+        virtual void mouseReleaseEvent(QMouseEvent* event) override;
+
+
     public:
+        
 
         /**
         * @brief A constructor for the view
@@ -45,6 +65,8 @@ namespace qsbd {
         void setZoom(const double& zoom);
 
         double getZoom();
+
+        void centerOn(const double& lon, const double& lat);
     public slots:
     signals:
     };

@@ -2,9 +2,28 @@
 
 namespace qsbd {
 
+	
+	
+	void QmlView::mouseMoveEvent(QMouseEvent* event){
+		QQuickWidget::mouseMoveEvent(event);
+		event->setAccepted(false);
+	}
+	
+	void QmlView::mousePressEvent(QMouseEvent* event){
+		QQuickWidget::mousePressEvent(event);
+		event->setAccepted(false);
+	}
+	
+	void QmlView::mouseReleaseEvent(QMouseEvent* event){
+		QQuickWidget::mouseReleaseEvent(event);
+		event->setAccepted(false);
+	}
+
+
 	QmlView::QmlView(QWidget* parent) : QQuickWidget(parent){
 		this->setSource(QUrl::fromLocalFile("../assert/qml/mapStatic.qml"));
 		this->setResizeMode(QQuickWidget::SizeRootObjectToView);
+		this->setMouseTracking(false);
 		//this->setMinimumSize(700, 480);
 
 		map = this->rootObject();
@@ -40,5 +59,9 @@ namespace qsbd {
 		QMetaObject::invokeMethod(map, "getZoom", Q_RETURN_ARG(QVariant, returnedValue));
 
 		return returnedValue.toDouble();
+	}
+
+	void QmlView::centerOn(const double& lon, const double& lat){
+		QMetaObject::invokeMethod(map, "centerOn", Q_ARG(QVariant, (double) lon), Q_ARG(QVariant, (double) lat));
 	}
 } // namespace qsbd

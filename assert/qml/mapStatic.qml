@@ -28,6 +28,7 @@ Rectangle {
         anchors.fill: parent
         plugin: mapPlugin
         gesture.acceptedGestures: (MapGestureArea.PinchGesture | MapGestureArea.FlickGesture |MapGestureArea.RotationGesture | MapGestureArea.TiltGesture)
+        gesture.preventStealing: true
         center: QtPositioning.coordinate(40.69, -73.97) 
         zoomLevel: 0   
 
@@ -52,6 +53,10 @@ Rectangle {
 
         function getZoom(){
             return mapOSM.zoomLevel;
+        }
+
+        function centerOn(lon, lat){
+            mapOSM.center = QtPositioning.coordinate(lat, lon);
         }
     }
 }
