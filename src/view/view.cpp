@@ -68,7 +68,7 @@ namespace qsbd {
 		mapBackground->setMinimumSize(700, 480);
 		mapBackground->setVisible(false);
 		mapBackground->setZoom(startZoom);
-		mapBackground->installEventFilter(this);
+		//mapBackground->installEventFilter(this);
 		
 		setRenderHints(QPainter::HighQualityAntialiasing | QPainter::TextAntialiasing);
     	setDragMode(QGraphicsView::ScrollHandDrag);
@@ -80,6 +80,8 @@ namespace qsbd {
 		// 
 		
 		scene->addWidget(mapBackground);
+
+		//qDebug() << mapBackground->getVisibleRegion();
 		
 		scene->setSceneRect(0, 0, maxXScene, maxYScene);
 		fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
@@ -187,7 +189,7 @@ namespace qsbd {
 			double angle = pWheelEvent->angleDelta().y();
 			double factor = qPow(1.0015, angle);
 
-			auto targetViewportPos = pWheelEvent->pos();
+			/*auto targetViewportPos = pWheelEvent->pos();
 			auto targetScenePos = mapToScene(pWheelEvent->pos());
 			qDebug() << "factor : " << factor;
 			scale(factor, factor);
@@ -199,12 +201,18 @@ namespace qsbd {
 			QPointF viewportCenter = mapFromScene(targetScenePos) - deltaViewportPos;
 			centerOn(mapToScene(viewportCenter.toPoint()));
 
-			auto lonLat = mapScreenToLonLat(mapToScene(viewportCenter.toPoint()));
+			auto lonLat = mapScreenToLonLat(mapToScene(viewportCenter.toPoint()));*/
 
-			qDebug() << lonLat;
+			//qDebug() << mapBackground->getVisibleRegion();
 
-			mapBackground->centerOn(lonLat.first, lonLat.second);
 			mapBackground->setZoom(qMax(startZoom, mapBackground->getZoom()  + (factor - 1.0)));
+			this->updateDomainBasedOnMap();
+
+			for(size_t i = 0; i < logicPoints.size(); i++){
+				auto translatedPoint = this->mapLonLatToScreen(logicPoints[i].x(), logicPoints[i].y());
+				QPointF point(translatedPoint.first, translatedPoint.second); 
+				points[i]->setRect(QRectF(point.x() - 2, point.y() - 2, 4, 4));
+			}		
 
 			return;
 		}
@@ -394,7 +402,7 @@ namespace qsbd {
 		double lon = (point.x() / ((maxXScene / (maxXdomain - minXdomain)))) + minXdomain;
 		double lat = ((point.y() - maxYScene) / -((maxYScene / (maxYdomain - minYdomain)))) + minYdomain;
 
-		return {lon, lat};
+		return {lon, lat}; 
 	}
 
 	std::vector<std::pair<QGraphicsRectItem*, QGraphicsRectItem*>> View::allPairsInResolution(const int& pdepth){
@@ -470,11 +478,21 @@ namespace qsbd {
 
 		mapBackground->setBounds(minXRes, minYRes, maxXRes, maxYRes);
 
+		this->updateDomainBasedOnMap();
 		/*auto pointEnd = scene->addEllipse(QRectF(maxXScene - 2, maxYScene - 2, 4, 4), QPen(Qt::blue));
 		fitInView(scene->sceneRect());
 		scene->removeItem(pointEnd);
 		delete pointEnd;
 		originalTransform = transform();*/
+	}
+
+	void View::updateDomainBasedOnMap(){
+		QRectF mapDomain = mapBackground->getVisibleRegion();
+
+		minXdomain = mapDomain.topLeft().x();
+		maxXdomain = mapDomain.bottomRight().x();
+		minYdomain = mapDomain.bottomRight().y();
+		maxYdomain = mapDomain.topLeft().y();
 	}
 
 	void View::setDepth(const int& maxDepth){
@@ -499,6 +517,10 @@ namespace qsbd {
 
 		minValueSeen = std::min(minValueSeen, val);
 		maxValueSeen = std::max(maxValueSeen, val);
+
+		mapBackground->addPoint(newPoint.x(), newPoint.y());
+
+		logicPoints.push_back(newPoint);
 
 		auto translatedPoint = this->mapLonLatToScreen(newPoint.x(), newPoint.y());
 

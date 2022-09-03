@@ -6,17 +6,17 @@ namespace qsbd {
 	
 	void QmlView::mouseMoveEvent(QMouseEvent* event){
 		QQuickWidget::mouseMoveEvent(event);
-		event->setAccepted(false);
+		//event->setAccepted(false);
 	}
 	
 	void QmlView::mousePressEvent(QMouseEvent* event){
 		QQuickWidget::mousePressEvent(event);
-		event->setAccepted(false);
+		//event->setAccepted(false);
 	}
 	
 	void QmlView::mouseReleaseEvent(QMouseEvent* event){
 		QQuickWidget::mouseReleaseEvent(event);
-		event->setAccepted(false);
+		//event->setAccepted(false);
 	}
 
 
@@ -63,5 +63,34 @@ namespace qsbd {
 
 	void QmlView::centerOn(const double& lon, const double& lat){
 		QMetaObject::invokeMethod(map, "centerOn", Q_ARG(QVariant, (double) lon), Q_ARG(QVariant, (double) lat));
+	}
+
+	void QmlView::addPoint(const double& lon, const double& lat){
+		QMetaObject::invokeMethod(map, "addPoint", Q_ARG(QVariant, (double) lon), Q_ARG(QVariant, (double) lat));
+	}
+
+	QRectF QmlView::getVisibleRegion(){
+		
+		QVariant returnedValue;
+
+		QMetaObject::invokeMethod(map, "getVisibleRegion", Q_RETURN_ARG(QVariant, returnedValue));
+
+		if(returnedValue.isNull()) return QRectF();
+
+
+		QString converted = returnedValue.toString();
+
+		QJsonObject object = QJsonDocument::fromJson(converted.toUtf8()).object();
+
+		//qDebug() << object;
+
+		QPointF topLeft(object["topLeftLon"].toDouble(), object["topLeftLat"].toDouble());
+		//qDebug() << object["topLeftLon"].toDouble();
+		//qDebug() << object["topLeftLat"].toDouble();
+		QPointF bottomRight(object["bottomRightLon"].toDouble(), object["bottomRightLat"].toDouble());
+		//qDebug() << object["bottomRightLon"].toDouble();
+		//qDebug() << object["bottomRightLat"].toDouble();
+
+		return QRectF(topLeft, bottomRight);
 	}
 } // namespace qsbd

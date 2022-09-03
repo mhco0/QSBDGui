@@ -111,7 +111,7 @@ namespace qsbd {
     private:
         QGraphicsScene* scene;
         QmlView* mapBackground;
-        const double startZoom = 10;
+        const double startZoom = 9;
         std::map<std::string, QGraphicsRectItem*> boxInPath;
         std::map<std::string, std::pair<QGraphicsRectItem*, uint>> lastDepthBoxesPath;
         //std::vector<std::pair<QGraphicsRectItem*, QGraphicsRectItem*>> ksRegions;
@@ -141,6 +141,7 @@ namespace qsbd {
         QPoint curMousePos;
         QGraphicsRectItem* queryRegion;
         QVector<QGraphicsEllipseItem*> points;
+        QVector<QPointF> logicPoints;
         QVector<QGraphicsRectItem*> queries;
         Qt::GlobalColor queriesColors[5];
 
@@ -321,6 +322,9 @@ namespace qsbd {
 
 
         void setMapVisible(const bool& val);
+
+
+        void updateDomainBasedOnMap();
 
     signals:
 

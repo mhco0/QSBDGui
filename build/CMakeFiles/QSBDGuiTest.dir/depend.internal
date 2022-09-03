@@ -51,6 +51,10 @@ CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QElapsedTimer
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QEvent
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QFlags
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QJsonArray
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QJsonDocument
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QJsonObject
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QJsonValue
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QList
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QMargins
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QMetaType
@@ -644,6 +648,10 @@ CMakeFiles/QSBDGuiTest.dir/main.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QElapsedTimer
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QEvent
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QFlags
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QJsonArray
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QJsonDocument
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QJsonObject
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QJsonValue
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QList
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QMargins
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QMetaType
@@ -1229,6 +1237,10 @@ CMakeFiles/QSBDGuiTest.dir/src/controller/controller.cpp.o
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/qmlview/qmlview.h
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/view/view.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QEvent
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QJsonArray
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QJsonDocument
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QJsonObject
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QJsonValue
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QList
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QMargins
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QObject
@@ -1273,6 +1285,10 @@ CMakeFiles/QSBDGuiTest.dir/src/controller/controller.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qhashfunctions.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qiodevice.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qiterator.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qjsonarray.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qjsondocument.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qjsonobject.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qjsonvalue.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qline.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qlist.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qlocale.h
@@ -1595,6 +1611,10 @@ CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QElapsedTimer
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QEvent
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QFlags
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QJsonArray
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QJsonDocument
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QJsonObject
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QJsonValue
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QList
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QMargins
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QMetaType
@@ -2731,6 +2751,10 @@ CMakeFiles/QSBDGuiTest.dir/src/qmlview/qmlview.cpp.o
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/qmlview/qmlview.cpp
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/qmlview/qmlview.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QEvent
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QJsonArray
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QJsonDocument
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QJsonObject
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QJsonValue
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QList
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QMargins
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QObject
@@ -2767,6 +2791,10 @@ CMakeFiles/QSBDGuiTest.dir/src/qmlview/qmlview.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qhashfunctions.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qiodevice.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qiterator.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qjsonarray.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qjsondocument.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qjsonobject.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qjsonvalue.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qline.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qlist.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qlocale.h
@@ -3033,6 +3061,10 @@ CMakeFiles/QSBDGuiTest.dir/src/view/view.cpp.o
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/view/view.cpp
  /mnt/c/Users/Marcos/OneDrive/Área de Trabalho/Meus Projetos/QSBDGuiTest/src/view/view.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QEvent
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QJsonArray
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QJsonDocument
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QJsonObject
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QJsonValue
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QList
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QMargins
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QObject
@@ -3074,6 +3106,10 @@ CMakeFiles/QSBDGuiTest.dir/src/view/view.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qhashfunctions.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qiodevice.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qiterator.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qjsonarray.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qjsondocument.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qjsonobject.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qjsonvalue.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qline.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qlist.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qlocale.h

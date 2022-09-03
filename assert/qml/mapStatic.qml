@@ -22,12 +22,16 @@ Rectangle {
         }
     }
 
+    ListModel {
+        id: mapPointsList
+    }
+
     Map {
         id: mapOSM 
         objectName: "mapOSM"
         anchors.fill: parent
         plugin: mapPlugin
-        gesture.acceptedGestures: (MapGestureArea.PinchGesture | MapGestureArea.FlickGesture |MapGestureArea.RotationGesture | MapGestureArea.TiltGesture)
+        gesture.acceptedGestures: (MapGestureArea.PanGesture | MapGestureArea.PinchGesture | MapGestureArea.FlickGesture |MapGestureArea.RotationGesture | MapGestureArea.TiltGesture)
         gesture.preventStealing: true
         center: QtPositioning.coordinate(40.69, -73.97) 
         zoomLevel: 0   
@@ -37,6 +41,19 @@ Rectangle {
         property double m_minLat: -90.0
         property double m_maxLat: 90.0
 
+        MapItemView {
+            id: mapPointsView
+            model: mapPointsList
+            delegate: MapCircle {
+                radius: 2000
+                color: 'green'
+                center {
+                    latitude: lat
+                    longitude: lon
+                }
+            }
+        }
+
         function setBounds(minLon, maxLon, minLat, maxLat){
             mapOSM.m_minLon = minLon;
             mapOSM.m_maxLon = maxLon;
@@ -44,11 +61,20 @@ Rectangle {
             mapOSM.m_maxLat = maxLat;
             
             mapOSM.center = QtPositioning.coordinate((mapOSM.m_minLat + mapOSM.m_maxLat) / 2, (mapOSM.m_minLon + mapOSM.m_maxLon) / 2);
+            
+            
+        }
+
+          function addPoint(mLon, mLat) {
+            // change here later
+           
+            mapPointsList.append({lat: mLat, lon: mLon});
         }
 
         function setZoom(zoom){
-            console.log(zoom);
-            mapOSM.zoomLevel = zoom;
+            //console.log(zoom);
+            
+            mapOSM.zoomLevel = zoom;   
         }
 
         function getZoom(){
@@ -57,6 +83,21 @@ Rectangle {
 
         function centerOn(lon, lat){
             mapOSM.center = QtPositioning.coordinate(lat, lon);
+        }
+
+        function getVisibleRegion(){
+            if(!mapOSM.visibleRegion.isValid) return null;
+
+            var polygonShape = QtPositioning.shapeToPolygon(mapOSM.visibleRegion);
+            //console.log(polygonShape.perimeter);
+            var convertedRect = QtPositioning.rectangle(polygonShape.perimeter[2], polygonShape.perimeter[0]);
+            /*console.log("{", convertedRect.topLeft.latitude, ", ", convertedRect.topLeft.latitude, "}");
+            console.log("{", convertedRect.bottomRight.latitude, ", ", convertedRect.bottomRight.longitude, "}");
+            console.log(Object.keys(polygonShape));*/
+            
+            //console.log(convertedRect);
+
+            return JSON.stringify({topLeftLat: convertedRect.topLeft.latitude, topLeftLon: convertedRect.topLeft.longitude, bottomRightLat: convertedRect.bottomRight.latitude, bottomRightLon: convertedRect.bottomRight.longitude});
         }
     }
 }

@@ -11,6 +11,10 @@
 #include <QtDebug>
 #include <QQuickWidget>
 #include <QQuickItem>
+#include <QJsonDocument>
+#include <QJsonValue>
+#include <QJsonArray>
+#include <QJsonObject>
 
 namespace qsbd {
 
@@ -41,9 +45,7 @@ namespace qsbd {
         */
         virtual void mouseReleaseEvent(QMouseEvent* event) override;
 
-
     public:
-        
 
         /**
         * @brief A constructor for the view
@@ -67,6 +69,10 @@ namespace qsbd {
         double getZoom();
 
         void centerOn(const double& lon, const double& lat);
+
+        void addPoint(const double& lon, const double& lat);
+
+        QRectF getVisibleRegion();
     public slots:
     signals:
     };
