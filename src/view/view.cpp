@@ -90,6 +90,8 @@ namespace qsbd {
 	}
 
 	void View::mousePressEvent(QMouseEvent * event) {
+		this->updateSceneObjectsWithMap();
+
 		if(event->button() == Qt::RightButton){
 			clickStart = event->pos();
 
@@ -104,6 +106,8 @@ namespace qsbd {
 	}
 
 	void View::mouseMoveEvent(QMouseEvent * event){
+		this->updateSceneObjectsWithMap();
+
 		curMousePos = event->pos();
 
 		emit mouseMovement(curMousePos);
@@ -120,6 +124,8 @@ namespace qsbd {
 	}
 
 	void View::mouseReleaseEvent(QMouseEvent * event) {
+		this->updateSceneObjectsWithMap();
+
 		if(event->button() == Qt::RightButton){
 			dragging = false;
 		
@@ -134,6 +140,8 @@ namespace qsbd {
 				QPointF topLeftMapped = QPointF(translatedTopLeft.first, translatedBottomRight.second);
 				QPointF bottomRightMapped = QPointF(translatedBottomRight.first, translatedTopLeft.second);
 				QRectF queryMapped = QRectF(topLeftMapped, bottomRightMapped);
+
+				logicQueries.push_back(queryMapped);
 				
 				if(!showingAllQueries) emit queryRequest(queryMapped);
 				emit quantileRequest(queryMapped, queryCurId);
@@ -206,13 +214,7 @@ namespace qsbd {
 			//qDebug() << mapBackground->getVisibleRegion();
 
 			mapBackground->setZoom(qMax(startZoom, mapBackground->getZoom()  + (factor - 1.0)));
-			this->updateDomainBasedOnMap();
-
-			for(size_t i = 0; i < logicPoints.size(); i++){
-				auto translatedPoint = this->mapLonLatToScreen(logicPoints[i].x(), logicPoints[i].y());
-				QPointF point(translatedPoint.first, translatedPoint.second); 
-				points[i]->setRect(QRectF(point.x() - 2, point.y() - 2, 4, 4));
-			}		
+			this->updateSceneObjectsWithMap();
 
 			return;
 		}
@@ -495,6 +497,31 @@ namespace qsbd {
 		maxYdomain = mapDomain.topLeft().y();
 	}
 
+	void View::updateSceneObjectsWithMap(){
+		this->updateDomainBasedOnMap();
+
+		assert(logicPoints.size() == points.size());
+
+		for(size_t i = 0; i < logicPoints.size(); i++){
+			auto translatedPoint = this->mapLonLatToScreen(logicPoints[i].x(), logicPoints[i].y());
+			QPointF point(translatedPoint.first, translatedPoint.second); 
+			points[i]->setRect(QRectF(point.x() - 2, point.y() - 2, 4, 4));
+		}
+
+		assert(logicQueries.size() == queries.size());
+
+		for(size_t i = 0; i < logicQueries.size(); i++){
+
+			auto topLeftTranslated = this->mapLonLatToScreen(logicQueries[i].topLeft().x(), logicQueries[i].topLeft().y());
+			auto bottomRightTranslated = this->mapLonLatToScreen(logicQueries[i].bottomRight().x(), logicQueries[i].bottomRight().y());
+
+			QPointF topLeft(topLeftTranslated.first, topLeftTranslated.second);
+			QPointF bottomRight(bottomRightTranslated.first, bottomRightTranslated.second); 
+
+			queries[i]->setRect(QRectF(topLeft, bottomRight));
+		}
+	}
+
 	void View::setDepth(const int& maxDepth){
 		depth = maxDepth;
 		depthView = depth;
@@ -518,7 +545,7 @@ namespace qsbd {
 		minValueSeen = std::min(minValueSeen, val);
 		maxValueSeen = std::max(maxValueSeen, val);
 
-		mapBackground->addPoint(newPoint.x(), newPoint.y());
+		//mapBackground->addPoint(newPoint.x(), newPoint.y());
 
 		logicPoints.push_back(newPoint);
 
@@ -739,6 +766,7 @@ namespace qsbd {
 		}
 
 		queries.clear();
+		logicQueries.clear();
 		queryCurId = 0;
 	}
 

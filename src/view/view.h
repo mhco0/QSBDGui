@@ -143,6 +143,7 @@ namespace qsbd {
         QVector<QGraphicsEllipseItem*> points;
         QVector<QPointF> logicPoints;
         QVector<QGraphicsRectItem*> queries;
+        QVector<QRectF> logicQueries;
         Qt::GlobalColor queriesColors[5];
 
         /**
@@ -215,6 +216,10 @@ namespace qsbd {
          * @return A vector with n or less points in the between of the two values.
         */
         std::vector<int> getKSLERP(const int& n);
+
+        void updateDomainBasedOnMap();
+
+        void updateSceneObjectsWithMap();
     public:
 
         /**
@@ -322,9 +327,6 @@ namespace qsbd {
 
 
         void setMapVisible(const bool& val);
-
-
-        void updateDomainBasedOnMap();
 
     signals:
 
