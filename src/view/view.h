@@ -111,8 +111,9 @@ namespace qsbd {
     private:
         QGraphicsScene* scene;
         QmlView* mapBackground;
-        const double startZoom = 9;
+        const double startZoom = 10;
         std::map<std::string, QGraphicsRectItem*> boxInPath;
+        std::map<std::string, QRectF> logicBoxInPath;
         std::map<std::string, std::pair<QGraphicsRectItem*, uint>> lastDepthBoxesPath;
         //std::vector<std::pair<QGraphicsRectItem*, QGraphicsRectItem*>> ksRegions;
         std::vector<QGraphicsRectItem*> cdfsRegions;
@@ -136,6 +137,10 @@ namespace qsbd {
         double maxXdomain;
         double minYdomain;
         double maxYdomain;
+        double mapMinX;
+        double mapMaxX;
+        double mapMinY;
+        double mapMaxY;
         QTransform originalTransform;
         QPoint clickStart;
         QPoint curMousePos;
@@ -194,6 +199,23 @@ namespace qsbd {
         */
         std::pair<double, double> mapScreenToLonLat(const QPointF& point);
 
+        /**
+         * @brief A private function that maps some point @p lon and @p lat coordenates as lon / lat coordenates on the plugin map and returns the scene points coordenates.
+         * @param lon The longitude parameter for the point.
+         * @param lat The latitude parameter for the point.
+         * @return A pair with the scene points for the coordenate.
+         * @warning This function only works if you use @sa View::updateMapDomain first.
+        */
+        std::pair<double, double> mapLonLatToSceneBasedOnMap(double lon, double lat);
+
+        /**
+         * @brief A private function that maps some point @p point coordenates as scene view coordenates and returns the lon / lat coordenates based on the map plugin.
+         * @param point The point with the coordenate in the scene to be mapped.
+         * @return A pair with the lon / lat coordenates (lon -> pair.first , lat -> pair.second).
+         * @warning This function only works if you use @sa View::updateMapDomain first.
+        */
+        std::pair<double, double> mapSceneToMapLonLat(const QPointF& point);
+
 
         /**
          * @brief A private function that returns all pairs in some resolution
@@ -217,9 +239,21 @@ namespace qsbd {
         */
         std::vector<int> getKSLERP(const int& n);
 
-        void updateDomainBasedOnMap();
+        /**
+         * @brief Updates The domain of the view based on the background map.
+        */
+        void updateMapDomain();
 
+        /**
+         * @brief This function updates the objects scene positions based on transformations on the map.
+        */
         void updateSceneObjectsWithMap();
+
+
+        /**
+         * @brief Converts some rect from the scene to map coordinates
+        */
+        QRectF lonLatRectToMapRect(const QRectF& bound);
     public:
 
         /**
@@ -325,7 +359,9 @@ namespace qsbd {
         */
         void setRankAndQuantileQueryRequest(const int& id);
 
-
+        /**
+         * @brief This function set if the map is visible or not for the user
+        */
         void setMapVisible(const bool& val);
 
     signals:

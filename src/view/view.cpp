@@ -44,6 +44,10 @@ namespace qsbd {
 		minYdomain = 0.0;
 		maxXdomain = 0.0;
 		maxYdomain = 0.0;
+		mapMinX = 0.0;
+		mapMaxX = 0.0;
+		mapMinY = 0.0;
+		mapMaxY = 0.0;
 		drawMode = ViewDrawMode::OnlyPoints;
 		queryCurId = 0;
 		dragging = false;
@@ -85,13 +89,10 @@ namespace qsbd {
 		
 		scene->setSceneRect(0, 0, maxXScene, maxYScene);
 		fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
-		originalTransform = transform();
-
+		originalTransform = transform(); 	
 	}
 
 	void View::mousePressEvent(QMouseEvent * event) {
-		this->updateSceneObjectsWithMap();
-
 		if(event->button() == Qt::RightButton){
 			clickStart = event->pos();
 
@@ -102,12 +103,11 @@ namespace qsbd {
 
 		emit mousePressed();
 
+		this->updateSceneObjectsWithMap();
 		QGraphicsView::mousePressEvent(event);
 	}
 
 	void View::mouseMoveEvent(QMouseEvent * event){
-		this->updateSceneObjectsWithMap();
-
 		curMousePos = event->pos();
 
 		emit mouseMovement(curMousePos);
@@ -118,14 +118,11 @@ namespace qsbd {
 			queryRegion->setRect(QRectF(mapToScene(topLeft), mapToScene(bottomRight)));
 		}
 
-		show();
-
+		this->updateSceneObjectsWithMap();
 		QGraphicsView::mouseMoveEvent(event);
 	}
 
 	void View::mouseReleaseEvent(QMouseEvent * event) {
-		this->updateSceneObjectsWithMap();
-
 		if(event->button() == Qt::RightButton){
 			dragging = false;
 		
@@ -135,8 +132,8 @@ namespace qsbd {
 				QRectF query = QRectF(mapToScene(topLeft), mapToScene(bottomRight));
 
 				// map screen points to lon / lat
-				std::pair<double, double> translatedTopLeft = mapScreenToLonLat(query.topLeft());
-				std::pair<double, double> translatedBottomRight = mapScreenToLonLat(query.bottomRight());
+				std::pair<double, double> translatedTopLeft = mapSceneToMapLonLat(query.topLeft());
+				std::pair<double, double> translatedBottomRight = mapSceneToMapLonLat(query.bottomRight());
 				QPointF topLeftMapped = QPointF(translatedTopLeft.first, translatedBottomRight.second);
 				QPointF bottomRightMapped = QPointF(translatedBottomRight.first, translatedTopLeft.second);
 				QRectF queryMapped = QRectF(topLeftMapped, bottomRightMapped);
@@ -163,11 +160,11 @@ namespace qsbd {
 
 					QRectF itemQueryBound = it->sceneBoundingRect();
 
-					std::pair<double, double> itemTranslatedTopLeft = mapScreenToLonLat(itemQueryBound.topLeft());
-					std::pair<double, double> itemTranslatedBottomRight = mapScreenToLonLat(itemQueryBound.bottomRight());
+					std::pair<double, double> itemTranslatedTopLeft = mapSceneToMapLonLat(itemQueryBound.topLeft());
+					std::pair<double, double> itemTranslatedBottomRight = mapSceneToMapLonLat(itemQueryBound.bottomRight());
 					
 					QPointF itemTopLeftMapped = QPointF(itemTranslatedTopLeft.first, itemTranslatedBottomRight.second);
-					QPointF itemBottomRightMapped = QPointF(itemTranslatedBottomRight.first,  itemTranslatedTopLeft.second);
+					QPointF itemBottomRightMapped = QPointF(itemTranslatedBottomRight.first, itemTranslatedTopLeft.second);
 					QRectF itemQueryMapped = QRectF(itemTopLeftMapped, itemBottomRightMapped);
 
 					if(it->isVisible()) emit queryRequest(itemQueryMapped);
@@ -187,7 +184,7 @@ namespace qsbd {
 			}
 		}
 
-		show();
+		this->updateSceneObjectsWithMap();
 		QGraphicsView::mouseReleaseEvent(event);
 	}
 
@@ -229,6 +226,8 @@ namespace qsbd {
 	}
 
 	void View::updateBasedOnDrawMode(){
+		this->updateSceneObjectsWithMap();
+
 		switch(drawMode){
 			case ViewDrawMode::OnlyPoints:
 				for(auto& point : points){
@@ -407,6 +406,20 @@ namespace qsbd {
 		return {lon, lat}; 
 	}
 
+	std::pair<double, double> View::mapLonLatToSceneBasedOnMap(double lon, double lat){
+		double viewX = ((maxXScene / (mapMaxX - mapMinX)) * (lon - mapMinX));
+		double viewY = maxYScene - ((maxYScene / (mapMaxY - mapMinY)) * (lat - mapMinY));
+
+		return {viewX, viewY};
+	}
+
+	std::pair<double, double> View::mapSceneToMapLonLat(const QPointF& point){
+		double lon = (point.x() / ((maxXScene / (mapMaxX - mapMinX)))) + mapMinX;
+		double lat = ((point.y() - maxYScene) / -((maxYScene / (mapMaxY - mapMinY)))) + mapMinY;
+
+		return {lon, lat}; 
+	}
+
 	std::vector<std::pair<QGraphicsRectItem*, QGraphicsRectItem*>> View::allPairsInResolution(const int& pdepth){
 		std::vector<QGraphicsRectItem*> regions;
 		std::vector<std::pair<QGraphicsRectItem*, QGraphicsRectItem*>> allPairs;
@@ -480,7 +493,7 @@ namespace qsbd {
 
 		mapBackground->setBounds(minXRes, minYRes, maxXRes, maxYRes);
 
-		this->updateDomainBasedOnMap();
+		this->updateMapDomain();
 		/*auto pointEnd = scene->addEllipse(QRectF(maxXScene - 2, maxYScene - 2, 4, 4), QPen(Qt::blue));
 		fitInView(scene->sceneRect());
 		scene->removeItem(pointEnd);
@@ -488,22 +501,22 @@ namespace qsbd {
 		originalTransform = transform();*/
 	}
 
-	void View::updateDomainBasedOnMap(){
+	void View::updateMapDomain(){
 		QRectF mapDomain = mapBackground->getVisibleRegion();
 
-		minXdomain = mapDomain.topLeft().x();
-		maxXdomain = mapDomain.bottomRight().x();
-		minYdomain = mapDomain.bottomRight().y();
-		maxYdomain = mapDomain.topLeft().y();
+		mapMinX = mapDomain.topLeft().x();
+		mapMaxX = mapDomain.bottomRight().x();
+		mapMinY = mapDomain.bottomRight().y();
+		mapMaxY = mapDomain.topLeft().y();
 	}
 
 	void View::updateSceneObjectsWithMap(){
-		this->updateDomainBasedOnMap();
+		this->updateMapDomain();
 
 		assert(logicPoints.size() == points.size());
 
 		for(size_t i = 0; i < logicPoints.size(); i++){
-			auto translatedPoint = this->mapLonLatToScreen(logicPoints[i].x(), logicPoints[i].y());
+			auto translatedPoint = this->mapLonLatToSceneBasedOnMap(logicPoints[i].x(), logicPoints[i].y());
 			QPointF point(translatedPoint.first, translatedPoint.second); 
 			points[i]->setRect(QRectF(point.x() - 2, point.y() - 2, 4, 4));
 		}
@@ -511,15 +524,28 @@ namespace qsbd {
 		assert(logicQueries.size() == queries.size());
 
 		for(size_t i = 0; i < logicQueries.size(); i++){
-
-			auto topLeftTranslated = this->mapLonLatToScreen(logicQueries[i].topLeft().x(), logicQueries[i].topLeft().y());
-			auto bottomRightTranslated = this->mapLonLatToScreen(logicQueries[i].bottomRight().x(), logicQueries[i].bottomRight().y());
+			auto topLeftTranslated = this->mapLonLatToSceneBasedOnMap(logicQueries[i].topLeft().x(), logicQueries[i].topLeft().y());
+			auto bottomRightTranslated = this->mapLonLatToSceneBasedOnMap(logicQueries[i].bottomRight().x(), logicQueries[i].bottomRight().y());
 
 			QPointF topLeft(topLeftTranslated.first, topLeftTranslated.second);
 			QPointF bottomRight(bottomRightTranslated.first, bottomRightTranslated.second); 
 
 			queries[i]->setRect(QRectF(topLeft, bottomRight));
 		}
+
+		assert(logicBoxInPath.size() == boxInPath.size());
+
+		for(auto& key : logicBoxInPath){
+			auto topLeftTranslated = this->mapLonLatToSceneBasedOnMap(key.second.topLeft().x(), key.second.topLeft().y());
+			auto bottomRightTranslated = this->mapLonLatToSceneBasedOnMap(key.second.bottomRight().x(), key.second.bottomRight().y());
+
+			QPointF topLeft(topLeftTranslated.first, topLeftTranslated.second);
+			QPointF bottomRight(bottomRightTranslated.first, bottomRightTranslated.second); 
+
+			boxInPath[key.first]->setRect(QRectF(topLeft, bottomRight));
+		}
+
+		show();
 	}
 
 	void View::setDepth(const int& maxDepth){
@@ -529,11 +555,13 @@ namespace qsbd {
 
 	void View::setDepthView(const int& dpView){
 		depthView = std::min(dpView, depth);
+		this->updateBasedOnDrawMode();
 	}
 
 	void View::setKCluster(const int& kc){
 		kCluster = std::min(10, std::max(1, kc));
 		centroids.clear();
+		this->updateBasedOnDrawMode();
 	}
 
 	void View::addPoint(const QPointF& newPoint, const int& val){
@@ -549,7 +577,7 @@ namespace qsbd {
 
 		logicPoints.push_back(newPoint);
 
-		auto translatedPoint = this->mapLonLatToScreen(newPoint.x(), newPoint.y());
+		auto translatedPoint = this->mapLonLatToSceneBasedOnMap(newPoint.x(), newPoint.y());
 
 		QPointF point(translatedPoint.first, translatedPoint.second); 
 
@@ -559,17 +587,23 @@ namespace qsbd {
 
 		points.push_back(pointPointer);
 
-		aabb<double> bounds(0, 0, maxXScene, maxYScene);
-		int what_child = direction(bounds, point);
+		//aabb<double> bounds(0, 0, maxXScene, maxYScene);
+		aabb<double> bounds(minXdomain, minYdomain, maxXdomain, maxYdomain);
+		int what_child = direction(bounds, newPoint);
 		int curDepth = 1;
 		std::string path = "r"; //root node
 
 		if(boxInPath.find(path) == boxInPath.end()){
-			auto rootPointer = scene->addRect(QRectF(0, 0, maxXScene, maxYScene), QPen(Qt::lightGray));
+			QRectF domainRect = QRectF(minXdomain, minYdomain, maxXdomain - minXdomain, maxYdomain - minYdomain);
+			QRectF mapped = lonLatRectToMapRect(domainRect);
+			logicBoxInPath[path] = domainRect;
+
+			//auto rootPointer = scene->addRect(QRectF(0, 0, maxXScene, maxYScene), QPen(Qt::lightGray));
+			auto rootPointer = scene->addRect(mapped, QPen(Qt::lightGray));
 			boxInPath[path] = rootPointer;
 		}
 
-		while(curDepth <= this->depth and not unit_box(bounds)){
+		while(curDepth <= this->depth /*and not unit_box(bounds)*/){
 			// draw all childs
 	
 			double center_x = (bounds.bounds().first.x() + bounds.bounds().second.x()) / 2;
@@ -578,45 +612,65 @@ namespace qsbd {
 			// Bounds used by canvas
 
 			QRectF neChild;
-			neChild.setTopLeft(QPoint(center_x, center_y));
-			neChild.setBottomRight(QPoint(bounds.bounds().second.x(), bounds.bounds().second.y()));
+			neChild.setTopLeft(QPointF(center_x, center_y));
+			neChild.setBottomRight(QPointF(bounds.bounds().second.x(), bounds.bounds().second.y()));
 			
 			QRectF nwChild;
-			nwChild.setTopLeft(QPoint(bounds.bounds().first.x(), center_y));
-			nwChild.setBottomRight(QPoint(center_x, bounds.bounds().second.y()));
+			nwChild.setTopLeft(QPointF(bounds.bounds().first.x(), center_y));
+			nwChild.setBottomRight(QPointF(center_x, bounds.bounds().second.y()));
 			
 			QRectF swChild;
-			swChild.setTopLeft(QPoint(bounds.bounds().first.x(), bounds.bounds().first.y()));
-			swChild.setBottomRight(QPoint(center_x, center_y));
+			swChild.setTopLeft(QPointF(bounds.bounds().first.x(), bounds.bounds().first.y()));
+			swChild.setBottomRight(QPointF(center_x, center_y));
 
 			QRectF seChild;
-			seChild.setTopLeft(QPoint(center_x, bounds.bounds().first.y()));
-			seChild.setBottomRight(QPoint(bounds.bounds().second.x(), center_y));
+			seChild.setTopLeft(QPointF(center_x, bounds.bounds().first.y()));
+			seChild.setBottomRight(QPointF(bounds.bounds().second.x(), center_y));
 
 			if(boxInPath.find(path + "0") == boxInPath.end()){
-				auto nep = scene->addRect(neChild, QPen(Qt::lightGray));
+				//qDebug() << neChild;
+				QRectF mapped = lonLatRectToMapRect(neChild);
+				logicBoxInPath[path + "0"] = neChild;
+
+				//auto nep = scene->addRect(neChild, QPen(Qt::lightGray));
+				auto nep = scene->addRect(mapped, QPen(Qt::lightGray));
 				boxInPath[path + "0"] = nep;
 			}
 
 			if(boxInPath.find(path + "1") == boxInPath.end()){
-				auto nwp = scene->addRect(nwChild, QPen(Qt::lightGray));
+				//qDebug() << nwChild;
+				QRectF mapped = lonLatRectToMapRect(nwChild);
+				logicBoxInPath[path + "1"] = nwChild;
+
+				//auto nwp = scene->addRect(nwChild, QPen(Qt::lightGray));
+				auto nwp = scene->addRect(mapped, QPen(Qt::lightGray));
 				boxInPath[path + "1"] = nwp;
 			}
 
 			if(boxInPath.find(path + "2") == boxInPath.end()){
-				auto swp = scene->addRect(swChild, QPen(Qt::lightGray));
+				//qDebug() << swChild;
+				QRectF mapped = lonLatRectToMapRect(swChild);
+				logicBoxInPath[path + "2"] = swChild;
+
+				//auto swp = scene->addRect(swChild, QPen(Qt::lightGray));
+				auto swp = scene->addRect(mapped, QPen(Qt::lightGray));
 				boxInPath[path + "2"] = swp;
 			}
 
 			if(boxInPath.find(path + "3") == boxInPath.end()){
-				auto sep = scene->addRect(seChild, QPen(Qt::lightGray));
+				//qDebug() << seChild;
+				QRectF mapped = lonLatRectToMapRect(seChild);
+				logicBoxInPath[path + "3"] = seChild;
+
+				//auto sep = scene->addRect(seChild, QPen(Qt::lightGray));
+				auto sep = scene->addRect(mapped, QPen(Qt::lightGray));
 				boxInPath[path + "3"] = sep;
 			}
 
 			path += std::to_string(what_child);
 			
 			change_box(bounds, what_child);
-			what_child = direction(bounds, point);
+			what_child = direction(bounds, newPoint);
 
 			if(curDepth == this->depth){
 				if(lastDepthBoxesPath.find(path) == lastDepthBoxesPath.end()){
@@ -775,8 +829,10 @@ namespace qsbd {
 			if (dynamic_cast<QueryGraphicsItem *>(queries[i])->id == id){
 				QRectF itemQueryBound = queries[i]->sceneBoundingRect();
 
-				std::pair<double, double> itemTranslatedTopLeft = mapScreenToLonLat(itemQueryBound.topLeft());
-				std::pair<double, double> itemTranslatedBottomRight = mapScreenToLonLat(itemQueryBound.bottomRight());
+				//std::pair<double, double> itemTranslatedTopLeft = mapScreenToLonLat(itemQueryBound.topLeft());
+				//std::pair<double, double> itemTranslatedBottomRight = mapScreenToLonLat(itemQueryBound.bottomRight());
+				std::pair<double, double> itemTranslatedTopLeft = mapSceneToMapLonLat(itemQueryBound.topLeft());
+				std::pair<double, double> itemTranslatedBottomRight = mapSceneToMapLonLat(itemQueryBound.bottomRight());
 				
 				QPointF itemTopLeftMapped = QPointF(itemTranslatedTopLeft.first, itemTranslatedBottomRight.second);
 				QPointF itemBottomRightMapped = QPointF(itemTranslatedBottomRight.first,  itemTranslatedTopLeft.second);
@@ -790,6 +846,17 @@ namespace qsbd {
 
 	void View::setMapVisible(const bool& val){
 		mapBackground->setVisible(val);
+	}
+
+
+	QRectF View::lonLatRectToMapRect(const QRectF& bound){
+		std::pair<double, double> translatedTopLeft = mapLonLatToSceneBasedOnMap(bound.topLeft().x(), bound.topLeft().y());
+		std::pair<double, double> translatedBottomRight = mapLonLatToSceneBasedOnMap(bound.bottomRight().x(), bound.bottomRight().y());
+		QPointF topLeftMapped = QPointF(translatedTopLeft.first, translatedBottomRight.second);
+		QPointF bottomRightMapped = QPointF(translatedBottomRight.first, translatedTopLeft.second);
+		QRectF mapped = QRectF(topLeftMapped, bottomRightMapped);
+
+		return mapped;
 	}
 
 } // namespace qsbd
