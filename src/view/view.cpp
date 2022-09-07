@@ -130,6 +130,7 @@ namespace qsbd {
 				QPoint topLeft = QPoint(qMin(clickStart.x(), event->x()), qMin(clickStart.y(), event->y()));
 				QPoint bottomRight = QPoint(qMax(clickStart.x(), event->x()), qMax(clickStart.y(), event->y()));
 				QRectF query = QRectF(mapToScene(topLeft), mapToScene(bottomRight));
+				qDebug() << query;
 
 				// map screen points to lon / lat
 				std::pair<double, double> translatedTopLeft = mapSceneToMapLonLat(query.topLeft());
@@ -137,6 +138,7 @@ namespace qsbd {
 				QPointF topLeftMapped = QPointF(translatedTopLeft.first, translatedBottomRight.second);
 				QPointF bottomRightMapped = QPointF(translatedBottomRight.first, translatedTopLeft.second);
 				QRectF queryMapped = QRectF(topLeftMapped, bottomRightMapped);
+				qDebug() << queryMapped;
 
 				logicQueries.push_back(queryMapped);
 				
@@ -166,9 +168,11 @@ namespace qsbd {
 					QPointF itemTopLeftMapped = QPointF(itemTranslatedTopLeft.first, itemTranslatedBottomRight.second);
 					QPointF itemBottomRightMapped = QPointF(itemTranslatedBottomRight.first, itemTranslatedTopLeft.second);
 					QRectF itemQueryMapped = QRectF(itemTopLeftMapped, itemBottomRightMapped);
-
+					
 					if(it->isVisible()) emit queryRequest(itemQueryMapped);
 					emit quantileRequest(itemQueryMapped, it->id);
+					
+					// needs to save new logic positions for the querie
 				});
 
 				queries.push_back(item);
@@ -523,26 +527,27 @@ namespace qsbd {
 
 		assert(logicQueries.size() == queries.size());
 
-		for(size_t i = 0; i < logicQueries.size(); i++){
-			auto topLeftTranslated = this->mapLonLatToSceneBasedOnMap(logicQueries[i].topLeft().x(), logicQueries[i].topLeft().y());
-			auto bottomRightTranslated = this->mapLonLatToSceneBasedOnMap(logicQueries[i].bottomRight().x(), logicQueries[i].bottomRight().y());
+		/*for(size_t i = 0; i < logicQueries.size(); i++){
+			QRectF itemQueryBound = it->sceneBoundingRect();
 
-			QPointF topLeft(topLeftTranslated.first, topLeftTranslated.second);
-			QPointF bottomRight(bottomRightTranslated.first, bottomRightTranslated.second); 
+			std::pair<double, double> itemTranslatedTopLeft = mapSceneToMapLonLat(itemQueryBound.topLeft());
+			std::pair<double, double> itemTranslatedBottomRight = mapSceneToMapLonLat(itemQueryBound.bottomRight());
+			
+			QPointF itemTopLeftMapped = QPointF(itemTranslatedTopLeft.first, itemTranslatedBottomRight.second);
+			QPointF itemBottomRightMapped = QPointF(itemTranslatedBottomRight.first, itemTranslatedTopLeft.second);
+			QRectF itemQueryMapped = QRectF(itemTopLeftMapped, itemBottomRightMapped);
 
-			queries[i]->setRect(QRectF(topLeft, bottomRight));
-		}
+			QRectF mapped = lonLatRectToSceneMapRect(logicQueries[i]);
+
+			queries[i]->setRect( mapped);
+		}*/
 
 		assert(logicBoxInPath.size() == boxInPath.size());
 
 		for(auto& key : logicBoxInPath){
-			auto topLeftTranslated = this->mapLonLatToSceneBasedOnMap(key.second.topLeft().x(), key.second.topLeft().y());
-			auto bottomRightTranslated = this->mapLonLatToSceneBasedOnMap(key.second.bottomRight().x(), key.second.bottomRight().y());
+			QRectF mapped = lonLatRectToSceneMapRect(key.second);
 
-			QPointF topLeft(topLeftTranslated.first, topLeftTranslated.second);
-			QPointF bottomRight(bottomRightTranslated.first, bottomRightTranslated.second); 
-
-			boxInPath[key.first]->setRect(QRectF(topLeft, bottomRight));
+			boxInPath[key.first]->setRect(mapped);
 		}
 
 		show();
@@ -595,7 +600,7 @@ namespace qsbd {
 
 		if(boxInPath.find(path) == boxInPath.end()){
 			QRectF domainRect = QRectF(minXdomain, minYdomain, maxXdomain - minXdomain, maxYdomain - minYdomain);
-			QRectF mapped = lonLatRectToMapRect(domainRect);
+			QRectF mapped = lonLatRectToSceneMapRect(domainRect);
 			logicBoxInPath[path] = domainRect;
 
 			//auto rootPointer = scene->addRect(QRectF(0, 0, maxXScene, maxYScene), QPen(Qt::lightGray));
@@ -628,8 +633,7 @@ namespace qsbd {
 			seChild.setBottomRight(QPointF(bounds.bounds().second.x(), center_y));
 
 			if(boxInPath.find(path + "0") == boxInPath.end()){
-				//qDebug() << neChild;
-				QRectF mapped = lonLatRectToMapRect(neChild);
+				QRectF mapped = lonLatRectToSceneMapRect(neChild);
 				logicBoxInPath[path + "0"] = neChild;
 
 				//auto nep = scene->addRect(neChild, QPen(Qt::lightGray));
@@ -638,8 +642,7 @@ namespace qsbd {
 			}
 
 			if(boxInPath.find(path + "1") == boxInPath.end()){
-				//qDebug() << nwChild;
-				QRectF mapped = lonLatRectToMapRect(nwChild);
+				QRectF mapped = lonLatRectToSceneMapRect(nwChild);
 				logicBoxInPath[path + "1"] = nwChild;
 
 				//auto nwp = scene->addRect(nwChild, QPen(Qt::lightGray));
@@ -648,8 +651,7 @@ namespace qsbd {
 			}
 
 			if(boxInPath.find(path + "2") == boxInPath.end()){
-				//qDebug() << swChild;
-				QRectF mapped = lonLatRectToMapRect(swChild);
+				QRectF mapped = lonLatRectToSceneMapRect(swChild);
 				logicBoxInPath[path + "2"] = swChild;
 
 				//auto swp = scene->addRect(swChild, QPen(Qt::lightGray));
@@ -658,8 +660,7 @@ namespace qsbd {
 			}
 
 			if(boxInPath.find(path + "3") == boxInPath.end()){
-				//qDebug() << seChild;
-				QRectF mapped = lonLatRectToMapRect(seChild);
+				QRectF mapped = lonLatRectToSceneMapRect(seChild);
 				logicBoxInPath[path + "3"] = seChild;
 
 				//auto sep = scene->addRect(seChild, QPen(Qt::lightGray));
@@ -849,7 +850,7 @@ namespace qsbd {
 	}
 
 
-	QRectF View::lonLatRectToMapRect(const QRectF& bound){
+	QRectF View::lonLatRectToSceneMapRect(const QRectF& bound){
 		std::pair<double, double> translatedTopLeft = mapLonLatToSceneBasedOnMap(bound.topLeft().x(), bound.topLeft().y());
 		std::pair<double, double> translatedBottomRight = mapLonLatToSceneBasedOnMap(bound.bottomRight().x(), bound.bottomRight().y());
 		QPointF topLeftMapped = QPointF(translatedTopLeft.first, translatedBottomRight.second);

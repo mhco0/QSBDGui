@@ -119,6 +119,25 @@ namespace qsbd{
 		feedStreamByCsv();
 	}
 
+	void Controller::loadStreamByCsvWithMap(const QString& filename, const QString& lon_col, const QString& lat_col, const QString& value_col, const double& minIdxDomain, const double& maxIdxDomain, const int& depthIdxDomain){
+		io::CSVReader<3, io::trim_chars<' ', '\t'>, io::no_quote_escape<','>, io::throw_on_overflow, io::empty_line_comment> in(filename.toUtf8().constData());
+		in.read_header(io::ignore_extra_column, value_col.toUtf8().constData(), lon_col.toUtf8().constData(), lat_col.toUtf8().constData());
+		double lon, lat;
+		double valueToMap;
+		int value;
+
+		while(in.read_row(valueToMap, lon, lat)){
+			//cout << value << " " << lon << " " << lat << endl;
+
+			//std::cout << valueToMap << std::endl;
+			value = qsbd::map_coord(valueToMap, minIdxDomain, maxIdxDomain, depthIdxDomain);
+			//std::cout << " -> " << value << std::endl;
+			dataSource.push_back({value, {lon, lat}});
+		}
+
+		feedStreamByCsv();
+	}
+
 	void Controller::loadFileAndFeed(const QString& path){
 		using json = nlohmann::json;
 

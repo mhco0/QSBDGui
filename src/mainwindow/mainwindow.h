@@ -168,6 +168,12 @@ private:
 
 	bool freezed;
 
+	bool useDoubleOnIndex;
+
+	double m_minIdxDomain;
+	double m_maxIdxDomain;
+	int m_depthIdxDomain;
+
 	/**
 	* @brief Setup's the Ui on the main window
 	*/

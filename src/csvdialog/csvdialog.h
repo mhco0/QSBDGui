@@ -22,6 +22,7 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
+#include <utils/utils.h>
 
 class CsvDialog : public QDialog {
     Q_OBJECT
@@ -79,5 +80,7 @@ class CsvDialog : public QDialog {
     signals:
 
     void collumnsSelected(const QString lonCol, const QString latCol, const QString indexCol);
+
+    void collumnsSelectedWithMap(const QString lonCol, const QString latCol, const QString indexCol, const double& minDomain, const double& maxDomain, const int& depthDomain);
 };
 #endif

@@ -136,7 +136,7 @@ namespace qsbd {
 								  map_coord(region.topRight().x(), model_region.bounds().first.x(), model_region.bounds().second.x(), model_depth), \
 								  map_coord(region.bottomLeft().y(), model_region.bounds().first.y(), model_region.bounds().second.y(), model_depth));
 
-		std::cout << discrete_region << std::endl;
+		//std::cout << discrete_region << std::endl;
 		int rank = model->query(discrete_region, value); 
 
 		emit requestReady(rank);
@@ -149,6 +149,8 @@ namespace qsbd {
 								  map_coord(region.topRight().y(),model_region.bounds().first.y(), model_region.bounds().second.y(), model_depth), \
 								  map_coord(region.topRight().x(), model_region.bounds().first.x(), model_region.bounds().second.x(), model_depth), \
 								  map_coord(region.bottomLeft().y(), model_region.bounds().first.y(), model_region.bounds().second.y(), model_depth));
+		
+		std::cout << discrete_region << std::endl;
 		
 		std::vector<int> ret = model->quantiles(discrete_region, quants);
 		

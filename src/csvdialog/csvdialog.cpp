@@ -93,9 +93,15 @@ CsvDialog::CsvDialog(QWidget* parent): QDialog(parent) {
         qDebug() << latBox->currentText();
         qDebug() << indexBox->currentText();
 
-        /*if(indexType.isChecked()){
-            minVue
-        }*/ /// save here the function to discretize and save all double to int values than pass it to the feeding function
+        if(indexType->isChecked()){
+            double minDomainValue = minValue->value();
+            double maxDomainValue = maxValue->value();
+            int domainDepth = depth->value();
+
+            emit collumnsSelectedWithMap(lonBox->currentText(), latBox->currentText(), indexBox->currentText(), minDomainValue, maxDomainValue, domainDepth);
+            this->done(QDialog::Accepted);
+            return;
+        } /// save here the function to discretize and save all double to int values than pass it to the feeding function
 
 
         emit collumnsSelected(lonBox->currentText(), latBox->currentText(), indexBox->currentText());

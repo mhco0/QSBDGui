@@ -506,6 +506,12 @@ void MainWindow::setupUi(){
     setCentralWidget(window);
 
     freezed = false;
+
+    useDoubleOnIndex = false;
+
+    this->m_minIdxDomain = 0.0;
+    this->m_maxIdxDomain = 0.0;
+    this->m_depthIdxDomain = 0;
 }
 
 /*void MainWindow::setSketchConfigUiVisible(const bool& visible, const bool& addUniverse){
@@ -866,6 +872,16 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
                     startUpSimulation();
                 });
 
+                QObject::connect(&csvWindow, &CsvDialog::collumnsSelectedWithMap, this, [&](const QString lonCol, const QString latCol, const QString indexCol, const double& minIdxDomain, const double& maxIdxDomain, const int& depthIdxDomain){
+                    this->useDoubleOnIndex = true;
+                    this->m_minIdxDomain = minIdxDomain;
+                    this->m_maxIdxDomain = maxIdxDomain;
+                    this->m_depthIdxDomain = depthIdxDomain;
+
+                    controller.loadStreamByCsvWithMap(path, lonCol, latCol, indexCol, minIdxDomain, maxIdxDomain, depthIdxDomain);
+                    startUpSimulation();
+                });
+
                 //qDebug() << "here";
                 if(csvWindow.exec()) qDebug() << "ok";
             }else{
@@ -894,18 +910,37 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
 
         for(auto element = statisticalData->begin(); element != statisticalData->end(); element++){
             if((int) (element->key) == (queryId + 1)){
-                element->minimum = quants[0];
-                element->lowerQuartile = quants[1];
-                element->median = quants[2];
-                element->upperQuartile = quants[3];
-                element->maximum = quants[4];
+                if(not useDoubleOnIndex){
+                    element->minimum = quants[0];
+                    element->lowerQuartile = quants[1];
+                    element->median = quants[2];
+                    element->upperQuartile = quants[3];
+                    element->maximum = quants[4];
+                }else{
+                    element->minimum = qsbd::map_coord_inv(quants[0], this->m_minIdxDomain, this->m_maxIdxDomain, this->m_depthIdxDomain);
+                    element->lowerQuartile = qsbd::map_coord_inv(quants[1], this->m_minIdxDomain, this->m_maxIdxDomain, this->m_depthIdxDomain);
+                    element->median = qsbd::map_coord_inv(quants[2], this->m_minIdxDomain, this->m_maxIdxDomain, this->m_depthIdxDomain);
+                    element->upperQuartile = qsbd::map_coord_inv(quants[3], this->m_minIdxDomain, this->m_maxIdxDomain, this->m_depthIdxDomain);
+                    element->maximum = qsbd::map_coord_inv(quants[4], this->m_minIdxDomain, this->m_maxIdxDomain, this->m_depthIdxDomain);
+                }
+                
                 findData = true;
                 break;
+
             }
         }
 
+        /*if(useDoubleOnIndex){
+            for(int i = 0; i < 5; i++ ){
+                std::cout << quants[i] << " -> " << qsbd::map_coord_inv(quants[i], this->m_minIdxDomain, this->m_maxIdxDomain, this->m_depthIdxDomain) << std::endl;
+            }
+            std::cout << std::endl;
+        }*/
+
         if(not findData){
-            statistical->addData(queryId + 1, quants[0], quants[1], quants[2], quants[3], quants[4]);
+            if(not useDoubleOnIndex) statistical->addData(queryId + 1, quants[0], quants[1], quants[2], quants[3], quants[4]);
+            else statistical->addData(queryId + 1, qsbd::map_coord_inv(quants[0], this->m_minIdxDomain, this->m_maxIdxDomain, this->m_depthIdxDomain), qsbd::map_coord_inv(quants[1], this->m_minIdxDomain, this->m_maxIdxDomain, this->m_depthIdxDomain), qsbd::map_coord_inv(quants[2], this->m_minIdxDomain, this->m_maxIdxDomain, this->m_depthIdxDomain), qsbd::map_coord_inv(quants[3], this->m_minIdxDomain, this->m_maxIdxDomain, this->m_depthIdxDomain), qsbd::map_coord_inv(quants[4], this->m_minIdxDomain, this->m_maxIdxDomain, this->m_depthIdxDomain));
+
             if(queryId + 1 == 1) queryIdComboBox->addItem(tr("Red"));
             if(queryId + 1 == 2) queryIdComboBox->addItem(tr("Green"));
             if(queryId + 1 == 3) queryIdComboBox->addItem(tr("Blue"));

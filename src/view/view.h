@@ -57,7 +57,7 @@ namespace qsbd {
     protected:
         /**
         * @brief A method to handle a mouse release event
-        * @param event The mouse event 
+        * @param event The mouse event on the scene
         */
         virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
     public:
@@ -253,7 +253,7 @@ namespace qsbd {
         /**
          * @brief Converts some rect from the scene to map coordinates
         */
-        QRectF lonLatRectToMapRect(const QRectF& bound);
+        QRectF lonLatRectToSceneMapRect(const QRectF& bound);
     public:
 
         /**

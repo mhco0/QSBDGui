@@ -131,6 +131,16 @@ namespace qsbd {
 		 * @param value_col The collumn in the csv to extract the value to be indexed
 		*/
 		void loadStreamByCsv(const QString& filename, const QString& lon_col, const QString& lat_col, const QString& value_col);
+
+		/**
+		 * @brief Loads a certain csv file for the @sa loadStreamByCsv method
+		 * @param path The path for the file
+		 * @param lon_col The collumn in the csv to extract the logitude
+		 * @param lat_col The collumn in the csv to extract the latitude
+		 * @param value_col The collumn in the csv to extract the value to be indexed
+		 * ...
+		*/
+		void loadStreamByCsvWithMap(const QString& filename, const QString& lon_col, const QString& lat_col, const QString& value_col, const double& minIdxDomain, const double& maxIdxDomain, const int& depthIdxDomain);
 		
 	
 		/**
