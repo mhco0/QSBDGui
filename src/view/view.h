@@ -60,6 +60,7 @@ namespace qsbd {
         * @param event The mouse event on the scene
         */
         virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
+
     public:
         int id;
         QueryGraphicsItem(int myId);
@@ -245,10 +246,14 @@ namespace qsbd {
         void updateMapDomain();
 
         /**
-         * @brief This function updates the objects scene positions based on transformations on the map.
+         * @brief This function updates the static objects on scene positions based on transformations on the map.
         */
-        void updateSceneObjectsWithMap();
+        void updateSceneStaticObjectsWithMap();
 
+         /**
+         * @brief This function updates the dynamic objects on scene positions based on transformations on the map.
+        */
+        void updateSceneDynamicObjectsWithMap();
 
         /**
          * @brief Converts some rect from the scene to map coordinates

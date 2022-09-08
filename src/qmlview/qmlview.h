@@ -72,6 +72,8 @@ namespace qsbd {
 
         void addPoint(const double& lon, const double& lat);
 
+        void addRect(const double& topLeftLon, const double& topLeftLat, const double& bottomRightLon, const double& bottomRightLat);
+
         QRectF getVisibleRegion();
     public slots:
     signals:

@@ -69,6 +69,10 @@ namespace qsbd {
 		QMetaObject::invokeMethod(map, "addPoint", Q_ARG(QVariant, (double) lon), Q_ARG(QVariant, (double) lat));
 	}
 
+	void QmlView::addRect(const double& topLeftLon, const double& topLeftLat, const double& bottomRightLon, const double& bottomRightLat){
+		QMetaObject::invokeMethod(map, "addRect", Q_ARG(QVariant, (double) topLeftLon), Q_ARG(QVariant, (double) topLeftLat),  Q_ARG(QVariant, (double) bottomRightLon), Q_ARG(QVariant, (double) bottomRightLat));
+	}
+
 	QRectF QmlView::getVisibleRegion(){
 		
 		QVariant returnedValue;
