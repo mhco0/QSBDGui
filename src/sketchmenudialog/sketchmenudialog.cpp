@@ -127,7 +127,7 @@ SketchMenuDialog::SketchMenuDialog(QWidget* parent): QDialog(parent) {
     });
 
     QObject::connect(constructButton, &QAbstractButton::pressed, this, [&](){
-        qDebug() << "ok pressed";
+        //qDebug() << "ok pressed";
         
         emit constructQQ(minXResolution->value(), minYResolution->value(), xResolution->value(), yResolution->value(), depthBox->value(), sketchsMenu->currentText(), leafsOption->isChecked(), sketchError->value(), sketchUniverse->value());
 

@@ -181,7 +181,7 @@ namespace qsbd {
 								  map_coord(region.topRight().x(), model_region.bounds().first.x(), model_region.bounds().second.x(), model_depth), \
 								  map_coord(region.bottomLeft().y(), model_region.bounds().first.y(), model_region.bounds().second.y(), model_depth));
 		
-			std::cout << discrete_region << std::endl;
+			//std::cout << discrete_region << std::endl;
 
 			std::vector<double> ret = model->cdfs(discrete_region, values);
 

@@ -341,8 +341,8 @@ namespace qsbd {
 
 					QRectF itemQueryBound = it->sceneBoundingRect();
 
-					std::pair<double, double> itemTranslatedTopLeft = mapScreenToLonLat(itemQueryBound.topLeft());
-					std::pair<double, double> itemTranslatedBottomRight = mapScreenToLonLat(itemQueryBound.bottomRight());
+					std::pair<double, double> itemTranslatedTopLeft = mapSceneToMapLonLat(itemQueryBound.topLeft());
+					std::pair<double, double> itemTranslatedBottomRight = mapSceneToMapLonLat(itemQueryBound.bottomRight());
 					
 					QPointF itemTopLeftMapped = QPointF(itemTranslatedTopLeft.first, itemTranslatedBottomRight.second);
 					QPointF itemBottomRightMapped = QPointF(itemTranslatedBottomRight.first,  itemTranslatedTopLeft.second);

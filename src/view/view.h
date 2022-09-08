@@ -189,6 +189,7 @@ namespace qsbd {
          * @param lat The latitude parameter for the point.
          * @return A pair with the view points for the coordenate.
          * @warning This function only works if you use @sa View::setDomain first.
+         * @warning Deprecated. Use @sa View::mapLonLatToSceneBasedOnMap instead
         */
         std::pair<double, double> mapLonLatToScreen(double lon, double lat);
 
@@ -197,6 +198,7 @@ namespace qsbd {
          * @param point The point with the coordenate in the scene to be mapped.
          * @return A pair with the lon / lat coordenates (lon -> pair.first , lat -> pair.second).
          * @warning This function only works if you use @sa View::setDomain first.
+         * @warning Deprecated. Use @sa View::mapSceneToMapLonlat instead
         */
         std::pair<double, double> mapScreenToLonLat(const QPointF& point);
 
