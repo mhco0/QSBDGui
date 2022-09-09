@@ -123,6 +123,9 @@ namespace qsbd {
 		}
 
 		this->updateSceneStaticObjectsWithMap();
+		if(mapBackground->dragging()){
+			this->updateSceneDynamicObjectsWithMap();
+		}
 	}
 
 	void View::mouseReleaseEvent(QMouseEvent * event) {
@@ -164,6 +167,7 @@ namespace qsbd {
 				scene->addItem(item);
 
 				QObject::connect(item, &QueryGraphicsItem::dropEnd, this, [&](QueryGraphicsItem* it){
+
 					QRectF itemQueryBound = it->sceneBoundingRect();
 
 					std::pair<double, double> itemTranslatedTopLeft = mapSceneToMapLonLat(itemQueryBound.topLeft());

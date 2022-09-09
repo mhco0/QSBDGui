@@ -462,6 +462,7 @@ CMakeFiles/QSBDGuiTest.dir/QSBDGuiTest_autogen/mocs_compilation.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsItem
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsRectItem
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsScene
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsSceneMouseEvent
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsView
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QLabel
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QLayout
@@ -1060,6 +1061,7 @@ CMakeFiles/QSBDGuiTest.dir/main.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsItem
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsRectItem
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsScene
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsSceneMouseEvent
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsView
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QLabel
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QLayout
@@ -1416,12 +1418,14 @@ CMakeFiles/QSBDGuiTest.dir/src/controller/controller.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsItem
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsRectItem
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsScene
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsSceneMouseEvent
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsView
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QWidget
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractscrollarea.h
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qframe.h
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qgraphicsitem.h
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qgraphicsscene.h
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qgraphicssceneevent.h
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qgraphicsview.h
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qscrollarea.h
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qsizepolicy.h
@@ -2023,6 +2027,7 @@ CMakeFiles/QSBDGuiTest.dir/src/mainwindow/mainwindow.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsItem
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsRectItem
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsScene
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsSceneMouseEvent
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsView
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QLabel
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QLayout
@@ -3237,12 +3242,14 @@ CMakeFiles/QSBDGuiTest.dir/src/view/view.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsItem
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsRectItem
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsScene
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsSceneMouseEvent
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsView
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QWidget
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractscrollarea.h
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qframe.h
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qgraphicsitem.h
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qgraphicsscene.h
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qgraphicssceneevent.h
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qgraphicsview.h
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qscrollarea.h
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qsizepolicy.h

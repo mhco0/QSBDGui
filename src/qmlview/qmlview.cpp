@@ -10,12 +10,20 @@ namespace qsbd {
 	}
 	
 	void QmlView::mousePressEvent(QMouseEvent* event){
+		if (event->button() == Qt::LeftButton){
+			m_dragging = true;
+		}
 		QQuickWidget::mousePressEvent(event);
+		
 		//event->setAccepted(false);
 	}
 	
 	void QmlView::mouseReleaseEvent(QMouseEvent* event){
+		if (event->button() == Qt::LeftButton){
+			m_dragging = false;
+		}
 		QQuickWidget::mouseReleaseEvent(event);
+		
 		//event->setAccepted(false);
 	}
 
@@ -24,6 +32,7 @@ namespace qsbd {
 		this->setSource(QUrl::fromLocalFile("../assert/qml/mapStatic.qml"));
 		this->setResizeMode(QQuickWidget::SizeRootObjectToView);
 		this->setMouseTracking(false);
+		this->m_dragging = false;
 		//this->setMinimumSize(700, 480);
 
 		map = this->rootObject();
@@ -43,6 +52,10 @@ namespace qsbd {
 
 	void QmlView::setBounds(const double& minXRes, const double& minYRes, const double& maxXRes, const double& maxYRes){
 		QMetaObject::invokeMethod(map, "setBounds", Q_ARG(QVariant, minXRes), Q_ARG(QVariant, maxXRes), Q_ARG(QVariant, minYRes), Q_ARG(QVariant, maxYRes));
+	}
+
+	bool QmlView::dragging(){
+		return this->m_dragging;
 	}
 
 	void QmlView::pan(const int& dx, const int& dy){

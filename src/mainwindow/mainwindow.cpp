@@ -512,6 +512,12 @@ void MainWindow::setupUi(){
     this->m_minIdxDomain = 0.0;
     this->m_maxIdxDomain = 0.0;
     this->m_depthIdxDomain = 0;
+
+    for(size_t i = 0; i < 5; i++){
+        boxplotVisibles[i] = true;
+    }
+
+    statisticalBuffer = QCPDataContainer<QCPStatisticalBoxData>();
 }
 
 /*void MainWindow::setSketchConfigUiVisible(const bool& visible, const bool& addUniverse){
@@ -620,10 +626,16 @@ void MainWindow::reset(void){
     queryIdComboBox->addItem(tr("Show all"));
 
     statistical->data().data()->clear();
+    statisticalBuffer.clear();
+
+    for(size_t i = 0; i < 5; i++){
+        boxplotVisibles[i] = true;
+    }
+
     customPlot->rescaleAxes();
     customPlot->xAxis->scaleRange(2.0, customPlot->xAxis->range().center());
     customPlot->replot();
-    
+
     // needs to clear view here
     view.clear();
 }
@@ -842,7 +854,14 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
         queryIdComboBox->clear();
         queryIdComboBox->addItem(tr("Show all"));
         view.clearQueries();
+
         statistical->data().data()->clear();
+        statisticalBuffer.clear();
+
+        for(size_t i = 0; i < 5; i++){
+            boxplotVisibles[i] = true;
+        }
+
         customPlot->rescaleAxes();
         customPlot->xAxis->scaleRange(2.0, customPlot->xAxis->range().center());
         customPlot->replot();
@@ -858,6 +877,10 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
             rankQueryLabel->setVisible(false);
             valueForRankQuery->setVisible(false);
             rankQueryButton->setVisible(false);
+
+            for(size_t i = 0; i < 5; i++){
+                boxplotVisibles[i] = true;
+            }
         }else{
             int queryId = 0;
 
@@ -872,7 +895,26 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
             valueForRankQuery->setVisible(true);
             rankQueryButton->setVisible(true);
             view.showOnlyQueryId(queryId);
+
+            for(size_t i = 0; i < 5; i++){
+                if(i == queryId) boxplotVisibles[i] = true;
+                else boxplotVisibles[i] = false;
+            }
         }
+
+        statistical->data().data()->clear();
+
+        for(auto element = statisticalBuffer.begin(); element != statisticalBuffer.end(); element++){
+            int queryV = (int) (element->key) - 1;
+            
+            if(boxplotVisibles[queryV]){
+                statistical->addData((int) (queryV + 1), element->minimum, element->lowerQuartile, element->median, element->upperQuartile, element->maximum);
+            }
+        }
+
+        customPlot->rescaleAxes();
+        customPlot->xAxis->scaleRange(2.0, customPlot->xAxis->range().center());
+        customPlot->replot();
     });
 
     QObject::connect(freezeButton, &QAbstractButton::pressed, this, [&](){
@@ -971,7 +1013,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
         bool findData = false;
         auto statisticalData = statistical->data().data();
 
-        for(auto element = statisticalData->begin(); element != statisticalData->end(); element++){
+        for(auto element = statisticalBuffer.begin(); element != statisticalBuffer.end(); element++){
             if((int) (element->key) == (queryId + 1)){
                 if(not useDoubleOnIndex){
                     element->minimum = quants[0];
@@ -992,16 +1034,42 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
 
             }
         }
-        /*if(useDoubleOnIndex){
+
+        /*for(auto element = statisticalData->begin(); element != statisticalData->end(); element++){
+            if((int) (element->key) == (queryId + 1)){
+                if(not useDoubleOnIndex){
+                    element->minimum = quants[0];
+                    element->lowerQuartile = quants[1];
+                    element->median = quants[2];
+                    element->upperQuartile = quants[3];
+                    element->maximum = quants[4];
+                }else{
+                    element->minimum = qsbd::map_coord_inv(quants[0], this->m_minIdxDomain, this->m_maxIdxDomain, this->m_depthIdxDomain);
+                    element->lowerQuartile = qsbd::map_coord_inv(quants[1], this->m_minIdxDomain, this->m_maxIdxDomain, this->m_depthIdxDomain);
+                    element->median = qsbd::map_coord_inv(quants[2], this->m_minIdxDomain, this->m_maxIdxDomain, this->m_depthIdxDomain);
+                    element->upperQuartile = qsbd::map_coord_inv(quants[3], this->m_minIdxDomain, this->m_maxIdxDomain, this->m_depthIdxDomain);
+                    element->maximum = qsbd::map_coord_inv(quants[4], this->m_minIdxDomain, this->m_maxIdxDomain, this->m_depthIdxDomain);
+                }
+                
+                findData = true;
+                break;
+
+            }
+        }*/
+        if(useDoubleOnIndex){
             for(int i = 0; i < 5; i++ ){
                 std::cout << quants[i] << " -> " << qsbd::map_coord_inv(quants[i], this->m_minIdxDomain, this->m_maxIdxDomain, this->m_depthIdxDomain) << std::endl;
             }
             std::cout << std::endl;
-        }*/
+        }
 
         if(not findData){
-            if(not useDoubleOnIndex) statistical->addData(queryId + 1, quants[0], quants[1], quants[2], quants[3], quants[4]);
+            /*if(not useDoubleOnIndex) statistical->addData(queryId + 1, quants[0], quants[1], quants[2], quants[3], quants[4]);
             else statistical->addData(queryId + 1, qsbd::map_coord_inv(quants[0], this->m_minIdxDomain, this->m_maxIdxDomain, this->m_depthIdxDomain), qsbd::map_coord_inv(quants[1], this->m_minIdxDomain, this->m_maxIdxDomain, this->m_depthIdxDomain), qsbd::map_coord_inv(quants[2], this->m_minIdxDomain, this->m_maxIdxDomain, this->m_depthIdxDomain), qsbd::map_coord_inv(quants[3], this->m_minIdxDomain, this->m_maxIdxDomain, this->m_depthIdxDomain), qsbd::map_coord_inv(quants[4], this->m_minIdxDomain, this->m_maxIdxDomain, this->m_depthIdxDomain));
+            */
+
+            if(not useDoubleOnIndex) statisticalBuffer.add(QCPStatisticalBoxData(queryId + 1, quants[0], quants[1], quants[2], quants[3], quants[4]));
+            else statisticalBuffer.add(QCPStatisticalBoxData(queryId + 1, qsbd::map_coord_inv(quants[0], this->m_minIdxDomain, this->m_maxIdxDomain, this->m_depthIdxDomain), qsbd::map_coord_inv(quants[1], this->m_minIdxDomain, this->m_maxIdxDomain, this->m_depthIdxDomain), qsbd::map_coord_inv(quants[2], this->m_minIdxDomain, this->m_maxIdxDomain, this->m_depthIdxDomain), qsbd::map_coord_inv(quants[3], this->m_minIdxDomain, this->m_maxIdxDomain, this->m_depthIdxDomain), qsbd::map_coord_inv(quants[4], this->m_minIdxDomain, this->m_maxIdxDomain, this->m_depthIdxDomain)));
 
             if(queryId + 1 == 1) queryIdComboBox->addItem(tr("Red"));
             if(queryId + 1 == 2) queryIdComboBox->addItem(tr("Green"));
@@ -1009,6 +1077,17 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
             if(queryId + 1 == 4) queryIdComboBox->addItem(tr("Magenta"));
             if(queryId + 1 == 5) queryIdComboBox->addItem(tr("Black"));
         }
+
+        statisticalData->clear();
+
+        for(auto element = statisticalBuffer.begin(); element != statisticalBuffer.end(); element++){
+            int queryV = (int) (element->key) - 1;
+            
+            if(boxplotVisibles[queryV]){
+                statistical->addData((int) (queryV + 1), element->minimum, element->lowerQuartile, element->median, element->upperQuartile, element->maximum);
+            }
+        }
+
         customPlot->rescaleAxes();
         customPlot->xAxis->scaleRange(2.0, customPlot->xAxis->range().center());
         customPlot->replot();
@@ -1037,7 +1116,8 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
         //qDebug() << tr("Loading... [%1, %2, %3, %4]").arg(region.bottomLeft().x()).arg(region.topRight().y()).arg(region.topRight().x()).arg(region.bottomLeft().y());
         //sketchInfo->setVisible(true);
         sketchInfo->setText(tr("Loading... [%1, %2, %3, %4]").arg(region.bottomLeft().x()).arg(region.topRight().y()).arg(region.topRight().x()).arg(region.bottomLeft().y()));
-        model.onQuery(region, valueForRankQuery->value());
+        if(not useDoubleOnIndex) model.onQuery(region, valueForRankQuery->value());
+        else model.onQuery(region, qsbd::map_coord(valueForRankQuery->value(), this->m_minIdxDomain, this->m_maxIdxDomain, this->m_depthIdxDomain));
     });
 
     QObject::connect(&view, &qsbd::View::quantileRequest, this, [&](const QRectF& region, const int& queryId){

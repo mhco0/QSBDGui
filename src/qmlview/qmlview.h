@@ -25,6 +25,7 @@ namespace qsbd {
         Q_OBJECT
     protected:
         QQuickItem* map;
+        bool m_dragging;
     private:
 
         /**
@@ -67,6 +68,8 @@ namespace qsbd {
         void setZoom(const double& zoom);
 
         double getZoom();
+
+        bool dragging();
 
         void centerOn(const double& lon, const double& lat);
 

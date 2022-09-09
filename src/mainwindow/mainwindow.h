@@ -174,6 +174,10 @@ private:
 	double m_maxIdxDomain;
 	int m_depthIdxDomain;
 
+	bool boxplotVisibles[5];
+
+	QCPDataContainer<QCPStatisticalBoxData> statisticalBuffer;
+
 	/**
 	* @brief Setup's the Ui on the main window
 	*/
