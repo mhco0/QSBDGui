@@ -38,6 +38,11 @@ namespace qsbd{
 				myModel->onUpdate(point<double>(dataSource[i].second.first, dataSource[i].second.second), dataSource[i].first);
 				currentWindow++;
 			}
+
+			if(currentWindow >= dataSource.size()){
+				feedTimer->disconnect();
+				emit feedFinish();
+			}
 		});
 
 	}
@@ -55,6 +60,11 @@ namespace qsbd{
 				myModel->onUpdate(point<double>(dataSourceWithWeight[i].second.first, dataSourceWithWeight[i].second.second), dataSourceWithWeight[i].first.first, dataSourceWithWeight[i].first.second);
 				currentWindow++;
 			}
+
+			if(currentWindow >= dataSourceWithWeight.size()){
+				feedTimer->disconnect();
+				emit feedFinish();
+			}
 		});
 	}
 	
@@ -70,6 +80,11 @@ namespace qsbd{
 				myView->addPoint(QPointF(dataSource[i].second.first, dataSource[i].second.second), dataSource[i].first);
 				myModel->onUpdate(point<double>(dataSource[i].second.first, dataSource[i].second.second), dataSource[i].first);
 				currentWindow++;
+			}
+
+			if(currentWindow >= dataSource.size()){
+				feedTimer->disconnect();
+				emit feedFinish();
 			}
 		});
 	}
@@ -87,6 +102,11 @@ namespace qsbd{
 				myModel->onUpdate(point<double>(dataSourceWithWeight[i].second.first, dataSourceWithWeight[i].second.second), dataSourceWithWeight[i].first.first, dataSourceWithWeight[i].first.second);
 				currentWindow++;
 			}
+
+			if(currentWindow >= dataSourceWithWeight.size()){
+				feedTimer->disconnect();
+				emit feedFinish();
+			}
 		});
 	}
 
@@ -102,6 +122,11 @@ namespace qsbd{
 				myModel->onUpdate(point<double>(dataSource[i].second.first, dataSource[i].second.second), dataSource[i].first);
 				currentWindow++;
 			}
+
+			if(currentWindow >= dataSource.size()){
+				feedTimer->disconnect();
+				emit feedFinish();
+			}
 		});
 	}
 
@@ -110,6 +135,8 @@ namespace qsbd{
 		in.read_header(io::ignore_extra_column, value_col.toUtf8().constData(), lon_col.toUtf8().constData(), lat_col.toUtf8().constData());
 		double lon, lat;
 		int value;
+
+		dataSource.clear();
 		
 		while(in.read_row(value, lon, lat)){
 			//cout << value << " " << lon << " " << lat << endl;
@@ -125,6 +152,8 @@ namespace qsbd{
 		double lon, lat;
 		double valueToMap;
 		int value;
+
+		dataSource.clear();
 
 		while(in.read_row(valueToMap, lon, lat)){
 			//cout << value << " " << lon << " " << lat << endl;

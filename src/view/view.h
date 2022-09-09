@@ -355,10 +355,19 @@ namespace qsbd {
         void showAllQueries();
 
         /**
+         * @brief This method sets all query regions as invisibles
+        */
+        void hideAllQueries();
+
+        /**
          * @brief This method clear all query regions from the scene
         */
         void clearQueries();
 
+        /**
+         * @brief Clears all view elements
+        */
+        void clear();
 
         /**
          * @brief This function makes a call for some rank and quantile in a query region with @p id in a scene

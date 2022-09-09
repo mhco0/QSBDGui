@@ -566,6 +566,68 @@ void MainWindow::hideFeedUi(){
     simulationContainer->removeItem(simulationContainer->itemAt(simulationContainer->count() - 1));
 }
 
+void MainWindow::showFeedUi(){
+    feedingMethod->setVisible(true);
+    fSizeLabel->setVisible(true);
+    fSize->setVisible(true);
+    fMaxValueLabel->setVisible(true);
+    fMaxValue->setVisible(true);
+    fMaxWeightLabel->setVisible(true);
+    fMaxWeight->setVisible(true);
+    fCitiesLabel->setVisible(true);
+    fCities->setVisible(true);
+    fMaxRadiusLabel->setVisible(true);
+    fMaxRadius->setVisible(true);
+    bTimeLabel->setVisible(true);
+    bTime->setVisible(true);
+    bItemQuantLabel->setVisible(true);
+    bItemQuant->setVisible(true);
+    loadStreamMethodButton->setVisible(true);
+    simulationButton->setVisible(true);
+    // adding here on loop
+    simulationContainer->addStretch();
+}
+
+void MainWindow::reset(void){
+    this->showFeedUi();
+    this->configFeedUi(feedingMethod->currentText());
+    controlTab->setVisible(false);
+    topDock->setVisible(false);
+    freezeButton->setVisible(false);
+    bTimeLabel->setVisible(false);
+    bTime->setVisible(false);
+    bottomDock->setVisible(false);
+    drawBoundsLabel->setVisible(false);
+    drawBounds->setVisible(false);
+    queryIdLabel->setVisible(false);
+    queryIdComboBox->setVisible(false);
+    customPlot->setVisible(false);
+
+    freezed = false;
+
+    useDoubleOnIndex = false;
+
+    this->m_minIdxDomain = 0.0;
+    this->m_maxIdxDomain = 0.0;
+    this->m_depthIdxDomain = 0;
+
+    depthDraw->setValue(0);
+    drawBounds->setCheckState(Qt::Unchecked);
+    controlTab->setCurrentIndex(0);
+
+    sketchInfo->setVisible(false);
+    queryIdComboBox->clear();
+    queryIdComboBox->addItem(tr("Show all"));
+
+    statistical->data().data()->clear();
+    customPlot->rescaleAxes();
+    customPlot->xAxis->scaleRange(2.0, customPlot->xAxis->range().center());
+    customPlot->replot();
+    
+    // needs to clear view here
+    view.clear();
+}
+
 void MainWindow::startUpSimulation(void){
     controller.setTimeInterval(bTime->value());
     controller.setWindowSize(bItemQuant->value());
@@ -718,9 +780,10 @@ void MainWindow::onNewSimulation(){
         if(not view.isEnabled()){
             view.setEnabled(true);
             view.setMapVisible(true);
-            view.setDomain(minXRes, minYRes, xRes, yRes);
-            view.setDepth(depth);
         }
+
+        view.setDomain(minXRes, minYRes, xRes, yRes);
+        view.setDepth(depth);
 
         setupFeedUi(sketch);
     });
@@ -929,7 +992,6 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
 
             }
         }
-
         /*if(useDoubleOnIndex){
             for(int i = 0; i < 5; i++ ){
                 std::cout << quants[i] << " -> " << qsbd::map_coord_inv(quants[i], this->m_minIdxDomain, this->m_maxIdxDomain, this->m_depthIdxDomain) << std::endl;
@@ -1027,8 +1089,6 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
             kClusterLabel->setText(tr("Clusters:"));
             view.setClusteringMethod(qsbd::ClusterMethod::KMedoids);
         }
-
-
     });
 
     QObject::connect(controlTab, &QTabWidget::currentChanged, this, [&](int index){
@@ -1041,6 +1101,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
                 kClusterLabel->setVisible(true);
                 kCluster->setVisible(true);
                 kClusterMethod->setVisible(true);
+                view.hideAllQueries();
                 view.setDrawingMode(qsbd::ViewDrawMode::KS);
             }
             
@@ -1051,6 +1112,8 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
                 kClusterLabel->setVisible(false);
                 kCluster->setVisible(false);
                 kClusterMethod->setVisible(false);
+                queryIdComboBox->setCurrentText(tr("Show all"));
+                view.showAllQueries();
                 view.setKCluster(kCluster->value());
                 view.setDepthView(depthDraw->value());
                 view.setDrawingMode(qsbd::ViewDrawMode::QuadtreeDepth);
@@ -1058,53 +1121,9 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
         }
     });
 
-    /*QObject::connect(drawModes, &QComboBox::currentTextChanged, this, [&](){
-        QString method = drawModes->currentText();
-        
-        if(method == tr("Raw data")){
-            depthDrawLabel->setVisible(false);
-            depthDraw->setVisible(false);
-            kClusterLabel->setVisible(false);
-            kCluster->setVisible(false);
-            kClusterMethod->setVisible(false);
-            view.setDrawingMode(qsbd::ViewDrawMode::OnlyPoints);
-        }else if(method == tr("Raw data with Bounds")){
-            depthDrawLabel->setVisible(true);
-            depthDraw->setVisible(true);
-            kClusterLabel->setVisible(false);
-            kCluster->setVisible(false);
-            kClusterMethod->setVisible(false);
-            view.setKCluster(kCluster->value());
-            view.setDepthView(depthDraw->value());
-            view.setDrawingMode(qsbd::ViewDrawMode::QuadtreeDepth);
-        }else if(method == tr("Heat map")){
-            depthDraw->setVisible(false);
-            kClusterLabel->setVisible(false);
-            kCluster->setVisible(false);
-            kClusterMethod->setVisible(false);
-            view.setDrawingMode(qsbd::ViewDrawMode::Heatmap);
-        }else if(method == tr("KS")){
-            depthDrawLabel->setVisible(true);
-            depthDraw->setVisible(true);
-            kClusterLabel->setVisible(true);
-            kCluster->setVisible(true);
-            kClusterMethod->setVisible(true);
-            view.setDrawingMode(qsbd::ViewDrawMode::KS);
-        }else{
-            depthDrawLabel->setVisible(false);
-            depthDraw->setVisible(false);
-            kClusterLabel->setVisible(false);
-            kCluster->setVisible(false);
-            kClusterMethod->setVisible(false);
-            view.setKCluster(kCluster->value());
-            view.setDepthView(depthDraw->value());
-            view.setDrawingMode(qsbd::ViewDrawMode::OnlyPoints);
-        }
-
-    });*/
-
     QObject::connect(&view, &qsbd::View::cdfsRequest, &model, &qsbd::Model::onCdfsQueries);
     QObject::connect(&model, &qsbd::Model::cdfsReady, &view, &qsbd::View::onCdfsReady);
+    QObject::connect(&controller, &qsbd::Controller::feedFinish, this, &MainWindow::reset);
 }
 
 MainWindow::~MainWindow(){

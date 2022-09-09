@@ -844,6 +844,13 @@ namespace qsbd {
 		showingAllQueries = true;
 	}
 
+	void View::hideAllQueries(){
+		for(size_t i = 0; i < queries.size(); i++){
+			queries[i]->setVisible(false);
+		}
+		showingAllQueries = false;
+	}
+
 	void View::clearQueries(){
 		for(size_t i = 0; i < queries.size(); i++){
 			scene->removeItem(queries[i]);
@@ -854,6 +861,35 @@ namespace qsbd {
 		queries.clear();
 		logicQueries.clear();
 		queryCurId = 0;
+	}
+
+	void View::clear(){
+		clearQueries();
+
+		for(size_t i = 0; i < points.size(); i++){
+			scene->removeItem(points[i]);
+
+			delete points[i];
+		}
+
+		points.clear();
+		logicPoints.clear();
+		minValueSeen = 0x3f3f3f3f;
+		maxValueSeen = -0x3f3f3f3f;
+
+		for(auto& it : boxInPath){
+			scene->removeItem(it.second);
+
+			delete it.second;
+		}
+
+		boxInPath.clear();
+		logicBoxInPath.clear();
+		lastDepthBoxesPath.clear();
+		cdfsRegions.clear();
+		
+		drawMode = ViewDrawMode::OnlyPoints;
+		depthView = 0;
 	}
 
 	void View::setRankAndQuantileQueryRequest(const int& id){

@@ -197,6 +197,11 @@ private:
 	void hideFeedUi();
 
 	/**
+	 * @brief Show from ui alls widgets relateds with the feed for the model
+	*/
+	void showFeedUi();
+
+	/**
 	 * @brief Setup's the Feeding Form by the sketch used to construct the model
 	 * @param sketch A Qt string to setup the Feeding Form UI
 	*/
@@ -222,6 +227,11 @@ private:
 	 * @brief Quits the application
 	*/
 	void onQuit();
+
+	/**
+	 * @brief This function reset the object behavior for a new simulation
+	*/
+	void reset();
 public:
 
 	/**

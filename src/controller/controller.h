@@ -60,6 +60,12 @@ namespace qsbd {
 		*/
 		explicit Controller(View& viewTrack, Model& modelTrack, QObject* parent = nullptr);
 
+		signals:
+		/**
+		 * @brief This function sends a signal when the model and the view finish.
+		*/
+		void feedFinish(void);
+
 		public slots:
 
 		/**
