@@ -59,6 +59,12 @@ void MainWindow::setupUi(){
     drawBoundsLabel = new QLabel("Show Grid");
     drawBoundsLabel->setVisible(false);
 
+    pointsVisibilityLabel = new QLabel("Draw Points");
+    pointsVisibilityLabel->setVisible(false);
+	
+    pointsVisibility = new QCheckBox();
+    pointsVisibility->setCheckState(Qt::Checked);
+
     depthDrawLabel = new QLabel("Depth:");
     depthDrawLabel->setVisible(false);
 
@@ -78,6 +84,10 @@ void MainWindow::setupUi(){
     bottomContainer->setAlignment(depthDrawLabel, Qt::AlignCenter);
     bottomContainer->addWidget(depthDraw);
     bottomContainer->setAlignment(depthDraw, Qt::AlignCenter);
+    bottomContainer->addWidget(pointsVisibility);
+    bottomContainer->setAlignment(pointsVisibility, Qt::AlignCenter);
+    bottomContainer->addWidget(pointsVisibilityLabel);
+    bottomContainer->setAlignment(pointsVisibilityLabel, Qt::AlignCenter);
     bottomContainer->addStretch();
 
     QWidget* bottomWidget = new QWidget();
@@ -605,6 +615,8 @@ void MainWindow::reset(void){
     bottomDock->setVisible(false);
     drawBoundsLabel->setVisible(false);
     drawBounds->setVisible(false);
+    pointsVisibilityLabel->setVisible(false);
+    pointsVisibility->setVisible(false);
     queryIdLabel->setVisible(false);
     queryIdComboBox->setVisible(false);
     customPlot->setVisible(false);
@@ -678,6 +690,17 @@ void MainWindow::startUpSimulation(void){
             depthDrawLabel->setVisible(false);
             depthDraw->setVisible(false);
             view.setDrawingMode(qsbd::ViewDrawMode::OnlyPoints);
+        }
+    });
+
+    pointsVisibilityLabel->setVisible(true);
+    pointsVisibility->setVisible(true);
+
+    QObject::connect(pointsVisibility, &QCheckBox::stateChanged, this, [&](int state){
+        if(state == Qt::Checked){
+            view.setPointsVisibility(true);
+        }else{
+            view.setPointsVisibility(false);
         }
     });
 

@@ -51,6 +51,7 @@ namespace qsbd {
 		drawMode = ViewDrawMode::OnlyPoints;
 		queryCurId = 0;
 		dragging = false;
+		visiblePoints = true;
 		showingAllQueries = true;
 		queryRegion = nullptr;
 		queriesColors[0] = Qt::red;
@@ -250,7 +251,7 @@ namespace qsbd {
 		switch(drawMode){
 			case ViewDrawMode::OnlyPoints:
 				for(auto& point : points){
-					point->setVisible(true);
+					point->setVisible(visiblePoints);
 				}
 
 				for(auto& it : boxInPath){
@@ -260,7 +261,7 @@ namespace qsbd {
 			break;
 			case ViewDrawMode::QuadtreeDepth:
 				for(auto& point : points){
-					point->setVisible(true);
+					point->setVisible(visiblePoints);
 				}
 				
 				for(auto& it : boxInPath){
@@ -274,7 +275,7 @@ namespace qsbd {
 			break;
 			case ViewDrawMode::Heatmap:
 				for(auto& point : points){
-					point->setVisible(false);
+					point->setVisible(visiblePoints);
 				}
 
 				for(auto& it : boxInPath){
@@ -321,7 +322,7 @@ namespace qsbd {
 			break;
 			case ViewDrawMode::KS:{
 				for(auto& point : points){
-					point->setVisible(true);
+					point->setVisible(visiblePoints);
 				}
 
 				for(auto& it : boxInPath){
@@ -918,6 +919,10 @@ namespace qsbd {
 
 	void View::setMapVisible(const bool& val){
 		mapBackground->setVisible(val);
+	}
+
+	void View::setPointsVisibility(const bool& val){
+		visiblePoints = val;
 	}
 
 

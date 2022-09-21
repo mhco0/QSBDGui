@@ -160,6 +160,8 @@ private:
 
 	QLabel* drawBoundsLabel;
 	QCheckBox* drawBounds;
+	QLabel* pointsVisibilityLabel;
+	QCheckBox* pointsVisibility;
 	QLabel* depthDrawLabel;
 	QSpinBox* depthDraw;
 	

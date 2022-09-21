@@ -133,6 +133,7 @@ namespace qsbd {
         int queryCurId;
         bool dragging;
         bool showingAllQueries;
+        bool visiblePoints;
         double maxXScene;
         double maxYScene;
         double minXdomain;
@@ -378,8 +379,15 @@ namespace qsbd {
 
         /**
          * @brief This function set if the map is visible or not for the user
+         * @param val The value for the map visibility
         */
         void setMapVisible(const bool& val);
+
+        /**
+         * @brief This function set the points visibility in the map
+         * @param val The value for the points visibility
+        */
+        void setPointsVisibility(const bool& val);
 
     signals:
 
