@@ -52,8 +52,8 @@ void SketchMenuDialog::setupUi(){
     depthLabel->setText("Depth: ");
     
     depthBox = new QSpinBox();
-    depthBox->setRange(0, 10);
-    depthBox->setValue(3);
+    depthBox->setRange(0, 15);
+    depthBox->setValue(10);
 
     leafsOption = new QCheckBox("Only use leafs");
 

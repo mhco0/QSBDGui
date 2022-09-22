@@ -120,6 +120,7 @@ namespace qsbd {
         //std::vector<std::pair<QGraphicsRectItem*, QGraphicsRectItem*>> ksRegions;
         std::vector<QGraphicsRectItem*> cdfsRegions;
         std::vector<int> centroids;
+        //std::vector<int> last_clustering;
         int depth;
         int depthView;
         int kCluster;

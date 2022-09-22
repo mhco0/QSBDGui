@@ -492,6 +492,8 @@ namespace qsbd {
 
 	void View::setClusteringMethod(const ClusterMethod& option){
 		clusterMethod = option;
+		centroids.clear();
+		//last_clustering.clear();
 		this->updateBasedOnDrawMode();
 	}
 
@@ -586,12 +588,15 @@ namespace qsbd {
 
 	void View::setDepthView(const int& dpView){
 		depthView = std::min(dpView, depth);
+		centroids.clear();
+		//last_clustering.clear();
 		this->updateBasedOnDrawMode();
 	}
 
 	void View::setKCluster(const int& kc){
 		kCluster = std::min(10, std::max(1, kc));
 		centroids.clear();
+		//last_clustering.clear();
 		this->updateBasedOnDrawMode();
 	}
 
@@ -795,9 +800,8 @@ namespace qsbd {
 				//std::cout << "here" << std::endl; 
 				cluster.run(cPoints);
 
-				
 				for(size_t i = 0; i < cPoints.size(); i++){
-					region_clusters.emplace_back(cPoints[i].getCluster() + 1);
+					region_clusters.emplace_back(cPoints[i].getCluster());
 				}
 			}
 			break;
@@ -815,18 +819,82 @@ namespace qsbd {
 
 		//assert(cdfs.size() == region_clusters.size());
 
-		for(size_t i = 0; i < cdfs.size(); i++){
-			assert(region_clusters[i] >= 0 && region_clusters[i] < 10);
-			
+		//if(last_clustering.size() == 0){
+			//last_clustering.resize(region_clusters.size(), 0);
 
-			//ksRegions[i].first->setBrush(QBrush(cathegorys[distribution(generator)]));
-			//ksRegions[i].second->setBrush(QBrush(cathegorys[distribution(generator)]));
-			//ksRegions[i].first->setVisible(true);
-			//ksRegions[i].second->setVisible(true);
+			for(size_t i = 0; i < cdfs.size(); i++){
+				//last_clustering[i] = region_clusters[i];
 
-			cdfsRegions[i]->setBrush(QBrush(cathegorys[region_clusters[i]]));
-			cdfsRegions[i]->setVisible(true);
-		}
+				assert(region_clusters[i] >= 0 && region_clusters[i] < 10);
+				
+
+				//ksRegions[i].first->setBrush(QBrush(cathegorys[distribution(generator)]));
+				//ksRegions[i].second->setBrush(QBrush(cathegorys[distribution(generator)]));
+				//ksRegions[i].first->setVisible(true);
+				//ksRegions[i].second->setVisible(true);
+
+				cdfsRegions[i]->setBrush(QBrush(cathegorys[region_clusters[i]]));
+				cdfsRegions[i]->setVisible(true);
+			}
+		/*}else{
+			std::cout << "8--D" << std::endl;
+			std::cout << region_clusters.size() << " " << last_clustering.size() << " " << cdfs.size() << std::endl;
+
+
+			for(auto& it : region_clusters){
+				std::cout << it << " ";
+			}
+			std::cout << std::endl;
+
+			for(auto& it : last_clustering){
+				std::cout << it << " ";
+			}
+			std::cout << std::endl;
+
+			std::vector<int> last_clustering_frq;
+			std::vector<int> clustering_frq;
+			std::map<int, int> cluster_map;
+			std::map<int, std::vector<int>> possible_choices;
+
+			last_clustering_frq.resize(last_clustering.size(), 0);
+			clustering_frq.resize(region_clusters.size(), 0);
+
+			for(size_t i = 0; i < region_clusters.size(); i++){
+				last_clustering_frq[last_clustering[i]] += 1;
+				clustering_frq[region_clusters[i]] += 1;
+				possible_choices[region_clusters[i]].emplace_back(last_clustering[i]);
+			}
+
+			for(size_t i = 0; i < region_clusters.size(); i++){
+				if(last_clustering_frq[last_clustering[i]] == clustering_frq[region_clusters[i]]){
+					cluster_map[region_clusters[i]] = last_clustering[i];
+				}else{
+					int probable_cluster = region_clusters[i];
+					int max_frq = 0;
+					for(auto& it: possible_choices[region_clusters[i]]){
+						if(last_clustering_frq[it] > max_frq){
+							max_frq = last_clustering_frq[it];
+							probable_cluster = it;
+						}
+					}
+				}
+			}
+
+			for(size_t i = 0; i < cdfs.size(); i++){
+				last_clustering[i] = region_clusters[i];
+				assert(region_clusters[i] >= 0 && region_clusters[i] < 10);
+				
+
+				//ksRegions[i].first->setBrush(QBrush(cathegorys[distribution(generator)]));
+				//ksRegions[i].second->setBrush(QBrush(cathegorys[distribution(generator)]));
+				//ksRegions[i].first->setVisible(true);
+				//ksRegions[i].second->setVisible(true);
+
+				cdfsRegions[i]->setBrush(QBrush(cathegorys[cluster_map[region_clusters[i]]]));
+				cdfsRegions[i]->setVisible(true);
+			}
+		
+		}*/
 
 		show();
 	}
