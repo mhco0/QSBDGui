@@ -200,6 +200,24 @@ namespace qsbd {
 		return cdfs;
 	}
 
+	std::vector<int> Model::onQuantileEstimationQueries(const std::vector<QRectF>& regions, const double& quantile){
+		std::vector<int> quantiles;
+
+		for(auto& region: regions){
+			aabb<int> discrete_region(map_coord(region.bottomLeft().x(), model_region.bounds().first.x(), model_region.bounds().second.x(), model_depth), \
+								  map_coord(region.topRight().y(),model_region.bounds().first.y(), model_region.bounds().second.y(), model_depth), \
+								  map_coord(region.topRight().x(), model_region.bounds().first.x(), model_region.bounds().second.x(), model_depth), \
+								  map_coord(region.bottomLeft().y(), model_region.bounds().first.y(), model_region.bounds().second.y(), model_depth));
+
+			std::vector<int> ret = model->quantiles(discrete_region, {quantile});
+			quantiles.emplace_back(ret[0]);
+		}
+
+		emit quatileEstimationReady(quantiles);
+
+		return quantiles;
+	}
+
 	std::vector<double> Model::onKsRequest(const std::vector<std::pair<QRectF, QRectF>>& regionPairs, const std::vector<int>& values){
 		std::vector<double> ret;
 

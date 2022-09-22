@@ -65,6 +65,12 @@ void MainWindow::setupUi(){
     pointsVisibility = new QCheckBox();
     pointsVisibility->setCheckState(Qt::Checked);
 
+    medianViewLabel = new QLabel("Median on boxes");
+    medianViewLabel->setVisible(false);
+	
+    medianView = new QCheckBox();
+    medianView->setCheckState(Qt::Unchecked);
+
     depthDrawLabel = new QLabel("Depth:");
     depthDrawLabel->setVisible(false);
 
@@ -88,6 +94,10 @@ void MainWindow::setupUi(){
     bottomContainer->setAlignment(pointsVisibility, Qt::AlignCenter);
     bottomContainer->addWidget(pointsVisibilityLabel);
     bottomContainer->setAlignment(pointsVisibilityLabel, Qt::AlignCenter);
+    bottomContainer->addWidget(medianView);
+    bottomContainer->setAlignment(medianView, Qt::AlignCenter);
+    bottomContainer->addWidget(medianViewLabel);
+    bottomContainer->setAlignment(medianViewLabel, Qt::AlignCenter);
     bottomContainer->addStretch();
 
     QWidget* bottomWidget = new QWidget();
@@ -617,6 +627,8 @@ void MainWindow::reset(void){
     drawBounds->setVisible(false);
     pointsVisibilityLabel->setVisible(false);
     pointsVisibility->setVisible(false);
+    medianViewLabel->setVisible(false);
+    medianView->setVisible(false);
     queryIdLabel->setVisible(false);
     queryIdComboBox->setVisible(false);
     customPlot->setVisible(false);
@@ -687,6 +699,7 @@ void MainWindow::startUpSimulation(void){
             view.setDepthView(depthDraw->value());
             view.setDrawingMode(qsbd::ViewDrawMode::QuadtreeDepth);
         }else{
+            medianView->setCheckState(Qt::Unchecked);
             depthDrawLabel->setVisible(false);
             depthDraw->setVisible(false);
             view.setDrawingMode(qsbd::ViewDrawMode::OnlyPoints);
@@ -695,12 +708,29 @@ void MainWindow::startUpSimulation(void){
 
     pointsVisibilityLabel->setVisible(true);
     pointsVisibility->setVisible(true);
+    medianViewLabel->setVisible(true);
+    medianView->setVisible(true);
 
     QObject::connect(pointsVisibility, &QCheckBox::stateChanged, this, [&](int state){
         if(state == Qt::Checked){
             view.setPointsVisibility(true);
         }else{
             view.setPointsVisibility(false);
+        }
+    });
+
+    QObject::connect(medianView, &QCheckBox::stateChanged, this, [&](int state){
+        if(state == Qt::Checked){
+            drawBounds->setCheckState(Qt::Checked);
+            depthDrawLabel->setVisible(true);
+            depthDraw->setVisible(true);
+            view.setDepthView(depthDraw->value());
+            view.setDrawingMode(qsbd::ViewDrawMode::MedianEstimation);
+        }else{
+            drawBounds->setCheckState(Qt::Checked);
+            depthDrawLabel->setVisible(true);
+            depthDraw->setVisible(true);
+            view.setDrawingMode(qsbd::ViewDrawMode::QuadtreeDepth);
         }
     });
 
@@ -1197,6 +1227,8 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
     QObject::connect(controlTab, &QTabWidget::currentChanged, this, [&](int index){
         if(index != -1){
             if (controlTab->tabText(index) == "Cluster"){
+                medianView->setCheckState(Qt::Unchecked);
+                medianView->setEnabled(false);
                 drawBounds->setCheckState(Qt::Checked);
                 drawBounds->setEnabled(false);
                 depthDrawLabel->setVisible(true);
@@ -1209,6 +1241,8 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
             }
             
             if(controlTab->tabText(index) == "Selection"){
+                medianView->setCheckState(Qt::Unchecked);
+                medianView->setEnabled(true);
                 drawBounds->setEnabled(true);
                 depthDrawLabel->setVisible(true);
                 depthDraw->setVisible(true);
@@ -1226,6 +1260,8 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
 
     QObject::connect(&view, &qsbd::View::cdfsRequest, &model, &qsbd::Model::onCdfsQueries);
     QObject::connect(&model, &qsbd::Model::cdfsReady, &view, &qsbd::View::onCdfsReady);
+    QObject::connect(&view, &qsbd::View::quantileEstimationRequest, &model, &qsbd::Model::onQuantileEstimationQueries);
+    QObject::connect(&model, &qsbd::Model::quatileEstimationReady, &view, &qsbd::View::onQuantileEstimationReady);
     QObject::connect(&controller, &qsbd::Controller::feedFinish, this, &MainWindow::reset);
 }
 

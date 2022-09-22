@@ -43,7 +43,7 @@ namespace qsbd {
     /** @class ViewDrawMode
      * @brief This is a enum class to handle the draw mode for the view aplication.
     */
-    enum class ViewDrawMode {OnlyPoints = 0, QuadtreeDepth, Heatmap, KS};
+    enum class ViewDrawMode {OnlyPoints = 0, QuadtreeDepth, Heatmap, KS, MedianEstimation};
 
     /** @class ClusterMethod
      * @brief This is a enum class to handle the clustering methods for the view aplication.
@@ -119,6 +119,7 @@ namespace qsbd {
         std::map<std::string, std::pair<QGraphicsRectItem*, uint>> lastDepthBoxesPath;
         //std::vector<std::pair<QGraphicsRectItem*, QGraphicsRectItem*>> ksRegions;
         std::vector<QGraphicsRectItem*> cdfsRegions;
+        std::vector<QGraphicsRectItem*> medianEstimationRegions;
         std::vector<int> centroids;
         //std::vector<int> last_clustering;
         int depth;
@@ -341,10 +342,16 @@ namespace qsbd {
         void addPoint(const QPointF& newPoint, const int& val);
 
         /**
-         * @brief This function is called when the view receves the cdfs for each region queried
+         * @brief This function is called when the view receives the cdfs for each region queried
          * @param cdfs A vector with all the cdfs that were queried
         */
         void onCdfsReady(const std::vector<std::vector<double>>& cdfs);
+
+        /**
+         * @brief This function is called when the view receives the quantiles for each region queried
+         * @param values A vector with all the quantiles that were queried
+        */
+        void onQuantileEstimationReady(const std::vector<int>& values);
 
         /**
          * @brief This method shows only the query region with the current @p queryId
@@ -427,6 +434,13 @@ namespace qsbd {
         * @param values The values queried in the view
         */
         void cdfsRequest(const std::vector<QRectF>& regions, const std::vector<int>& values);
+
+        /**
+        * @brief A Qt signal, this signal is triggered when we query for some @p quantile on multiples @p regions
+        * @param regions The regions queried in the view
+        * @param quantile The queried quantile
+        */
+        void quantileEstimationRequest(const std::vector<QRectF>& regions, const double quantile);
     };
 
 } // namespace qsbd

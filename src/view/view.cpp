@@ -358,6 +358,41 @@ namespace qsbd {
 				emit cdfsRequest(regions_to_search, values_to_search);
 			}
 			break;
+			case ViewDrawMode::MedianEstimation:{
+				for(auto& point : points){
+					point->setVisible(visiblePoints);
+				}
+
+				for(auto& it : boxInPath){
+					it.second->setBrush(Qt::NoBrush);
+					if (it.first.size() - 1 == depthView){
+						it.second->setVisible(true);
+					}else{
+						it.second->setVisible(false);
+					}
+				}
+
+				medianEstimationRegions = regionsInResolution(depthView);
+
+				std::vector<QRectF> regions_to_search;
+
+				for(auto& it : medianEstimationRegions/*ksRegions*/){
+					//pairsBounds.push_back({it.first->sceneBoundingRect(), it.second->sceneBoundingRect()});
+
+					QRectF itemQueryBound = it->sceneBoundingRect();
+
+					std::pair<double, double> itemTranslatedTopLeft = mapSceneToMapLonLat(itemQueryBound.topLeft());
+					std::pair<double, double> itemTranslatedBottomRight = mapSceneToMapLonLat(itemQueryBound.bottomRight());
+					
+					QPointF itemTopLeftMapped = QPointF(itemTranslatedTopLeft.first, itemTranslatedBottomRight.second);
+					QPointF itemBottomRightMapped = QPointF(itemTranslatedBottomRight.first,  itemTranslatedTopLeft.second);
+					QRectF itemQueryMapped = QRectF(itemTopLeftMapped, itemBottomRightMapped);
+					regions_to_search.emplace_back(itemQueryMapped);
+				}
+
+				emit quantileEstimationRequest(regions_to_search, 0.5);
+			}
+			break;
 			default:
 			break;
 		}
@@ -897,6 +932,13 @@ namespace qsbd {
 		}*/
 
 		show();
+	}
+
+	void View::onQuantileEstimationReady(const std::vector<int>& values){
+		for(size_t i = 0; i < medianEstimationRegions.size(); i++){
+			medianEstimationRegions[i]->setBrush(QBrush(QColor(0, 0, (((std::max(values[i], minValueSeen) - minValueSeen) * 255) / (double)maxValueSeen), 155)));
+			medianEstimationRegions[i]->setVisible(true);
+		}
 	}
 
 	void View::showOnlyQueryId(const int& queryId){

@@ -144,6 +144,15 @@ namespace qsbd {
 		*/
 		std::vector<std::vector<double>> onCdfsQueries(const std::vector<QRectF>& regions, const std::vector<int>& values);
 
+
+		/**
+		 * @brief Apply multiple quantile queries on the quadtree in this model.
+		 * @param regions The search regions
+		 * @param quantile A quantile to be queried
+		 * @return A vector for each quantile searched
+		*/
+		std::vector<int> onQuantileEstimationQueries(const std::vector<QRectF>& regions, const double& quantile);
+
 		/**
 		 * @brief Apply multiples kolmogorov-smirnoff distance on each @p regionPairs
 		 * @param regionPairs A vector with pairs of regions to be queried
@@ -177,6 +186,12 @@ namespace qsbd {
 		 * @param cdfs The processed cdfs is emitted
 		*/
 		void cdfsReady(const std::vector<std::vector<double>>& cdfs);
+
+		/**
+		 * @brief A Qt signal that is emited when the Model::onQuantileEstimationQueries(const std::vector<QRectF>& regions, const double& quantile) finish it's work.
+		 * @param quantileValue The processed quantiles is emitted
+		*/
+		void quatileEstimationReady(const std::vector<int>& quantileValue);
 		
 		/**
 		 * @brief A Qt signal that is emited when the Model::onKsRequest(const std::vector<std::pair<QRectF, QRectF>>&, const std::vector<int>&) finish it's work.
