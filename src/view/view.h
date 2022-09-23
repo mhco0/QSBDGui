@@ -43,7 +43,7 @@ namespace qsbd {
     /** @class ViewDrawMode
      * @brief This is a enum class to handle the draw mode for the view aplication.
     */
-    enum class ViewDrawMode {OnlyPoints = 0, QuadtreeDepth, Heatmap, KS, MedianEstimation};
+    enum class ViewDrawMode {OnlyPoints = 0, QuadtreeDepth, Heatmap, KS, QuantileEstimation};
 
     /** @class ClusterMethod
      * @brief This is a enum class to handle the clustering methods for the view aplication.
@@ -146,6 +146,7 @@ namespace qsbd {
         double mapMaxX;
         double mapMinY;
         double mapMaxY;
+        double quantileToEstime;
         QTransform originalTransform;
         QPoint clickStart;
         QPoint curMousePos;
@@ -334,6 +335,12 @@ namespace qsbd {
          * @param dbmin The minimal number
         */
         void setDBSCANMin(const int& dbmin);
+
+        /**
+         * @brief A setter for the quantile estimation when using ViewDrawMode::QuantileEstimation draw mode.
+         * @param quantile The quantile to be queried
+        */
+        void setQuantileEstimation(const double& quantile);
 
         /**
         * @brief A function to add a new point on the plot

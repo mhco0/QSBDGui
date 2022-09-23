@@ -48,6 +48,7 @@ namespace qsbd {
 		mapMaxX = 0.0;
 		mapMinY = 0.0;
 		mapMaxY = 0.0;
+		quantileToEstime = 0.5;
 		drawMode = ViewDrawMode::OnlyPoints;
 		queryCurId = 0;
 		dragging = false;
@@ -358,7 +359,7 @@ namespace qsbd {
 				emit cdfsRequest(regions_to_search, values_to_search);
 			}
 			break;
-			case ViewDrawMode::MedianEstimation:{
+			case ViewDrawMode::QuantileEstimation:{
 				for(auto& point : points){
 					point->setVisible(visiblePoints);
 				}
@@ -390,7 +391,7 @@ namespace qsbd {
 					regions_to_search.emplace_back(itemQueryMapped);
 				}
 
-				emit quantileEstimationRequest(regions_to_search, 0.5);
+				emit quantileEstimationRequest(regions_to_search, quantileToEstime);
 			}
 			break;
 			default:
@@ -540,6 +541,10 @@ namespace qsbd {
 	void View::setDBSCANMin(const int& dbmin){
 		dbscanMin = dbmin;
 		this->updateBasedOnDrawMode();
+	}
+
+	void View::setQuantileEstimation(const double& quantile){
+		this->quantileToEstime = quantile;
 	}
 
 	void View::setDomain(const double& minXRes, const double& minYRes, const double& maxXRes, const double& maxYRes){

@@ -65,11 +65,22 @@ void MainWindow::setupUi(){
     pointsVisibility = new QCheckBox();
     pointsVisibility->setCheckState(Qt::Checked);
 
-    medianViewLabel = new QLabel("Median on boxes");
-    medianViewLabel->setVisible(false);
+    quantileViewLabel = new QLabel("Median on boxes");
+    quantileViewLabel->setVisible(false);
 	
-    medianView = new QCheckBox();
-    medianView->setCheckState(Qt::Unchecked);
+    quantileView = new QCheckBox();
+    quantileView->setCheckState(Qt::Unchecked);
+
+    quantileEstimationLabel = new QLabel("Quantile:");
+    quantileEstimationLabel->setVisible(false);
+
+    quantileEstimation = new QDoubleSpinBox();
+    quantileEstimation->setDecimals(1);
+    quantileEstimation->setRange(0.0, 1.0);
+    quantileEstimation->setSingleStep(0.1);
+    quantileEstimation->setValue(0.0);
+    quantileEstimation->setVisible(false);
+    quantileEstimation->setMaximumWidth(250);
 
     depthDrawLabel = new QLabel("Depth:");
     depthDrawLabel->setVisible(false);
@@ -94,10 +105,14 @@ void MainWindow::setupUi(){
     bottomContainer->setAlignment(pointsVisibility, Qt::AlignCenter);
     bottomContainer->addWidget(pointsVisibilityLabel);
     bottomContainer->setAlignment(pointsVisibilityLabel, Qt::AlignCenter);
-    bottomContainer->addWidget(medianView);
-    bottomContainer->setAlignment(medianView, Qt::AlignCenter);
-    bottomContainer->addWidget(medianViewLabel);
-    bottomContainer->setAlignment(medianViewLabel, Qt::AlignCenter);
+    bottomContainer->addWidget(quantileView);
+    bottomContainer->setAlignment(quantileView, Qt::AlignCenter);
+    bottomContainer->addWidget(quantileViewLabel);
+    bottomContainer->setAlignment(quantileViewLabel, Qt::AlignCenter);
+    bottomContainer->addWidget(quantileEstimationLabel);
+    bottomContainer->setAlignment(quantileEstimationLabel, Qt::AlignCenter);
+    bottomContainer->addWidget(quantileEstimation);
+    bottomContainer->setAlignment(quantileEstimation, Qt::AlignCenter);
     bottomContainer->addStretch();
 
     QWidget* bottomWidget = new QWidget();
@@ -627,8 +642,10 @@ void MainWindow::reset(void){
     drawBounds->setVisible(false);
     pointsVisibilityLabel->setVisible(false);
     pointsVisibility->setVisible(false);
-    medianViewLabel->setVisible(false);
-    medianView->setVisible(false);
+    quantileViewLabel->setVisible(false);
+    quantileView->setVisible(false);
+    quantileEstimationLabel->setVisible(false);
+    quantileEstimation->setVisible(false);
     queryIdLabel->setVisible(false);
     queryIdComboBox->setVisible(false);
     customPlot->setVisible(false);
@@ -699,7 +716,7 @@ void MainWindow::startUpSimulation(void){
             view.setDepthView(depthDraw->value());
             view.setDrawingMode(qsbd::ViewDrawMode::QuadtreeDepth);
         }else{
-            medianView->setCheckState(Qt::Unchecked);
+            quantileView->setCheckState(Qt::Unchecked);
             depthDrawLabel->setVisible(false);
             depthDraw->setVisible(false);
             view.setDrawingMode(qsbd::ViewDrawMode::OnlyPoints);
@@ -708,8 +725,12 @@ void MainWindow::startUpSimulation(void){
 
     pointsVisibilityLabel->setVisible(true);
     pointsVisibility->setVisible(true);
-    medianViewLabel->setVisible(true);
-    medianView->setVisible(true);
+    quantileViewLabel->setVisible(true);
+    quantileView->setVisible(true);
+
+    QObject::connect(quantileEstimation, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), [&](double value){
+        view.setQuantileEstimation(value);
+    });
 
     QObject::connect(pointsVisibility, &QCheckBox::stateChanged, this, [&](int state){
         if(state == Qt::Checked){
@@ -719,17 +740,22 @@ void MainWindow::startUpSimulation(void){
         }
     });
 
-    QObject::connect(medianView, &QCheckBox::stateChanged, this, [&](int state){
+    QObject::connect(quantileView, &QCheckBox::stateChanged, this, [&](int state){
         if(state == Qt::Checked){
             drawBounds->setCheckState(Qt::Checked);
             depthDrawLabel->setVisible(true);
             depthDraw->setVisible(true);
+            quantileEstimationLabel->setVisible(true);
+            quantileEstimation->setVisible(true);
+            view.setQuantileEstimation(quantileEstimation->value());
             view.setDepthView(depthDraw->value());
-            view.setDrawingMode(qsbd::ViewDrawMode::MedianEstimation);
+            view.setDrawingMode(qsbd::ViewDrawMode::QuantileEstimation);
         }else{
             drawBounds->setCheckState(Qt::Checked);
             depthDrawLabel->setVisible(true);
             depthDraw->setVisible(true);
+            quantileEstimationLabel->setVisible(false);
+            quantileEstimation->setVisible(false);
             view.setDrawingMode(qsbd::ViewDrawMode::QuadtreeDepth);
         }
     });
@@ -1227,8 +1253,8 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
     QObject::connect(controlTab, &QTabWidget::currentChanged, this, [&](int index){
         if(index != -1){
             if (controlTab->tabText(index) == "Cluster"){
-                medianView->setCheckState(Qt::Unchecked);
-                medianView->setEnabled(false);
+                quantileView->setCheckState(Qt::Unchecked);
+                quantileView->setEnabled(false);
                 drawBounds->setCheckState(Qt::Checked);
                 drawBounds->setEnabled(false);
                 depthDrawLabel->setVisible(true);
@@ -1241,8 +1267,8 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
             }
             
             if(controlTab->tabText(index) == "Selection"){
-                medianView->setCheckState(Qt::Unchecked);
-                medianView->setEnabled(true);
+                quantileView->setCheckState(Qt::Unchecked);
+                quantileView->setEnabled(true);
                 drawBounds->setEnabled(true);
                 depthDrawLabel->setVisible(true);
                 depthDraw->setVisible(true);

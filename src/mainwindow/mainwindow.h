@@ -164,8 +164,10 @@ private:
 	QCheckBox* pointsVisibility;
 	QLabel* depthDrawLabel;
 	QSpinBox* depthDraw;
-	QLabel* medianViewLabel;
-	QCheckBox* medianView;
+	QLabel* quantileViewLabel;
+	QCheckBox* quantileView;
+	QLabel* quantileEstimationLabel;
+	QDoubleSpinBox* quantileEstimation;
 	
 	QPushButton* freezeButton;
 	QPushButton* loadStreamMethodButton;
