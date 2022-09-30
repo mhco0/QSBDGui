@@ -78,7 +78,7 @@ void MainWindow::setupUi(){
     quantileEstimation->setDecimals(1);
     quantileEstimation->setRange(0.0, 1.0);
     quantileEstimation->setSingleStep(0.1);
-    quantileEstimation->setValue(0.0);
+    quantileEstimation->setValue(0.5);
     quantileEstimation->setVisible(false);
     quantileEstimation->setMaximumWidth(250);
 
@@ -652,6 +652,10 @@ void MainWindow::reset(void){
 
     freezed = false;
 
+    if(useDoubleOnIndex){
+        view.clearMapBetweenValueToInterface();
+    }
+
     useDoubleOnIndex = false;
 
     this->m_minIdxDomain = 0.0;
@@ -679,6 +683,7 @@ void MainWindow::reset(void){
 
     // needs to clear view here
     view.clear();
+    
 }
 
 void MainWindow::startUpSimulation(void){
@@ -1061,6 +1066,8 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), view(this), model(
                     this->m_minIdxDomain = minIdxDomain;
                     this->m_maxIdxDomain = maxIdxDomain;
                     this->m_depthIdxDomain = depthIdxDomain;
+
+                    view.addMapBetweenValueToInterface(minIdxDomain, maxIdxDomain, depthIdxDomain);
 
                     controller.loadStreamByCsvWithMap(path, lonCol, latCol, indexCol, minIdxDomain, maxIdxDomain, depthIdxDomain);
                     startUpSimulation();

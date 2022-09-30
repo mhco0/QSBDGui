@@ -3058,6 +3058,7 @@ CMakeFiles/QSBDGuiTest.dir/src/sketchmenudialog/sketchmenudialog.cpp.o: /usr/inc
 CMakeFiles/QSBDGuiTest.dir/src/view/view.cpp.o: ../../Big-Data-IC/src/aabb/aabb.hpp
 CMakeFiles/QSBDGuiTest.dir/src/view/view.cpp.o: ../../Big-Data-IC/src/commum_header/commum_header.h
 CMakeFiles/QSBDGuiTest.dir/src/view/view.cpp.o: ../../Big-Data-IC/src/point/point.hpp
+CMakeFiles/QSBDGuiTest.dir/src/view/view.cpp.o: ../../Big-Data-IC/src/utils/utils.h
 CMakeFiles/QSBDGuiTest.dir/src/view/view.cpp.o: ../src/dbscan/dbscan.h
 CMakeFiles/QSBDGuiTest.dir/src/view/view.cpp.o: ../src/dbscan/kdtree.h
 CMakeFiles/QSBDGuiTest.dir/src/view/view.cpp.o: ../src/kmeans/kmeans.h

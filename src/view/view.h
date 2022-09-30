@@ -31,8 +31,10 @@
 #include <QQuickWidget>
 #include <QGraphicsSceneMouseEvent>
 #include <aabb/aabb.hpp>
+#include <utils/utils.h>
 #include <map>
 #include <string>
+#include <sstream>
 #include "../kmedoids/kmedoids.hpp"
 #include "../dbscan/dbscan.h"
 #include "../kmeans/kmeans.h"
@@ -49,6 +51,28 @@ namespace qsbd {
      * @brief This is a enum class to handle the clustering methods for the view aplication.
     */
     enum class ClusterMethod {KMedoids = 0, DBSCAN, KMeans};
+
+
+    /** @class LegendItem
+     * @brief This class creates a legend object to be used by tem map
+    */
+    class LegendItem : public QObject, public QGraphicsRectItem {
+        Q_OBJECT
+    protected:
+        QGraphicsRectItem* background;
+        QGraphicsRectItem* rectColors[4];
+        QGraphicsTextItem* rectText[4];
+        std::string textContent[4] = {"", "", "", ""};
+
+        int rectColorLeftPadding;
+        int rectColorsInnerPadding;
+        int rectColorToTextPadding;
+    public:
+        LegendItem(int x, int y, int width, int height);
+
+        void setLegendColors(const std::vector<QColor>& colors);
+        void setLegendTexts(const std::vector<std::string>& texts);
+    };
 
     /** @class QueryGraphicsItem
     * @brief A Qt QGraphicsItem that represents a query in the view
@@ -113,6 +137,7 @@ namespace qsbd {
     private:
         QGraphicsScene* scene;
         QmlView* mapBackground;
+        LegendItem* legend;
         const double startZoom = 10;
         std::map<std::string, QGraphicsRectItem*> boxInPath;
         std::map<std::string, QRectF> logicBoxInPath;
@@ -147,6 +172,10 @@ namespace qsbd {
         double mapMinY;
         double mapMaxY;
         double quantileToEstime;
+        bool useDoubleOnIndex;
+	    double m_minIdxDomain;
+	    double m_maxIdxDomain;
+	    int m_depthIdxDomain;
         QTransform originalTransform;
         QPoint clickStart;
         QPoint curMousePos;
@@ -341,6 +370,11 @@ namespace qsbd {
          * @param quantile The quantile to be queried
         */
         void setQuantileEstimation(const double& quantile);
+
+
+        void addMapBetweenValueToInterface(const double& minIdxDomain, const double& maxIdxDomain, const int& depthIdxDomain);
+
+        void clearMapBetweenValueToInterface();
 
         /**
         * @brief A function to add a new point on the plot

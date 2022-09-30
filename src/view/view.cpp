@@ -1,7 +1,56 @@
 #include "view.h"
 
 namespace qsbd {
-	
+
+	LegendItem::LegendItem(int x, int y, int width, int height){
+		setZValue(2.0);
+
+		// 120 width 80 height
+
+		rectColorLeftPadding = 20;
+        rectColorsInnerPadding = 5;
+        rectColorToTextPadding = 10;
+
+		int colorRectWidth = (width / 4);
+		int colorRectHeight = (height - 4 * rectColorsInnerPadding) / 4;
+
+		int textWidth = width - rectColorLeftPadding - rectColorToTextPadding;
+		//int textHeight = colorRectHeight;
+
+		background = new QGraphicsRectItem();
+		background->setRect(x, y, width, height + rectColorsInnerPadding);
+		background->setBrush(QColor(255, 255, 255));
+		background->setParentItem(this);
+
+		for(int i = 0; i < 4; i++){
+			rectColors[i] = new QGraphicsRectItem();
+			rectColors[i]->setParentItem(this);
+			rectColors[i]->setRect(x + rectColorLeftPadding, y + ((i + 1) * rectColorsInnerPadding) + i * colorRectHeight, colorRectWidth, colorRectHeight);
+			rectColors[i]->setBrush(QColor(255, 0, 0));
+			rectText[i] = new QGraphicsTextItem(tr(textContent[i].c_str()));
+			rectText[i]->setParentItem(this);
+			rectText[i]->setPos(x + rectColorLeftPadding + colorRectWidth + rectColorToTextPadding, y + ((i + 1) * rectColorsInnerPadding) + i * colorRectHeight);
+			rectText[i]->setTextWidth(textWidth);
+		}
+	}
+
+	void LegendItem::setLegendColors(const std::vector<QColor>& colors){
+		assert(colors.size() >= 4);
+		
+		for(size_t i = 0; i < 4; i++){
+			rectColors[i]->setBrush(QBrush(colors[i]));
+		}
+	}
+
+	void LegendItem::setLegendTexts(const std::vector<std::string>& texts){
+		assert(texts.size() >= 4);
+
+		for(size_t i = 0; i < 4; i++){
+			rectText[i]->setPlainText(tr(texts[i].c_str()));
+		}
+	}
+
+
 	void QueryGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
 		emit dropEnd(this);
 		QGraphicsRectItem::mouseReleaseEvent(event);
@@ -49,6 +98,10 @@ namespace qsbd {
 		mapMinY = 0.0;
 		mapMaxY = 0.0;
 		quantileToEstime = 0.5;
+		useDoubleOnIndex = false;
+		m_minIdxDomain = 0.0;
+		m_maxIdxDomain = 0.0;
+		m_depthIdxDomain = 0;
 		drawMode = ViewDrawMode::OnlyPoints;
 		queryCurId = 0;
 		dragging = false;
@@ -86,6 +139,12 @@ namespace qsbd {
 		// 
 		
 		scene->addWidget(mapBackground);
+
+		legend = new LegendItem(560, 370, 140, 100);
+
+		scene->addItem(legend);
+
+		legend->setVisible(false);
 
 		//qDebug() << mapBackground->getVisibleRegion();
 		
@@ -251,6 +310,8 @@ namespace qsbd {
 
 		switch(drawMode){
 			case ViewDrawMode::OnlyPoints:
+				legend->setVisible(false);
+
 				for(auto& point : points){
 					point->setVisible(visiblePoints);
 				}
@@ -261,6 +322,8 @@ namespace qsbd {
 				}
 			break;
 			case ViewDrawMode::QuadtreeDepth:
+				legend->setVisible(false);
+
 				for(auto& point : points){
 					point->setVisible(visiblePoints);
 				}
@@ -275,6 +338,8 @@ namespace qsbd {
 				}
 			break;
 			case ViewDrawMode::Heatmap:
+				legend->setVisible(false);
+
 				for(auto& point : points){
 					point->setVisible(visiblePoints);
 				}
@@ -322,6 +387,8 @@ namespace qsbd {
 				//qDebug() << "_______________\n";
 			break;
 			case ViewDrawMode::KS:{
+				legend->setVisible(false);
+
 				for(auto& point : points){
 					point->setVisible(visiblePoints);
 				}
@@ -360,6 +427,8 @@ namespace qsbd {
 			}
 			break;
 			case ViewDrawMode::QuantileEstimation:{
+				legend->setVisible(true);
+
 				for(auto& point : points){
 					point->setVisible(visiblePoints);
 				}
@@ -939,11 +1008,58 @@ namespace qsbd {
 		show();
 	}
 
+	void View::addMapBetweenValueToInterface(const double& minIdxDomain, const double& maxIdxDomain, const int& depthIdxDomain){
+		this->useDoubleOnIndex = true;
+		this->m_minIdxDomain = minIdxDomain;
+		this->m_maxIdxDomain = maxIdxDomain;
+		this->m_depthIdxDomain = depthIdxDomain;
+	}
+
+	void View::clearMapBetweenValueToInterface(){
+		this->useDoubleOnIndex = false;
+	}
+
 	void View::onQuantileEstimationReady(const std::vector<int>& values){
+		std::vector<int> samples = getKSLERP(5);
+		samples[0] = minValueSeen;
+		samples[samples.size() - 1] = maxValueSeen;
+		std::vector<std::string> ranges;
+		std::vector<QColor> colors;
+
 		for(size_t i = 0; i < medianEstimationRegions.size(); i++){
 			medianEstimationRegions[i]->setBrush(QBrush(QColor(0, 0, (((std::max(values[i], minValueSeen) - minValueSeen) * 255) / (double)maxValueSeen), 155)));
 			medianEstimationRegions[i]->setVisible(true);
 		}
+
+		
+		for(size_t i = 0; i < samples.size() - 1; i++){
+			colors.emplace_back(0, 0, (((std::max(samples[i], minValueSeen) - minValueSeen) * 255) / (double)maxValueSeen), 155);
+		}
+
+		if(not useDoubleOnIndex){
+			for(size_t i = 0; i < samples.size() - 1; i++){
+				ranges.emplace_back("[" + std::to_string(samples[i]) + "," + std::to_string(samples[i + 1]) + ")");
+			}
+		}else{
+		
+			for(size_t i = 0; i < samples.size() - 1; i++){
+				double ldsample = qsbd::map_coord_inv(samples[i], this->m_minIdxDomain, this->m_maxIdxDomain, this->m_depthIdxDomain);
+				double rdsample = qsbd::map_coord_inv(samples[i + 1], this->m_minIdxDomain, this->m_maxIdxDomain, this->m_depthIdxDomain);
+
+				std::stringstream lstream;
+				std::stringstream rstream;
+				lstream << std::fixed << std::setprecision(1) << ldsample;
+				rstream << std::fixed << std::setprecision(1) << rdsample;
+
+				std::string ldString = lstream.str();
+				std::string rdString = rstream.str();
+
+				ranges.emplace_back("[" + ldString + "," + rdString + ")");
+			}
+		}
+
+		legend->setLegendTexts(ranges);
+		legend->setLegendColors(colors);
 	}
 
 	void View::showOnlyQueryId(const int& queryId){
